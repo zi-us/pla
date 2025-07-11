@@ -41,7 +41,7 @@
     <div class="container">
         <div id="application-card" class="application-card">
             <div class="form-header">
-                <h1 id="job-title-header">Application for Plasma Physicist</h1>
+                <h1 id="job-title-header">Application for Computational Research Scientist</h1>
                 <p>Please complete the form below. You will be asked to sign in to securely submit your application.</p>
             </div>
             <form id="application-form">
@@ -90,8 +90,8 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // **** CHANGE THIS FOR EACH JOB PAGE ****
-        const jobTitle = "Plasma Physicist (Experimental)";
+        // **** THIS IS THE ONLY CHANGE FOR THIS PAGE ****
+        const jobTitle = "Computational Research Scientist";
         
         const applicationCard = document.getElementById('application-card');
         const form = document.getElementById('application-form');
@@ -134,12 +134,10 @@
             }
 
             try {
-                // 1. Upload CV
                 const cvRef = ref(storage, `applications/${user.uid}/${cvFile.name}`);
                 await uploadBytes(cvRef, cvFile);
                 const cvUrl = await getDownloadURL(cvRef);
 
-                // 2. Upload Research Work (if it exists)
                 let researchUrl = null;
                 if (researchFile) {
                     const researchRef = ref(storage, `applications/${user.uid}/${researchFile.name}`);
@@ -147,7 +145,6 @@
                     researchUrl = await getDownloadURL(researchRef);
                 }
 
-                // 3. Save application data to Firestore
                 submitBtn.textContent = 'Saving Application...';
                 const applicationRef = doc(db, "applications", `${user.uid}_${jobTitle.replace(/\s+/g, '-')}`);
                 await setDoc(applicationRef, {
@@ -181,7 +178,6 @@
             `;
         }
         
-        // Pre-fill form if user is already logged in
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 if(document.getElementById('email')) {
