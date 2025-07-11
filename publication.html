@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Zi-US Research</title>
+    <meta name="description" content="Published research papers and findings from Zi-US plasma physics laboratory">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 1.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--gray-100);
+            padding: 2rem;
+            border-radius: 0.8rem;
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            margin-bottom: 0.4rem;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            font-size: 1.1rem;
+            border: 1px solid var(--gray-300);
+            background: white;
+            border-radius: 0.2rem;
+            font-family: inherit;
+        }
+
+        .search-box {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            font-size: 1.1rem;
+            border: 1px solid var(--gray-300);
+            background: white;
+            border-radius: 0.2rem;
+            font-family: inherit;
+        }
+
+        /* Publication Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.4rem;
+        }
+
+        .stat-number {
+            font-size: 3.2rem;
+            font-weight: 200;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+        }
+
+        /* Publication List */
+        .publication-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2.4rem;
+            border-radius: 0.4rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .publication-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .publication-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .publication-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .publication-header {
+            margin-bottom: 1.2rem;
+        }
+
+        .publication-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 0.4rem;
+        }
+
+        .publication-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 1.1rem;
+            color: var(--gray-500);
+        }
+
+        .publication-abstract {
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            line-height: 1.8;
+            margin: 1.6rem 0;
+        }
+
+        .publication-tags {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 0.2rem;
+            font-size: 1rem;
+            color: var(--gray-700);
+        }
+
+        .tag.primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .publication-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.02em;
+            border-radius: 0.2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 4rem;
+        }
+
+        .page-link {
+            padding: 0.8rem 1.2rem;
+            border: 1px solid var(--gray-300);
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .page-link:hover {
+            border-color: var(--primary);
+            background: var(--gray-100);
+        }
+
+        .page-link.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            .filter-group,
+            .search-box {
+                width: 100%;
+            }
+
+            .publication-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="brand-name">Zi-US Research</span>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="simulation.html">Simulations</a></li>
+                    <li><a href="publications.html" class="active">Publications</a></li>
+                    <li><a href="team.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="btn">Contact Us</a>
+                <a href="#" class="btn btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download Paper
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Publications & Research Papers</h1>
+            <p>Advancing the understanding of plasma physics through peer-reviewed research and open collaboration</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">87</span>
+                    <span class="stat-label">Published Papers</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2,341</span>
+                    <span class="stat-label">Total Citations</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">34</span>
+                    <span class="stat-label">H-Index</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Active Projects</span>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label>Year</label>
+                    <select class="filter-select">
+                        <option>All Years</option>
+                        <option>2025</option>
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Topic</label>
+                    <select class="filter-select">
+                        <option>All Topics</option>
+                        <option>Debye Shielding</option>
+                        <option>Quasi-Neutrality</option>
+                        <option>Collective Behavior</option>
+                        <option>Fusion Energy</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <label>Search</label>
+                    <input type="text" class="search-input" placeholder="Search publications...">
+                </div>
+            </div>
+
+            <!-- Publication List -->
+            <div class="publication-list">
+                <!-- Publication 1 -->
+                <article class="publication-card">
+                    <div class="publication-header">
+                        <h2 class="publication-title">Nonlinear Debye Shielding in High-Density Plasma: A Computational Framework</h2>
+                        <p class="publication-authors">Zhang, L., Smith, J.R., Anderson, K., Petrov, M.</p>
+                        <div class="publication-info">
+                            <span>Physical Review Letters</span>
+                            <span>Vol. 132, Issue 4</span>
+                            <span>2025</span>
+                        </div>
+                    </div>
+                    <div class="publication-tags">
+                        <span class="tag primary">Featured</span>
+                        <span class="tag">Debye Shielding</span>
+                        <span class="tag">Computational</span>
+                    </div>
+                    <p class="publication-abstract">
+                        We present a novel computational framework for modeling nonlinear Debye shielding effects in high-density plasma environments. Our approach combines Poisson-Boltzmann equations with machine learning techniques to accurately predict screening behavior beyond traditional linear approximations. Results demonstrate significant improvements in fusion plasma confinement predictions.
+                    </p>
+                    <div class="publication-actions">
+                        <a href="#" class="btn btn-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            PDF
+                        </a>
+                        <a href="#" class="btn btn-sm">arXiv</a>
+                        <a href="#" class="btn btn-sm">DOI</a>
+                        <span style="margin-left: auto; font-size: 1.1rem; color: var(--gray-600);">
+                            <strong>47</strong> citations
+                        </span>
+                    </div>
+                </article>
+
+                <!-- Publication 2 -->
+                <article class="publication-card">
+                    <div class="publication-header">
+                        <h2 class="publication-title">Collective Oscillations in Magnetized Plasma: Theory and Experiment</h2>
+                        <p class="publication-authors">Chen, W., Rodriguez, P., Kim, S.H., Thompson, D.A.</p>
+                        <div class="publication-info">
+                            <span>Journal of Plasma Physics</span>
+                            <span>Vol. 89, Issue 2</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                    <div class="publication-tags">
+                        <span class="tag">Collective Behavior</span>
+                        <span class="tag">Experimental</span>
+                        <span class="tag">Magnetized Plasma</span>
+                    </div>
+                    <p class="publication-abstract">
+                        Experimental observations of collective oscillation modes in strongly magnetized plasma are reported and compared with theoretical predictions. Using advanced laser diagnostics, we identify novel wave-particle interaction mechanisms that enhance energy transfer efficiency. These findings have direct applications to tokamak stability control.
+                    </p>
+                    <div class="publication-actions">
+                        <a href="#" class="btn btn-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            PDF
+                        </a>
+                        <a href="#" class="btn btn-sm">arXiv</a>
+                        <a href="#" class="btn btn-sm">DOI</a>
+                        <span style="margin-left: auto; font-size: 1.1rem; color: var(--gray-600);">
+                            <strong>23</strong> citations
+                        </span>
+                    </div>
+                </article>
+
+                <!-- Publication 3 -->
+                <article class="publication-card">
+                    <div class="publication-header">
+                        <h2 class="publication-title">Quasi-Neutrality Breakdown in Ultra-High Frequency Plasma Processing</h2>
+                        <p class="publication-authors">Nakamura, T., Brown, E.M., Liu, X., Wagner, R.</p>
+                        <div class="publication-info">
+                            <span>Applied Physics Letters</span>
+                            <span>Vol. 121, Issue 14</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                    <div class="publication-tags">
+                        <span class="tag">Quasi-Neutrality</span>
+                        <span class="tag">Industrial Applications</span>
+                        <span class="tag">Semiconductor</span>
+                    </div>
+                    <p class="publication-abstract">
+                        We investigate quasi-neutrality breakdown conditions in ultra-high frequency (UHF) plasma sources used for semiconductor manufacturing. Our findings reveal critical frequency thresholds where traditional quasi-neutral assumptions fail, necessitating new modeling approaches for next-generation plasma processing equipment.
+                    </p>
+                    <div class="publication-actions">
+                        <a href="#" class="btn btn-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            PDF
+                        </a>
+                        <a href="#" class="btn btn-sm">arXiv</a>
+                        <a href="#" class="btn btn-sm">DOI</a>
+                        <span style="margin-left: auto; font-size: 1.1rem; color: var(--gray-600);">
+                            <strong>19</strong> citations
+                        </span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-link">Previous</a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">4</a>
+                <a href="#" class="page-link">5</a>
+                <a href="#" class="page-link">Next</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Physics Research Division</p>
+        </div>
+    </footer>
+</body>
+</html>
