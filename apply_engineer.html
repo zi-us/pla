@@ -9,6 +9,7 @@
         :root {
             --primary: #000000; --secondary: #1a1a1a; --accent: #0066ff;
             --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-600: #6c757d;
+            --success: #10b981; --danger: #ff3366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { font-size: 62.5%; }
@@ -90,7 +91,6 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // **** THIS IS THE ONLY CHANGE FOR THIS PAGE ****
         const jobTitle = "Fusion Systems Engineer";
         
         const applicationCard = document.getElementById('application-card');
@@ -146,7 +146,7 @@
                 }
 
                 submitBtn.textContent = 'Saving Application...';
-                const applicationRef = doc(db, "applications", `${user.uid}_${jobTitle.replace(/\s+/g, '-')}`);
+                const applicationRef = doc(db, "applications", user.uid); // Use user UID as document ID
                 await setDoc(applicationRef, {
                     jobTitle: jobTitle,
                     userId: user.uid,
@@ -169,11 +169,18 @@
         }
 
         function showFeedback(message, type) {
+            let actionButton;
+            if (type === 'success') {
+                actionButton = `<a href="application_dashboard.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Go to Your Dashboard</a>`;
+            } else {
+                actionButton = `<a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Return to Careers</a>`;
+            }
+
             applicationCard.innerHTML = `
                 <div class="feedback ${type}">
                     <h2 class="text-2xl font-normal mb-2">${type === 'success' ? 'Thank You' : 'An Error Occurred'}</h2>
                     <p>${message}</p>
-                    <a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Return to Careers</a>
+                    ${actionButton}
                 </div>
             `;
         }
