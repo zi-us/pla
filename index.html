@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zi-US | Plasma Physics Research Platform</title>
+    <meta name="description" content="Understanding the fourth state of matter through advanced research and simulation">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.6rem;
+            justify-content: center;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-main {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 3rem;
+            border-radius: 0.4rem;
+        }
+
+        .content-main h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .content-main h4 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin: 2rem 0 1rem;
+            color: var(--gray-700);
+        }
+
+        .content-main p {
+            font-size: 1.3rem;
+            color: var(--gray-700);
+            margin-bottom: 1.6rem;
+            line-height: 1.8;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            border-radius: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .info-card h4 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Equation Box */
+        .equation-box {
+            background: var(--gray-100);
+            border-left: 3px solid var(--accent);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0.4rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--gray-800);
+        }
+        
+        /* Podcast Section */
+        .podcast-section {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.8rem;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .podcast-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .podcast-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .podcast-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .podcast-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .podcast-description {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1.6rem;
+        }
+
+        .cta-content p {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.6rem;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.02em;
+            border-radius: 0.2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-lg {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .podcast-content {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="brand-name">Zi-US Research</span>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Overview</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a href="contact.html" class="btn">Contact Us</a>
+                <a href="https://zenodo.org/records/15863004" target="_blank" class="btn btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download Paper
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Plasma Physics: Understanding the <span class="accent">Fourth State of Matter</span></h1>
+            <p>Explore the fundamental characteristics that distinguish plasma from ordinary ionized gas, focusing on collective behavior, quasi-neutrality, and Debye shielding phenomena.</p>
+            <div class="hero-actions">
+                <a href="#research" class="btn btn-lg">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="content-section" id="research">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-main">
+                    <h3>From Ionized Gas to Collective Behavior</h3>
+                    <p>Matter exists in four fundamental states: solid, liquid, gas, and plasma. Plasma represents the most prevalent form of baryonic matter in the visible universe, constituting the substance of stars and interstellar space. Despite its cosmic abundance, plasma requires special conditions to be generated and studied in laboratory settings.</p>
+                    <p>While often described as an ionized gas, this definition is incomplete. The defining characteristic of plasma is the ability of free charged particles—electrons and ions—to exhibit collective behavior through long-range electromagnetic interactions.</p>
+                    <h4>The Principle of Quasi-Neutrality</h4>
+                    <p>A foundational property of plasma is quasi-neutrality. While composed of charged particles, plasma appears electrically neutral on macroscopic scales larger than the Debye length. The number density of positive ions (n<sub>i</sub>) approximately equals that of negative electrons (n<sub>e</sub>).</p>
+                    <div class="equation-box">n<sub>i</sub> ≈ n<sub>e</sub></div>
+                </div>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h4>Research Applications</h4>
+                        <p>Our plasma physics research enables advances in fusion energy, semiconductor manufacturing, and space propulsion technologies.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Laboratory Facilities</h4>
+                        <p>State-of-the-art plasma generation and diagnostic equipment for experimental validation of theoretical models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="podcast-section">
+                <div class="podcast-header">
+                    <svg class="podcast-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    <h3 class="podcast-title">Research Insights Podcast</h3>
+                </div>
+                <div class="podcast-content">
+                    <!-- EMBEDDED PODCAST PLAYER -->
+                    <div style="height: 228px; width: 204px; flex-shrink: 0;">
+                        <iframe src="https://audio.com/embed/audio/1837351631739234?theme=light"
+                            style="display:block; border-radius: 1px; border: none; height: 204px; width: 204px;"></iframe>
+                        <a href='https://audio.com/borel-sigma-inc' style="text-align: center; display: block; color: #A4ABB6; font-size: 12px; font-family: sans-serif; line-height: 16px; margin-top: 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">@borel-sigma-inc</a>
+                    </div>
+                    <div class="podcast-description">
+                        <p>Our research team discusses recent advances in plasma physics, including mathematical formulations of Debye shielding, semiconductor plasma treatment applications, and developments from fusion energy companies like Commonwealth Fusion Systems and TAE Technologies.</p>
+                        <p>Topics covered include global regulatory frameworks for fusion energy, IAEA international efforts, and market research on emerging plasma technologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Advance Your Understanding of Plasma Physics</h2>
+            <p>Join our research community and explore the frontiers of the fourth state of matter</p>
+            <div class="cta-buttons">
+                <a href="career.html" class="btn btn-white btn-lg">Access Research Portal</a>
+                <a href="career.html" class="btn btn-lg" style="background: transparent; color: white; border-color: white;">Join Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Physics Research Division</p>
+        </div>
+    </footer>
+</body>
+</html>
