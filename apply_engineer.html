@@ -9,7 +9,6 @@
         :root {
             --primary: #000000; --secondary: #1a1a1a; --accent: #0066ff;
             --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-600: #6c757d;
-            --success: #10b981; --danger: #ff3366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { font-size: 62.5%; }
@@ -26,9 +25,6 @@
         .form-input { width: 100%; padding: 1.2rem; font-size: 1.2rem; border: 1px solid var(--gray-200); background: var(--gray-100); }
         .btn { display: block; width: 100%; padding: 1.2rem; font-size: 1.2rem; font-weight: 400; text-align: center; cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--primary); background: var(--primary); color: white; }
         .btn:disabled { background: var(--gray-600); border-color: var(--gray-600); cursor: not-allowed; }
-        .feedback { padding: 2rem; text-align: center; border: 1px solid; border-radius: 0.4rem; }
-        .feedback.success { border-color: var(--success); color: var(--success); background-color: #f0fdf4; }
-        .feedback.error { border-color: var(--danger); color: var(--danger); background-color: #fef2f2; }
     </style>
 </head>
 <body>
@@ -38,164 +34,79 @@
             <a href="career.html" style="font-size: 1.1rem; text-decoration: none; color: var(--primary);">← Back to Careers</a>
         </div>
     </nav>
-
     <div class="container">
         <div id="application-card" class="application-card">
             <div class="form-header">
-                <h1 id="job-title-header">Application for Fusion Systems Engineer</h1>
-                <p>Please complete the form below. You will be asked to sign in to securely submit your application.</p>
+                <h1>Application for Fusion Systems Engineer</h1>
+                <p>Please complete the form below. You will be redirected to sign in to securely submit your application.</p>
             </div>
             <form id="application-form">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-input">
-                </div>
-                <div class="form-group">
-                    <label for="cv">Upload CV (PDF, DOCX)</label>
-                    <input type="file" id="cv" class="form-input" accept=".pdf,.doc,.docx" required>
-                </div>
-                <div class="form-group">
-                    <label for="research">Upload Research Work (Optional, PDF)</label>
-                    <input type="file" id="research" class="form-input" accept=".pdf">
-                </div>
-                <button type="submit" id="submit-btn" class="btn">Sign In & Submit Application</button>
+                <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" class="form-input" required></div>
+                <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" class="form-input" required></div>
+                <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" class="form-input"></div>
+                <div class="form-group"><label for="cv">Upload CV (PDF, DOCX)</label><input type="file" id="cv" class="form-input" accept=".pdf,.doc,.docx" required></div>
+                <div class="form-group"><label for="research">Upload Research Work (Optional, PDF)</label><input type="file" id="research" class="form-input" accept=".pdf"></div>
+                <button type="submit" id="submit-btn" class="btn">Save and Continue to Sign In</button>
             </form>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
-
-        // **** PASTE YOUR NEW, CORRECT FIREBASE CONFIGURATION OBJECT HERE ****
-        // This is the most likely source of the error.
-        const firebaseConfig = {
-            apiKey: "PASTE_YOUR_NEW_API_KEY_HERE",
-            authDomain: "PASTE_YOUR_NEW_AUTH_DOMAIN",
-            projectId: "PASTE_YOUR_NEW_PROJECT_ID",
-            storageBucket: "PASTE_YOUR_NEW_STORAGE_BUCKET",
-            messagingSenderId: "PASTE_YOUR_NEW_MESSAGING_SENDER_ID",
-            appId: "PASTE_YOUR_NEW_APP_ID"
-        };
-        // *****************************************************************
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
+    <script>
         const jobTitle = "Fusion Systems Engineer";
-        
-        const applicationCard = document.getElementById('application-card');
         const form = document.getElementById('application-form');
         const submitBtn = document.getElementById('submit-btn');
+
+        // Helper function to read a file as a Data URL
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Authenticating...';
+            submitBtn.textContent = 'Processing...';
 
-            try {
-                let user = auth.currentUser;
-                if (!user) {
-                    const provider = new GoogleAuthProvider();
-                    const result = await signInWithPopup(auth, provider);
-                    user = result.user;
-                }
-                
-                submitBtn.textContent = 'Uploading Files...';
-                await submitApplication(user);
-
-            } catch (error) {
-                console.error("Authentication or submission failed: ", error);
-                showFeedback(`Error: ${error.message}`, 'error');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Sign In & Submit Application';
-            }
-        });
-
-        async function submitApplication(user) {
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
             const cvFile = document.getElementById('cv').files[0];
             const researchFile = document.getElementById('research').files[0];
 
             if (!cvFile) {
-                showFeedback('CV is required.', 'error');
+                alert('CV is required.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save and Continue to Sign In';
                 return;
             }
 
             try {
-                const cvRef = ref(storage, `applications/${user.uid}/${cvFile.name}`);
-                await uploadBytes(cvRef, cvFile);
-                const cvUrl = await getDownloadURL(cvRef);
+                const cvDataUrl = await readFileAsDataURL(cvFile);
+                const researchDataUrl = researchFile ? await readFileAsDataURL(researchFile) : null;
 
-                let researchUrl = null;
-                if (researchFile) {
-                    const researchRef = ref(storage, `applications/${user.uid}/${researchFile.name}`);
-                    await uploadBytes(researchRef, researchFile);
-                    researchUrl = await getDownloadURL(researchRef);
-                }
-
-                submitBtn.textContent = 'Saving Application...';
-                const applicationRef = doc(db, "applications", user.uid);
-                await setDoc(applicationRef, {
+                const applicationData = {
                     jobTitle: jobTitle,
-                    userId: user.uid,
-                    fullName: fullName,
-                    email: email,
-                    phone: phone,
-                    cvUrl: cvUrl,
-                    researchUrl: researchUrl,
-                    submittedAt: serverTimestamp()
-                });
+                    fullName: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    cvName: cvFile.name,
+                    researchName: researchFile ? researchFile.name : null,
+                    cvDataUrl: cvDataUrl,
+                    researchDataUrl: researchDataUrl,
+                };
 
-                showFeedback('Application submitted successfully! We will be in touch.', 'success');
+                // Save data to sessionStorage
+                sessionStorage.setItem('pendingApplication', JSON.stringify(applicationData));
+
+                // Redirect to the sign-in page
+                window.location.href = 'signin.html';
 
             } catch (error) {
-                console.error("Error in submission process: ", error);
-                showFeedback(`Submission failed: ${error.message}`, 'error');
+                console.error("Error processing files:", error);
+                alert("There was an error processing your files. Please try again.");
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Sign In & Submit Application';
-            }
-        }
-
-        function showFeedback(message, type) {
-            let actionButton;
-            if (type === 'success') {
-                actionButton = `<a href="application_dashboard.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Go to Your Dashboard</a>`;
-            } else {
-                actionButton = `<a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Return to Careers</a>`;
-            }
-
-            applicationCard.innerHTML = `
-                <div class="feedback ${type}">
-                    <h2 class="text-2xl font-normal mb-2">${type === 'success' ? 'Thank You' : 'An Error Occurred'}</h2>
-                    <p>${message}</p>
-                    ${actionButton}
-                </div>
-            `;
-        }
-        
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                if(document.getElementById('email')) {
-                    document.getElementById('email').value = user.email || '';
-                }
-                if(document.getElementById('fullName')) {
-                    document.getElementById('fullName').value = user.displayName || '';
-                }
+                submitBtn.textContent = 'Save and Continue to Sign In';
             }
         });
     </script>
