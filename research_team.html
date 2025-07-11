@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Team | Zi-US Research</title>
+    <meta name="description" content="Meet the scientists and researchers advancing plasma physics at Zi-US Research">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 1.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.3rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .team-member {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.8rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+
+        .member-image {
+            position: relative;
+            height: 320px;
+            background: var(--gray-200);
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gray-200) 0%, var(--gray-300) 100%);
+        }
+
+        .member-placeholder svg {
+            width: 80px;
+            height: 80px;
+            color: var(--gray-400);
+        }
+
+        .member-info {
+            padding: 2rem;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .member-title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1.6rem;
+        }
+
+        .member-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .member-links a {
+            color: var(--gray-500);
+            transition: color 0.2s ease;
+        }
+
+        .member-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Featured Member */
+        .featured-member {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.8rem;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .featured-member .member-image {
+            height: auto;
+        }
+
+        .featured-member .member-info {
+            padding: 3rem;
+        }
+
+        .featured-member .member-name {
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .featured-member .member-title {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-member .member-bio {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Research Groups */
+        .research-groups {
+            background: var(--gray-100);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .group-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 3rem;
+            border-radius: 0.8rem;
+        }
+
+        .group-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            margin-bottom: 1.6rem;
+        }
+
+        .group-card h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .group-card p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .group-members {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+        }
+
+        /* Join Team Section */
+        .join-section {
+            background: var(--primary);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        .join-content h2 {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1.6rem;
+        }
+
+        .join-content p {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .join-buttons {
+            display: flex;
+            gap: 1.6rem;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.02em;
+            border-radius: 0.2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-lg {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-member {
+                grid-column: span 1;
+            }
+
+            .groups-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .join-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="brand-name">Zi-US Research</span>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="simulation.html">Simulations</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="team.html" class="active">Team</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="btn">Contact Us</a>
+                <a href="#" class="btn btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download Paper
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Research Team</h1>
+            <p>Leading scientists and researchers pushing the boundaries of plasma physics understanding</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Featured Member -->
+            <div class="featured-member">
+                <div class="member-image">
+                    <div class="member-placeholder">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h2 class="member-name">Dr. Li Zhang</h2>
+                    <p class="member-title">Director of Plasma Physics Research</p>
+                    <p class="member-bio">
+                        Dr. Zhang leads the Zi-US plasma physics research division with over 20 years of experience in fusion energy and computational plasma modeling. Her pioneering work on nonlinear Debye shielding has revolutionized our understanding of high-density plasma behavior. She received her Ph.D. from MIT and has published over 150 peer-reviewed papers in leading physics journals.
+                    </p>
+                    <p class="member-bio">
+                        Current research focuses on developing advanced mathematical frameworks for plasma turbulence and applying machine learning techniques to fusion reactor optimization. Dr. Zhang serves on the IAEA International Fusion Research Council and is a fellow of the American Physical Society.
+                    </p>
+                    <div class="member-links">
+                        <a href="#">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                            </svg>
+                        </a>
+                        <a href="#">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 3h18v18H3V3m4.5 15.5V14h-1v4.5h1M3.5 19h17L12 5.5 3.5 19M17.5 7.5h-1v1h1v-1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. James Smith</h3>
+                        <p class="member-title">Senior Research Scientist</p>
+                        <p class="member-bio">
+                            Specializes in experimental plasma diagnostics and laser-plasma interactions. Leads the development of novel measurement techniques for high-temperature plasma characterization.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 3h18v18H3V3m4.5 15.5V14h-1v4.5h1M3.5 19h17L12 5.5 3.5 19M17.5 7.5h-1v1h1v-1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Maria Rodriguez</h3>
+                        <p class="member-title">Computational Physics Lead</p>
+                        <p class="member-bio">
+                            Expert in particle-in-cell simulations and GPU-accelerated plasma modeling. Develops cutting-edge computational tools for studying collective phenomena in magnetized plasmas.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 3h18v18H3V3m4.5 15.5V14h-1v4.5h1M3.5 19h17L12 5.5 3.5 19M17.5 7.5h-1v1h1v-1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Takeshi Nakamura</h3>
+                        <p class="member-title">Industrial Applications Lead</p>
+                        <p class="member-bio">
+                            Bridges fundamental plasma research with semiconductor manufacturing applications. Pioneered new plasma etching techniques adopted by major chip manufacturers.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Sarah Chen</h3>
+                        <p class="member-title">Postdoctoral Researcher</p>
+                        <p class="member-bio">
+                            Investigating quantum effects in ultra-cold plasmas and developing novel cooling techniques for ion trap quantum computers using plasma physics principles.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 3h18v18H3V3m4.5 15.5V14h-1v4.5h1M3.5 19h17L12 5.5 3.5 19M17.5 7.5h-1v1h1v-1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Michael Anderson</h3>
+                        <p class="member-title">Fusion Energy Specialist</p>
+                        <p class="member-bio">
+                            Focuses on tokamak plasma stability and disruption mitigation strategies. Collaborates with ITER and private fusion companies on control system development.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <div class="member-placeholder">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Elena Petrov</h3>
+                        <p class="member-title">Graduate Student</p>
+                        <p class="member-bio">
+                            Ph.D. candidate studying nonlinear wave propagation in dusty plasmas. Developing theoretical models for space plasma environments.
+                        </p>
+                        <div class="member-links">
+                            <a href="#">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3 3h18v18H3V3m4.5 15.5V14h-1v4.5h1M3.5 19h17L12 5.5 3.5 19M17.5 7.5h-1v1h1v-1z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Groups -->
+    <section class="research-groups">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Groups</h2>
+                <p>Specialized teams advancing different aspects of plasma physics</p>
+            </div>
+        </div>
+        <div class="groups-grid">
+            <div class="group-card">
+                <svg class="group-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <h3>Theoretical Plasma Physics</h3>
+                <p>Developing mathematical frameworks and analytical models for understanding plasma dynamics, turbulence, and transport phenomena in various plasma regimes.</p>
+                <p class="group-members">8 members • Led by Dr. Li Zhang</p>
+            </div>
+            <div class="group-card">
+                <svg class="group-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                </svg>
+                <h3>Computational Plasma Physics</h3>
+                <p>Utilizing supercomputing resources to simulate complex plasma phenomena, from microscopic kinetic effects to macroscopic fluid behavior.</p>
+                <p class="group-members">6 members • Led by Dr. Maria Rodriguez</p>
+            </div>
+            <div class="group-card">
+                <svg class="group-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <h3>Experimental Diagnostics</h3>
+                <p>Designing and implementing advanced measurement techniques for characterizing plasma properties in extreme conditions.</p>
+                <p class="group-members">5 members • Led by Dr. James Smith</p>
+            </div>
+            <div class="group-card">
+                <svg class="group-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.66 7.93L12 2.27 6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31A7.98 7.98 0 0 0 12 21.58c2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31z"/>
+                </svg>
+                <h3>Applied Plasma Technology</h3>
+                <p>Translating fundamental research into practical applications for semiconductor manufacturing, materials processing, and energy generation.</p>
+                <p class="group-members">7 members • Led by Dr. Takeshi Nakamura</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Team Section -->
+    <section class="join-section">
+        <div class="join-content">
+            <h2>Join Our Research Team</h2>
+            <p>We're always looking for talented researchers passionate about advancing plasma physics</p>
+            <div class="join-buttons">
+                <a href="#" class="btn btn-white btn-lg">View Open Positions</a>
+                <a href="#" class="btn btn-lg" style="background: transparent; color: white; border-color: white;">Graduate Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Physics Research Division</p>
+        </div>
+    </footer>
+</body>
+</html>
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-member {
+                grid-column: span 2;
+                grid-template-columns: 1fr;
+            }
+
+            .featured-member .member-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .team-grid {
