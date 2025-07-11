@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collective Behavior Game | Zi-US Research</title>
+    <meta name="description" content="Interactive game demonstrating plasma collective behavior through electromagnetic forces">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #000;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Game Container */
+        .game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: #000;
+        }
+
+        /* Game Canvas */
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        /* UI Overlay */
+        .ui-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        /* Header */
+        .game-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            pointer-events: auto;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            font-weight: 200;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Score Panel */
+        .score-panel {
+            position: absolute;
+            top: 8rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.8rem;
+            padding: 2rem;
+            min-width: 280px;
+            pointer-events: auto;
+        }
+
+        .score-title {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 1.6rem;
+            font-weight: 400;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .score-value {
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .level-indicator {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .level-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.8rem;
+        }
+
+        .level-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .level-progress {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            position: absolute;
+            top: 8rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.8rem;
+            padding: 2rem;
+            min-width: 320px;
+            pointer-events: auto;
+        }
+
+        .control-title {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 1.6rem;
+            font-weight: 400;
+        }
+
+        .control-group {
+            margin-bottom: 1.6rem;
+        }
+
+        .control-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .control-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+
+        /* Instructions */
+        .instructions {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.8rem;
+            padding: 1.6rem 3rem;
+            pointer-events: auto;
+            text-align: center;
+        }
+
+        .instructions h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .instructions p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+        }
+
+        .key-hint {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0.2rem;
+            font-family: monospace;
+            margin: 0 0.2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.6rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            letter-spacing: 0.02em;
+            border-radius: 0.2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Game States */
+        .game-over-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 4rem;
+            text-align: center;
+            display: none;
+            pointer-events: auto;
+        }
+
+        .game-over-screen.active {
+            display: block;
+        }
+
+        .game-over-title {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 200;
+        }
+
+        .final-score {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .game-over-buttons {
+            display: flex;
+            gap: 1.6rem;
+            justify-content: center;
+        }
+
+        /* Power-ups */
+        .powerup-indicator {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            pointer-events: none;
+        }
+
+        .powerup-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .powerup-icon.active {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .score-panel,
+            .control-panel {
+                position: static;
+                margin: 1rem;
+                min-width: auto;
+            }
+
+            .instructions {
+                display: none;
+            }
+
+            .game-container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #gameCanvas {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div class="ui-overlay">
+            <!-- Header -->
+            <div class="game-header">
+                <div class="header-content">
+                    <h1 class="game-title">Collective Behavior: Electromagnetic Forces</h1>
+                    <a href="index.html" class="back-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back to Overview
+                    </a>
+                </div>
+            </div>
+
+            <!-- Score Panel -->
+            <div class="score-panel">
+                <h2 class="score-title">Mission Status</h2>
+                <div class="score-item">
+                    <span>Score</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span>Particles Controlled</span>
+                    <span class="score-value" id="particlesControlled">0</span>
+                </div>
+                <div class="score-item">
+                    <span>Collective Chains</span>
+                    <span class="score-value" id="chains">0</span>
+                </div>
+                <div class="level-indicator">
+                    <div class="level-text">Level <span id="level">1</span></div>
+                    <div class="level-bar">
+                        <div class="level-progress" id="levelProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2 class="control-title">Field Controls</h2>
+                <div class="control-group">
+                    <label class="control-label">Field Type</label>
+                    <div class="control-buttons">
+                        <button class="btn active" id="attractBtn">Attract</button>
+                        <button class="btn" id="repelBtn">Repel</button>
+                        <button class="btn" id="rotateBtn">Rotate</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Field Strength</label>
+                    <div class="control-buttons">
+                        <button class="btn" id="weakBtn">Weak</button>
+                        <button class="btn active" id="mediumBtn">Medium</button>
+                        <button class="btn" id="strongBtn">Strong</button>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-top: 2rem;">
+                    <button class="btn btn-primary" id="pauseBtn" style="width: 100%;">Pause</button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>How to Play</h3>
+                <p>Click and hold to create electromagnetic fields that influence particle motion</p>
+                <p>Create chains of particles moving together to demonstrate collective behavior</p>
+                <p>Use <span class="key-hint">Q</span> / <span class="key-hint">W</span> / <span class="key-hint">E</span> to switch field types</p>
+            </div>
+
+            <!-- Power-up Indicators -->
+            <div class="powerup-indicator">
+                <div class="powerup-icon" id="powerup1">×2</div>
+                <div class="powerup-icon" id="powerup2">⚡</div>
+                <div class="powerup-icon" id="powerup3">🌊</div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div class="game-over-screen" id="gameOverScreen">
+                <h2 class="game-over-title">Mission Complete!</h2>
+                <div class="final-score">Final Score: <span id="finalScore">0</span></div>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">
+                    You successfully demonstrated collective plasma behavior through electromagnetic forces!
+                </p>
+                <div class="game-over-buttons">
+                    <button class="btn btn-primary" onclick="restartGame()">Play Again</button>
+                    <a href="index.html" class="btn">Back to Overview</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game Configuration
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Game State
+        let gameState = {
+            score: 0,
+            level: 1,
+            particlesControlled: 0,
+            chains: 0,
+            isPaused: false,
+            fieldType: 'attract', // attract, repel, rotate
+            fieldStrength: 'medium',
+            mouseX: 0,
+            mouseY: 0,
+            mouseDown: false,
+            powerups: {
+                doubleScore: false,
+                superField: false,
+                waveMode: false
+            }
+        };
+
+        // Particle System
+        class Particle {
+            constructor(x, y, charge) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.charge = charge; // 1 or -1
+                this.radius = 4;
+                this.color = charge > 0 ? '#ff3366' : '#0066ff';
+                this.controlled = false;
+                this.trail = [];
+                this.maxTrailLength = 20;
+                this.connections = [];
+            }
+
+            update() {
+                // Store trail
+                this.trail.push({x: this.x, y: this.y});
+                if (this.trail.length > this.maxTrailLength) {
+                    this.trail.shift();
+                }
+
+                // Apply field forces if mouse is down
+                if (gameState.mouseDown) {
+                    this.applyFieldForce();
+                }
+
+                // Apply inter-particle forces
+                this.applyParticleForces();
+
+                // Update position
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Boundary bounce
+                if (this.x < this.radius || this.x > canvas.width - this.radius) {
+                    this.vx *= -0.8;
+                    this.x = Math.max(this.radius, Math.min(canvas.width - this.radius, this.x));
+                }
+                if (this.y < this.radius || this.y > canvas.height - this.radius) {
+                    this.vy *= -0.8;
+                    this.y = Math.max(this.radius, Math.min(canvas.height - this.radius, this.y));
+                }
+
+                // Damping
+                this.vx *= 0.99;
+                this.vy *= 0.99;
+
+                // Check if controlled
+                const dist = Math.hypot(this.x - gameState.mouseX, this.y - gameState.mouseY);
+                this.controlled = gameState.mouseDown && dist < 150;
+            }
+
+            applyFieldForce() {
+                const dx = gameState.mouseX - this.x;
+                const dy = gameState.mouseY - this.y;
+                const dist = Math.hypot(dx, dy);
+                
+                if (dist < 200 && dist > 0) {
+                    const strength = gameState.fieldStrength === 'weak' ? 0.5 : 
+                                   gameState.fieldStrength === 'strong' ? 2 : 1;
+                    
+                    let force = (strength * 50) / (dist * dist);
+                    if (gameState.powerups.superField) force *= 2;
+
+                    if (gameState.fieldType === 'attract') {
+                        this.vx += (dx / dist) * force * 0.1;
+                        this.vy += (dy / dist) * force * 0.1;
+                    } else if (gameState.fieldType === 'repel') {
+                        this.vx -= (dx / dist) * force * 0.1;
+                        this.vy -= (dy / dist) * force * 0.1;
+                    } else if (gameState.fieldType === 'rotate') {
+                        // Perpendicular force for rotation
+                        this.vx += (-dy / dist) * force * 0.05;
+                        this.vy += (dx / dist) * force * 0.05;
+                    }
+                }
+            }
+
+            applyParticleForces() {
+                for (let other of particles) {
+                    if (other === this) continue;
+                    
+                    const dx = other.x - this.x;
+                    const dy = other.y - this.y;
+                    const dist = Math.hypot(dx, dy);
+                    
+                    if (dist < 100 && dist > 0) {
+                        // Coulomb-like force
+                        const force = (this.charge * other.charge * 20) / (dist * dist);
+                        this.vx -= (dx / dist) * force * 0.01;
+                        this.vy -= (dy / dist) * force * 0.01;
+                        
+                        // Track connections for chains
+                        if (dist < 50 && this.charge === other.charge) {
+                            if (!this.connections.includes(other)) {
+                                this.connections.push(other);
+                            }
+                        }
+                    }
+                }
+            }
+
+            draw() {
+                // Draw trail
+                if (this.trail.length > 1) {
+                    ctx.strokeStyle = this.color + '40';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(this.trail[0].x, this.trail[0].y);
+                    for (let i = 1; i < this.trail.length; i++) {
+                        ctx.lineTo(this.trail[i].x, this.trail[i].y);
+                    }
+                    ctx.stroke();
+                }
+
+                // Draw connections
+                ctx.strokeStyle = this.color + '60';
+                ctx.lineWidth = 1;
+                for (let other of this.connections) {
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(other.x, other.y);
+                    ctx.stroke();
+                }
+
+                // Draw particle glow
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Draw particle
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Highlight if controlled
+                if (this.controlled) {
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius + 4, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Initialize particles
+        const particles = [];
+        const particleCount = 60;
+
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < particleCount; i++) {
+                const charge = Math.random() < 0.5 ? 1 : -1;
+                particles.push(new Particle(
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height,
+                    charge
+                ));
+            }
+        }
+
+        // Field visualization
+        function drawField() {
+            if (!gameState.mouseDown) return;
+
+            const gradient = ctx.createRadialGradient(
+                gameState.mouseX, gameState.mouseY, 0,
+                gameState.mouseX, gameState.mouseY, 200
+            );
+            
+            if (gameState.fieldType === 'attract') {
+                gradient.addColorStop(0, 'rgba(0, 102, 255, 0.3)');
+                gradient.addColorStop(1, 'rgba(0, 102, 255, 0)');
+            } else if (gameState.fieldType === 'repel') {
+                gradient.addColorStop(0, 'rgba(255, 51, 102, 0.3)');
+                gradient.addColorStop(1, 'rgba(255, 51, 102, 0)');
+            } else {
+                gradient.addColorStop(0, 'rgba(139, 92, 246, 0.3)');
+                gradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+            }
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(gameState.mouseX, gameState.mouseY, 200, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw field lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 1;
+            for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 6) {
+                ctx.beginPath();
+                ctx.moveTo(
+                    gameState.mouseX + Math.cos(angle) * 30,
+                    gameState.mouseY + Math.sin(angle) * 30
+                );
+                ctx.lineTo(
+                    gameState.mouseX + Math.cos(angle) * 180,
+                    gameState.mouseY + Math.sin(angle) * 180
+                );
+                ctx.stroke();
+            }
+        }
+
+        // Update game state
+        function updateGame() {
+            // Count controlled particles
+            let controlled = 0;
+            let chains = new Set();
+            
+            for (let particle of particles) {
+                if (particle.controlled) controlled++;
+                
+                // Count unique chains
+                if (particle.connections.length >= 2) {
+                    chains.add(particle);
+                }
+            }
+
+            gameState.particlesControlled = controlled;
+            gameState.chains = chains.size;
+
+            // Update score
+            if (gameState.mouseDown && controlled > 0) {
+                let points = controlled * 10;
+                if (gameState.powerups.doubleScore) points *= 2;
+                gameState.score += points;
+            }
+
+            // Check level progression
+            const levelThreshold = 1000 * gameState.level;
+            if (gameState.score >= levelThreshold) {
+                gameState.level++;
+                activatePowerup();
+            }
+
+            // Update UI
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('particlesControlled').textContent = gameState.particlesControlled;
+            document.getElementById('chains').textContent = gameState.chains;
+            document.getElementById('level').textContent = gameState.level;
+            
+            const progress = (gameState.score % (1000 * gameState.level)) / (10 * gameState.level);
+            document.getElementById('levelProgress').style.width = progress + '%';
+        }
+
+        // Power-up system
+        function activatePowerup() {
+            const powerups = ['doubleScore', 'superField', 'waveMode'];
+            const randomPowerup = powerups[Math.floor(Math.random() * powerups.length)];
+            
+            gameState.powerups[randomPowerup] = true;
+            
+            // Visual feedback
+            const powerupIndex = powerups.indexOf(randomPowerup) + 1;
+            document.getElementById(`powerup${powerupIndex}`).classList.add('active');
+            
+            // Deactivate after 10 seconds
+            setTimeout(() => {
+                gameState.powerups[randomPowerup] = false;
+                document.getElementById(`powerup${powerupIndex}`).classList.remove('active');
+            }, 10000);
+        }
+
+        // Game loop
+        function gameLoop() {
+            if (gameState.isPaused) return;
+
+            // Clear canvas
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw field
+            drawField();
+
+            // Update and draw particles
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+
+            // Clear old connections
+            for (let particle of particles) {
+                particle.connections = [];
+            }
+
+            // Update game state
+            updateGame();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Event listeners
+        canvas.addEventListener('mousedown', (e) => {
+            gameState.mouseDown = true;
+            gameState.mouseX = e.clientX;
+            gameState.mouseY = e.clientY;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            gameState.mouseDown = false;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            gameState.mouseX = e.clientX;
+            gameState.mouseY = e.clientY;
+        });
+
+        // Touch support
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            gameState.mouseDown = true;
+            gameState.mouseX = touch.clientX;
+            gameState.mouseY = touch.clientY;
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            gameState.mouseDown = false;
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            gameState.mouseX = touch.clientX;
+            gameState.mouseY = touch.clientY;
+        });
+
+        // Control buttons
+        document.getElementById('attractBtn').addEventListener('click', () => {
+            gameState.fieldType = 'attract';
+            updateFieldButtons();
+        });
+
+        document.getElementById('repelBtn').addEventListener('click', () => {
+            gameState.fieldType = 'repel';
+            updateFieldButtons();
+        });
+
+        document.getElementById('rotateBtn').addEventListener('click', () => {
+            gameState.fieldType = 'rotate';
+            updateFieldButtons();
+        });
+
+        document.getElementById('weakBtn').addEventListener('click', () => {
+            gameState.fieldStrength = 'weak';
+            updateStrengthButtons();
+        });
+
+        document.getElementById('mediumBtn').addEventListener('click', () => {
+            gameState.fieldStrength = 'medium';
+            updateStrengthButtons();
+        });
+
+        document.getElementById('strongBtn').addEventListener('click', () => {
+            gameState.fieldStrength = 'strong';
+            updateStrengthButtons();
+        });
+
+        document.getElementById('pauseBtn').addEventListener('click', () => {
+            gameState.isPaused = !gameState.isPaused;
+            document.getElementById('pauseBtn').textContent = gameState.isPaused ? 'Resume' : 'Pause';
+            if (!gameState.isPaused) gameLoop();
+        });
+
+        function updateFieldButtons() {
+            document.querySelectorAll('.control-buttons button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (gameState.fieldType === 'attract') {
+                document.getElementById('attractBtn').classList.add('active');
+            } else if (gameState.fieldType === 'repel') {
+                document.getElementById('repelBtn').classList.add('active');
+            } else {
+                document.getElementById('rotateBtn').classList.add('active');
+            }
+        }
+
+        function updateStrengthButtons() {
+            document.getElementById('weakBtn').classList.remove('active');
+            document.getElementById('mediumBtn').classList.remove('active');
+            document.getElementById('strongBtn').classList.remove('active');
+            
+            if (gameState.fieldStrength === 'weak') {
+                document.getElementById('weakBtn').classList.add('active');
+            } else if (gameState.fieldStrength === 'medium') {
+                document.getElementById('mediumBtn').classList.add('active');
+            } else {
+                document.getElementById('strongBtn').classList.add('active');
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case 'q':
+                    gameState.fieldType = 'attract';
+                    updateFieldButtons();
+                    break;
+                case 'w':
+                    gameState.fieldType = 'repel';
+                    updateFieldButtons();
+                    break;
+                case 'e':
+                    gameState.fieldType = 'rotate';
+                    updateFieldButtons();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    gameState.isPaused = !gameState.isPaused;
+                    document.getElementById('pauseBtn').textContent = gameState.isPaused ? 'Resume' : 'Pause';
+                    if (!gameState.isPaused) gameLoop();
+                    break;
+            }
+        });
+
+        // Restart
