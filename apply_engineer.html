@@ -77,14 +77,16 @@
         import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
+        // **** PASTE YOUR NEW FIREBASE CONFIGURATION OBJECT HERE ****
         const firebaseConfig = {
-            apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
-            authDomain: "zi-us-login.firebaseapp.com",
-            projectId: "zi-us-login",
-            storageBucket: "zi-us-login.firebasestorage.app",
-            messagingSenderId: "914293517426",
-            appId: "1:914293517426:web:188e7cf98421c70ba3a6eb",
+            apiKey: "YOUR_NEW_API_KEY",
+            authDomain: "YOUR_NEW_AUTH_DOMAIN",
+            projectId: "YOUR_NEW_PROJECT_ID",
+            storageBucket: "YOUR_NEW_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_NEW_SENDER_ID",
+            appId: "YOUR_NEW_APP_ID"
         };
+        // **********************************************************
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -146,10 +148,7 @@
                 }
 
                 submitBtn.textContent = 'Saving Application...';
-                // **** THIS IS THE FIX ****
-                // The document ID is now just the user's unique ID, so the dashboard can find it.
                 const applicationRef = doc(db, "applications", user.uid);
-                
                 await setDoc(applicationRef, {
                     jobTitle: jobTitle,
                     userId: user.uid,
