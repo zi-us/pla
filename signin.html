@@ -33,6 +33,7 @@
             --primary: #000000;
             --secondary: #1a1a1a;
             --accent: #0066ff;
+            --danger: #ff3366;
             --gray-100: #f8f9fa;
             --gray-200: #e9ecef;
             --gray-600: #6c757d;
@@ -204,6 +205,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
         
+        // --- THIS CONFIGURATION IS NOW INTEGRATED WITH YOUR PROJECT ---
         const firebaseConfig = {
             apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
             authDomain: "zi-us-login.firebaseapp.com",
@@ -221,52 +223,46 @@
         const passwordInput = document.getElementById('password-input');
         const errorMessage = document.getElementById('error-message');
 
-        // Function to display errors
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
         }
 
-        // Redirect user if they are already logged in
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                window.location.href = 'application_dashboard.html';
+                // Use a full path for the redirect to prevent errors.
+                const currentPath = window.location.pathname;
+                const newPath = currentPath.substring(0, currentPath.lastIndexOf('/')) + '/application_dashboard.html';
+                window.location.href = window.location.origin + newPath;
             }
         });
 
-        // Sign in with provider (e.g., Google)
         async function signInWithProvider(provider) {
             try {
                 await signInWithPopup(auth, provider);
-                // The onAuthStateChanged listener will handle the redirect
             } catch (e) {
                 showError(e.message);
             }
         }
         
-        // Sign up with email and password
         document.getElementById('email-signup-button').addEventListener('click', async () => {
             try {
                 errorMessage.style.display = 'none';
                 await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-                // The onAuthStateChanged listener will handle the redirect
             } catch (e) {
                 showError(e.message);
             }
         });
         
-        // Sign in with email and password
         document.getElementById('email-login-button').addEventListener('click', async () => {
             try {
                 errorMessage.style.display = 'none';
                 await signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-                // The onAuthStateChanged listener will handle the redirect
             } catch (e) {
                 showError(e.message);
             }
         });
         
-        // Google Sign-In button
         document.getElementById('google-login-button').addEventListener('click', () => signInWithProvider(new GoogleAuthProvider()));
         
     </script>
