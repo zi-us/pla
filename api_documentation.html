@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation | Zi-US Research</title>
+    <meta name="description" content="Complete API documentation for Zi-US plasma physics simulation and data access">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--primary);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 5rem;
+            padding: 6rem 0 4rem;
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.6rem;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 1.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            max-width: 700px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            border-radius: 0.2rem;
+            margin-top: 2rem;
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            max-width: 1440px;
+            margin: 0 auto;
+            min-height: calc(100vh - 5rem);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--gray-100);
+            border-right: 1px solid var(--gray-200);
+            padding: 3rem 0;
+            position: sticky;
+            top: 5rem;
+            height: calc(100vh - 5rem);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.4rem;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 0.2rem;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--gray-200);
+            color: var(--primary);
+        }
+
+        .sidebar-menu a.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 4rem;
+            max-width: 900px;
+        }
+
+        .content-section {
+            margin-bottom: 6rem;
+        }
+
+        .content-section h2 {
+            font-size: 2.8rem;
+            font-weight: 200;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 3rem 0 1.6rem;
+        }
+
+        .content-section h4 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin: 2rem 0 1rem;
+            color: var(--gray-700);
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            color: var(--gray-700);
+            margin-bottom: 1.6rem;
+            line-height: 1.8;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--gray-900);
+            color: #e6e6e6;
+            padding: 2rem;
+            border-radius: 0.4rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 1.1rem;
+            background: var(--gray-100);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.2rem;
+            color: var(--danger);
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        /* API Endpoint */
+        .endpoint {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.4rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 0.2rem;
+            color: white;
+        }
+
+        .method.get { background: var(--success); }
+        .method.post { background: var(--accent); }
+        .method.put { background: var(--warning); }
+        .method.delete { background: var(--danger); }
+
+        .endpoint-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            color: var(--gray-800);
+        }
+
+        /* Parameters Table */
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.6rem 0;
+        }
+
+        .params-table th {
+            text-align: left;
+            padding: 1rem;
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-300);
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--gray-700);
+        }
+
+        .params-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 1.1rem;
+        }
+
+        .params-table .param-name {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+        }
+
+        .params-table .param-type {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--purple);
+            font-size: 1rem;
+        }
+
+        .required {
+            color: var(--danger);
+            font-size: 1rem;
+        }
+
+        /* Response Example */
+        .response-example {
+            background: var(--gray-100);
+            border-left: 3px solid var(--success);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0.4rem;
+        }
+
+        .response-example h5 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+
+        /* Error Codes */
+        .error-codes {
+            list-style: none;
+            margin: 1.6rem 0;
+        }
+
+        .error-codes li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .error-code {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--danger);
+            color: white;
+            font-size: 1rem;
+            border-radius: 0.2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: 0.02em;
+            border-radius: 0.2rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--gray-200);
+            background: var(--gray-100);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .main-content {
+                padding: 2rem;
+            }
+
+            .endpoint-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .params-table {
+                font-size: 1rem;
+            }
+
+            pre {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="brand-name">Zi-US Research</span>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="simulation.html">Simulations</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="team.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="btn">Contact Us</a>
+                <a href="#" class="btn btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Download SDK
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Plasma Physics API Documentation</h1>
+            <p>Access plasma simulation data, run computational models, and integrate with our research platform</p>
+            <span class="version-badge">API Version 2.0</span>
+        </div>
+    </section>
+
+    <!-- Layout -->
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Getting Started</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#introduction" class="active">Introduction</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                    <li><a href="#rate-limits">Rate Limits</a></li>
+                    <li><a href="#errors">Error Handling</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Simulation API</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#create-simulation">Create Simulation</a></li>
+                    <li><a href="#get-simulation">Get Simulation</a></li>
+                    <li><a href="#list-simulations">List Simulations</a></li>
+                    <li><a href="#simulation-data">Simulation Data</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Data API</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#plasma-parameters">Plasma Parameters</a></li>
+                    <li><a href="#particle-data">Particle Data</a></li>
+                    <li><a href="#field-data">Field Data</a></li>
+                    <li><a href="#diagnostics">Diagnostics</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Resources</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#sdks">SDKs & Libraries</a></li>
+                    <li><a href="#examples">Code Examples</a></li>
+                    <li><a href="#changelog">Changelog</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section id="introduction" class="content-section">
+                <h2>Introduction</h2>
+                <p>The Zi-US Plasma Physics API provides programmatic access to our plasma simulation platform, research data, and computational models. This API enables researchers and developers to integrate plasma physics calculations into their applications.</p>
+                
+                <h3>Base URL</h3>
+                <pre><code>https://api.zius-research.com/v2</code></pre>
+                
+                <h3>Request Format</h3>
+                <p>All API requests must include the following headers:</p>
+                <pre><code>{
+  "Authorization": "Bearer YOUR_API_KEY",
+  "Content-Type": "application/json",
+  "Accept": "application/json"
+}</code></pre>
+            </section>
+
+            <section id="authentication" class="content-section">
+                <h2>Authentication</h2>
+                <p>The Zi-US API uses API keys for authentication. Include your API key in the Authorization header of each request.</p>
+                
+                <h3>Getting an API Key</h3>
+                <p>To obtain an API key:</p>
+                <ol style="margin-left: 2rem; font-size: 1.3rem; color: var(--gray-700);">
+                    <li>Create an account at <code>portal.zius-research.com</code></li>
+                    <li>Navigate to Settings → API Keys</li>
+                    <li>Click "Generate New Key"</li>
+                    <li>Store your key securely - it won't be shown again</li>
+                </ol>
+
+                <h3>Example Request</h3>
+                <pre><code>curl -X GET https://api.zius-research.com/v2/simulations \
+  -H "Authorization: Bearer zius_k3y_a1b2c3d4e5f6g7h8i9j0"</code></pre>
+            </section>
+
+            <section id="create-simulation" class="content-section">
+                <h2>Simulation Endpoints</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/simulations</span>
+                    </div>
+                    <p>Create a new plasma simulation with specified parameters.</p>
+                    
+                    <h4>Request Body</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">name</span> <span class="required">*</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>Simulation name</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">type</span> <span class="required">*</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>Simulation type: <code>pic</code>, <code>fluid</code>, <code>hybrid</code></td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">parameters</span> <span class="required">*</span></td>
+                                <td><span class="param-type">object</span></td>
+                                <td>Simulation parameters object</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">parameters.density</span></td>
+                                <td><span class="param-type">number</span></td>
+                                <td>Plasma density (m⁻³)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">parameters.temperature</span></td>
+                                <td><span class="param-type">number</span></td>
+                                <td>Temperature in eV</td>
+                            </tr>
+                            <tr>
+                                <td><span class="param-name">parameters.magnetic_field</span></td>
+                                <td><span class="param-type">array</span></td>
+                                <td>B-field vector [Bx, By, Bz] in Tesla</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Example Request</h4>
+                    <pre><code>{
+  "name": "Tokamak Edge Plasma",
+  "type": "pic",
+  "parameters": {
+    "density": 1e19,
+    "temperature": 100,
+    "magnetic_field": [0, 0, 2.5],
+    "particles": 1000000,
+    "timestep": 1e-9,
+    "duration": 1e-6
+  }
+}</code></pre>
+
+                    <div class="response-example">
+                        <h5>Success Response (201 Created)</h5>
+                        <pre><code>{
+  "id": "sim_a1b2c3d4e5f6",
+  "name": "Tokamak Edge Plasma",
+  "type": "pic",
+  "status": "initializing",
+  "created_at": "2025-01-15T10:30:00Z",
+  "estimated_completion": "2025-01-15T11:30:00Z",
+  "parameters": {
+    "density": 1e19,
+    "temperature": 100,
+    "magnetic_field": [0, 0, 2.5]
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="endpoint-path">/simulations/{id}</span>
+                    </div>
+                    <p>Retrieve details and status of a specific simulation.</p>
+                    
+                    <h4>Path Parameters</h4>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="param-name">id</span> <span class="required">*</span></td>
+                                <td><span class="param-type">string</span></td>
+                                <td>Simulation ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="response-example">
+                        <h5>Success Response (200 OK)</h5>
+                        <pre><code>{
+  "id": "sim_a1b2c3d4e5f6",
+  "name": "Tokamak Edge Plasma",
+  "type": "pic",
+  "status": "completed",
+  "progress": 100,
+  "created_at": "2025-01-15T10:30:00Z",
+  "completed_at": "2025-01-15T11:28:42Z",
+  "results": {
+    "data_url": "https://data.zius-research.com/sim_a1b2c3d4e5f6",
+    "visualization_url": "https://viz.zius-research.com/sim_a1b2c3d4e5f6",
+    "summary": {
+      "avg_temperature": 98.7,
+      "particle_confinement": 0.92,
+      "energy_confinement": 0.89
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="plasma-parameters" class="content-section">
+                <h2>Plasma Parameters</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="endpoint-path">/calculate/debye-length</span>
+                    </div>
+                    <p>Calculate the Debye length for given plasma conditions.</p>
+                    
+                    <h4>Request Body</h4>
+                    <pre><code>{
+  "electron_temperature": 10,  // eV
+  "electron_density": 1e18     // m^-3
+}</code></pre>
+
+                    <div class="response-example">
+                        <h5>Response</h5>
+                        <pre><code>{
+  "debye_length": 2.35e-6,     // meters
+  "debye_length_units": "m",
+  "formula": "λD = √(ε₀kT/ne²)",
+  "parameters_used": {
+    "temperature_K": 116045.2,
+    "density_m3": 1e18
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="errors" class="content-section">
+                <h2>Error Handling</h2>
+                <p>The API uses standard HTTP status codes and returns detailed error information in the response body.</p>
+                
+                <h3>Error Response Format</h3>
+                <pre><code>{
+  "error": {
+    "code": "INVALID_PARAMETERS",
+    "message": "Temperature must be positive",
+    "field": "parameters.temperature",
+    "request_id": "req_x1y2z3"
+  }
+}</code></pre>
+
+                <h3>Common Error Codes</h3>
+                <ul class="error-codes">
+                    <li>
+                        <span class="error-code">400</span>
+                        <span>Bad Request - Invalid parameters</span>
+                    </li>
+                    <li>
+                        <span class="error-code">401</span>
+                        <span>Unauthorized - Invalid or missing API key</span>
+                    </li>
+                    <li>
+                        <span class="error-code">403</span>
+                        <span>Forbidden - Insufficient permissions</span>
+                    </li>
+                    <li>
+                        <span class="error-code">404</span>
+                        <span>Not Found - Resource doesn't exist</span>
+                    </li>
+                    <li>
+                        <span class="error-code">429</span>
+                        <span>Too Many Requests - Rate limit exceeded</span>
+                    </li>
+                    <li>
+                        <span class="error-code">500</span>
+                        <span>Internal Server Error</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="rate-limits" class="content-section">
+                <h2>Rate Limits</h2>
+                <p>API rate limits vary by plan tier:</p>
+                
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Requests/Hour</th>
+                            <th>Simulations/Day</th>
+                            <th>Max Particles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Free</td>
+                            <td>100</td>
+                            <td>5</td>
+                            <td>100,000</td>
+                        </tr>
+                        <tr>
+                            <td>Research</td>
+                            <td>1,000</td>
+                            <td>50</td>
+                            <td>10,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>Enterprise</td>
+                            <td>10,000</td>
+                            <td>Unlimited</td>
+                            <td>1,000,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Rate limit information is included in response headers:</p>
+                <pre><code>X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 998
+X-RateLimit-Reset: 1642435200</code></pre>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | API Documentation v2.0</p>
+        </div>
+    </footer>
+</body>
+</html>
