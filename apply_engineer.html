@@ -77,17 +77,17 @@
         import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
-        // **** PASTE YOUR NEW, CORRECT FIREBASE CONFIGURATION OBJECT HERE ****
-        // This is the most likely source of the error.
+        // **** THIS CONFIGURATION IS NOW CORRECT ****
         const firebaseConfig = {
-            apiKey: "PASTE_YOUR_NEW_API_KEY_HERE",
-            authDomain: "PASTE_YOUR_NEW_AUTH_DOMAIN",
-            projectId: "PASTE_YOUR_NEW_PROJECT_ID",
-            storageBucket: "PASTE_YOUR_NEW_STORAGE_BUCKET",
-            messagingSenderId: "PASTE_YOUR_NEW_MESSAGING_SENDER_ID",
-            appId: "PASTE_YOUR_NEW_APP_ID"
+            apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
+            authDomain: "zi-us-login.firebaseapp.com",
+            projectId: "zi-us-login",
+            storageBucket: "zi-us-login.firebasestorage.app",
+            messagingSenderId: "914293517426",
+            appId: "1:914293517426:web:188e7cf98421c70ba3a6eb",
+            measurementId: "G-ZJKG95WP5R"
         };
-        // *****************************************************************
+        // *******************************************
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
