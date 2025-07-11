@@ -205,7 +205,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
         
-        // --- THIS CONFIGURATION IS NOW INTEGRATED WITH YOUR PROJECT ---
         const firebaseConfig = {
             apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
             authDomain: "zi-us-login.firebaseapp.com",
@@ -230,7 +229,6 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Use a full path for the redirect to prevent errors.
                 const currentPath = window.location.pathname;
                 const newPath = currentPath.substring(0, currentPath.lastIndexOf('/')) + '/application_dashboard.html';
                 window.location.href = window.location.origin + newPath;
