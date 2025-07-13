@@ -26,13 +26,6 @@
     </style>
 </head>
 <body>
-    <!-- This hidden form now points to your new Web App URL -->
-    <form id="logger-form" action="https://script.google.com/macros/s/AKfycbyUtPFBLg_N2B_lezkSvugHVm3rvU1FPkg3O2URJoNWXn6L0YfeHiRJhqmRTL6Fu4Nfng/exec" method="POST" style="display:none;">
-        <input type="hidden" name="name" id="form-name">
-        <input type="hidden" name="email" id="form-email">
-        <input type="hidden" name="consent" id="form-consent">
-    </form>
-
     <div id="login-container" class="login-card">
         <div class="card-header">
             <h1 class="brand-name">Zi-US Research</h1>
@@ -84,16 +77,40 @@
             errorMessage.style.display = 'block';
         }
 
+        // This function now waits for the script to finish before redirecting.
         function handleAuthSuccess(user) {
             if (!user) return;
+            
             const name = user.displayName || user.email.split('@')[0];
             const email = user.email;
+            const userData = { name: name, email: email, consent: consentStatus };
+            
+            // The URL of your Google Apps Script
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbyUtPFBLg_N2B_lezkSvugHVm3rvU1FPkg3O2URJoNWXn6L0YfeHiRJhqmRTL6Fu4Nfng/exec';
+            
+            // The destination URL for the thank you page
+            const thankYouUrl = `https://zi-us.github.io/pla/thank-you-signin.html?name=${encodeURIComponent(name)}`;
 
-            document.getElementById('form-name').value = name;
-            document.getElementById('form-email').value = email;
-            document.getElementById('form-consent').value = consentStatus;
-
-            document.getElementById('logger-form').submit();
+            fetch(scriptUrl, {
+                method: 'POST',
+                // We remove mode: 'no-cors' to properly handle the JSON response
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success from Apps Script:', data);
+                // Only redirect if the script confirms success
+                if (data.result === 'success') {
+                    window.location.href = thankYouUrl;
+                } else {
+                    showError('Could not save data. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending data to Apps Script:', error);
+                showError('A network error occurred. Please try again.');
+            });
         }
 
         async function performSignIn(signInFunction) {
