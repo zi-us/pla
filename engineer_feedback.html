@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application Received | Zi-US Research</title>
     <style>
+        /* This CSS is identical to your application page for a consistent look and feel */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
         :root {
             --primary: #000000; --secondary: #1a1a1a; --accent: #0066ff;
@@ -18,42 +19,25 @@
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         .brand-name { font-size: 1.4rem; font-weight: 400; letter-spacing: 0.05em; text-decoration: none; color: var(--primary); }
         .container { max-width: 800px; margin: 6rem auto; padding: 0 2rem; text-align: center; }
-        .feedback-card { background: white; border: 1px solid var(--gray-200); padding: 4rem; }
-        .feedback-icon { width: 64px; height: 64px; margin: 0 auto 2rem; color: var(--success); }
-        .feedback-card h1 { font-size: 2.8rem; font-weight: 300; margin-bottom: 1rem; }
-        .feedback-card p { font-size: 1.3rem; color: var(--gray-600); margin-bottom: 3rem; max-width: 450px; margin-left: auto; margin-right: auto;}
-        .feedback-form h2 { font-size: 1.6rem; font-weight: 400; margin-bottom: 1.5rem; }
-        .form-group { margin-bottom: 2rem; }
-        .form-input { width: 100%; padding: 1.2rem; font-size: 1.2rem; border: 1px solid var(--gray-200); background: var(--gray-100); }
-        .btn { display: inline-block; padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: 400; border: 1px solid var(--primary); background: var(--primary); color: white; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
-        .btn:hover { background: var(--secondary); border-color: var(--secondary); }
+        .feedback-card { background: white; border: 1px solid var(--gray-200); padding: 5rem 3rem; }
+        .feedback-card h1 { font-size: 3.2rem; font-weight: 300; margin-bottom: 1rem; color: var(--primary); }
+        .feedback-card p { font-size: 1.6rem; color: var(--gray-600); margin-bottom: 3rem; }
+        .btn { display: inline-block; width: auto; padding: 1.2rem 3rem; font-size: 1.2rem; font-weight: 400; text-align: center; cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--primary); background: var(--primary); color: white; text-decoration: none; }
+        .btn-secondary { background: var(--secondary); border-color: var(--secondary); }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="brand-name">Zi-US Research</a>
-            <a href="career.html" style="font-size: 1.1rem; text-decoration: none; color: var(--primary);">← Back to Careers</a>
         </div>
     </nav>
 
     <div class="container">
         <div class="feedback-card">
-            <div class="feedback-icon">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <h1>Thank You for Applying</h1>
-            <p>Your application has been successfully submitted. We will review your information and be in touch if your qualifications meet our needs.</p>
-            
-            <div class="feedback-form">
-                <h2>Help Us Improve (Optional)</h2>
-                <form onsubmit="alert('Thank you for your feedback!'); this.reset(); return false;">
-                    <div class="form-group">
-                        <textarea class="form-input" rows="4" placeholder="Please share any feedback about your application experience..."></textarea>
-                    </div>
-                    <button type="submit" class="btn">Submit Feedback</button>
-                </form>
-            </div>
+            <h1>Thank You for Your Application</h1>
+            <p>We have successfully received your application for the Fusion Systems Engineer position. A confirmation email has been sent to the address you provided. Our team will review your submission and contact you if your qualifications meet our needs.</p>
+            <a href="career.html" class="btn btn-secondary">← Return to Careers</a>
         </div>
     </div>
 </body>
