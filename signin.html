@@ -206,10 +206,10 @@
         import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
         
         const firebaseConfig = {
-            apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
+            apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44", // This is a public key, safe to expose
             authDomain: "zi-us-login.firebaseapp.com",
             projectId: "zi-us-login",
-            storageBucket: "zi-us-login.firebasestorage.app",
+            storageBucket: "zi-us-login.appspot.com", // Corrected storage bucket domain
             messagingSenderId: "914293517426",
             appId: "1:914293517426:web:188e7cf98421c70ba3a6eb",
             measurementId: "G-ZJKG95WP5R"
@@ -222,13 +222,39 @@
         const passwordInput = document.getElementById('password-input');
         const errorMessage = document.getElementById('error-message');
 
+        // --- NEW --- This is the URL for your new Google Apps Script for logging users
+        const userLoggerUrl = 'YOUR_NEW_WEB_APP_URL_HERE'; 
+
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
         }
 
+        // This function sends user data to your Google Sheet
+        function logUserToSheet(user) {
+            const userData = {
+                name: user.displayName,
+                email: user.email
+            };
+
+            fetch(userLoggerUrl, {
+                method: 'POST',
+                // Use 'no-cors' because we are just sending data and don't need a response from the script.
+                // This avoids potential CORS issues.
+                mode: 'no-cors', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            }).catch(err => console.error("Error sending user data to Google Sheet:", err));
+        }
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                // --- NEW --- Log the user's details to the Google Sheet
+                logUserToSheet(user);
+                
+                // Redirect to the dashboard after logging
                 const currentPath = window.location.pathname;
                 const newPath = currentPath.substring(0, currentPath.lastIndexOf('/')) + '/application_dashboard.html';
                 window.location.href = window.location.origin + newPath;
