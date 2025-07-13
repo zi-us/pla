@@ -166,30 +166,28 @@
             const jobsToShowInitially = 4;
             let jobsCurrentlyShown = jobsToShowInitially;
 
-            // Hide all job cards except the first few
             jobCards.forEach((card, index) => {
                 if (index >= jobsToShowInitially) {
                     card.classList.add('hidden');
                 }
             });
 
-            // If there are no more jobs to show, hide the button initially
             if (jobCards.length <= jobsToShowInitially) {
-                loadMoreContainer.style.display = 'none';
+                if(loadMoreContainer) loadMoreContainer.style.display = 'none';
             }
 
-            loadMoreBtn.addEventListener('click', function() {
-                // Show the next set of hidden jobs
-                for (let i = jobsCurrentlyShown; i < jobsCurrentlyShown + jobsToShowInitially && i < jobCards.length; i++) {
-                    jobCards[i].classList.remove('hidden');
-                }
-                jobsCurrentlyShown += jobsToShowInitially;
+            if(loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    for (let i = jobsCurrentlyShown; i < jobsCurrentlyShown + jobsToShowInitially && i < jobCards.length; i++) {
+                        jobCards[i].classList.remove('hidden');
+                    }
+                    jobsCurrentlyShown += jobsToShowInitially;
 
-                // Hide the button if all jobs are now visible
-                if (jobsCurrentlyShown >= jobCards.length) {
-                    loadMoreContainer.style.display = 'none';
-                }
-            });
+                    if (jobsCurrentlyShown >= jobCards.length) {
+                        if(loadMoreContainer) loadMoreContainer.style.display = 'none';
+                    }
+                });
+            }
         });
     </script>
 </body>
