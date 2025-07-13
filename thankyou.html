@@ -36,9 +36,24 @@
     <div class="container">
         <div class="feedback-card">
             <h1>Thank You for Your Application</h1>
-            <p>We have successfully received your application for the Fusion Systems Engineer position. A confirmation email has been sent to the address you provided. Our team will review your submission and contact you if your qualifications meet our needs.</p>
+            <p id="thank-you-message">We have successfully received your application. A confirmation email has been sent to the address you provided. Our team will review your submission and contact you if your qualifications meet our needs.</p>
             <a href="career.html" class="btn btn-secondary">← Return to Careers</a>
         </div>
     </div>
+
+    <script>
+        // This script dynamically updates the thank you message based on the job title in the URL.
+        window.onload = function() {
+            const thankYouMessage = document.getElementById('thank-you-message');
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobTitle = urlParams.get('job'); // Gets 'job' from a URL like "...?job=Plasma%20Physicist"
+
+            if (jobTitle) {
+                // If a job title is found, display the specific message.
+                thankYouMessage.textContent = `We have successfully received your application for the ${jobTitle} position. A confirmation email has been sent to the address you provided. Our team will review your submission and contact you if your qualifications meet our needs.`;
+            }
+            // If no job title is in the URL, the default message in the HTML is shown.
+        };
+    </script>
 </body>
 </html>
