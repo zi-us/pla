@@ -28,7 +28,7 @@
         .job-description { font-size: 1.2rem; color: var(--gray-600); }
         .btn { padding: 0.8rem 2rem; font-size: 1.1rem; font-weight: 400; border: 1px solid var(--primary); background: var(--primary); color: white; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; letter-spacing: 0.02em; border-radius: 0.2rem; margin-top: 1.5rem; }
         .load-more-container { text-align: center; margin-top: 4rem; }
-        .job-card.hidden { display: none; } /* Style to hide jobs */
+        .job-card.hidden { display: none; }
         
         @media (min-width: 768px) { 
             .job-card { flex-direction: row; align-items: center; } 
@@ -95,7 +95,7 @@
                 <a href="apply_analyst.html" class="btn">Apply Now</a>
             </div>
 
-            <!-- Newly Added Job Listings -->
+            <!-- Newly Added Job Listings with Correct Links -->
             <div class="job-card">
                 <div class="job-info">
                     <h2>Product Manager (Team Lead)</h2>
@@ -164,6 +164,7 @@
             const loadMoreBtn = document.getElementById('load-more-btn');
             const loadMoreContainer = document.getElementById('load-more-container');
             const jobsToShowInitially = 4;
+            let jobsCurrentlyShown = jobsToShowInitially;
 
             // Hide all job cards except the first few
             jobCards.forEach((card, index) => {
@@ -178,15 +179,15 @@
             }
 
             loadMoreBtn.addEventListener('click', function() {
-                // Find the next hidden card and show it
-                const hiddenCard = jobListings.querySelector('.job-card.hidden');
-                if (hiddenCard) {
-                    hiddenCard.classList.remove('hidden');
+                // Show the next set of hidden jobs
+                for (let i = jobsCurrentlyShown; i < jobsCurrentlyShown + jobsToShowInitially && i < jobCards.length; i++) {
+                    jobCards[i].classList.remove('hidden');
                 }
+                jobsCurrentlyShown += jobsToShowInitially;
 
-                // Check if there are any more hidden cards left
-                if (!jobListings.querySelector('.job-card.hidden')) {
-                    loadMoreContainer.style.display = 'none'; // Hide button if no more jobs
+                // Hide the button if all jobs are now visible
+                if (jobsCurrentlyShown >= jobCards.length) {
+                    loadMoreContainer.style.display = 'none';
                 }
             });
         });
