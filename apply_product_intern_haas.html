@@ -71,45 +71,31 @@
     </div>
 
     <script>
-        // This script sends the form data to your central Google Apps Script.
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFxQK3fWWwLwnCd6qIZkP20gtm20adgmiPK7VJ8rhzajRagdBtfMI8HkAezMIdi51ufw/exec";
-        
-        const applicationCard = document.getElementById('application-card');
         const form = document.getElementById('application-form');
         const submitBtn = document.getElementById('submit-btn');
+        const applicationCard = document.getElementById('application-card');
 
-        form.addEventListener('submit', handleFormSubmit);
-
-        function handleFormSubmit(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting... Please Wait';
 
             const cvFile = document.getElementById('cv').files[0];
             const researchFile = document.getElementById('research').files[0];
+            const jobTitle = "Product Intern (HaaS)";
 
             Promise.all([
                 readFileAsBase64(cvFile),
                 researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
             ]).then(filesData => {
-                // --- This is the only part that needs to change for each job page ---
-                const jobTitle = "Product Intern (HaaS)"; 
-                
                 const payload = {
                     jobTitle: jobTitle,
                     fullName: document.getElementById('fullName').value,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value,
-                    cv: {
-                        fileName: cvFile.name,
-                        mimeType: cvFile.type,
-                        data: filesData[0]
-                    },
-                    research: filesData[1] ? {
-                        fileName: researchFile.name,
-                        mimeType: researchFile.type,
-                        data: filesData[1]
-                    } : null
+                    cv: { fileName: cvFile.name, mimeType: cvFile.type, data: filesData[0] },
+                    research: filesData[1] ? { fileName: researchFile.name, mimeType: researchFile.type, data: filesData[1] } : null
                 };
 
                 fetch(SCRIPT_URL, {
@@ -120,38 +106,29 @@
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Redirect to the dynamic thank you page with the correct job title
                         window.location.href = `thankyou.html?job=${encodeURIComponent(jobTitle)}`;
                     } else {
-                        throw new Error(data.message || 'An unknown error occurred on the server.');
+                        throw new Error(data.message || 'An unknown error occurred.');
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
                     showErrorFeedback(`Submission failed: ${error.message}`);
                 });
             });
-        }
+        });
 
         function readFileAsBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
-                reader.onload = (event) => {
-                    resolve(event.target.result.split(',')[1]);
-                };
+                reader.onload = (event) => resolve(event.target.result.split(',')[1]);
                 reader.onerror = (error) => reject(error);
                 reader.readAsDataURL(file);
             });
         }
 
         function showErrorFeedback(message) {
-            applicationCard.innerHTML = `
-                <div class="feedback error">
-                    <h2 style="font-size: 2.4rem; font-weight: 300; margin-bottom: 0.8rem;">An Error Occurred</h2>
-                    <p>${message}</p>
-                    <a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto; background: var(--secondary);">Return to Careers</a>
-                </div>
-            `;
+            applicationCard.innerHTML = `<div class="feedback error"><h2>An Error Occurred</h2><p>${message}</p><a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto; background: var(--secondary);">Return to Careers</a></div>`;
+            console.error('Error:', message);
         }
     </script>
 </body>
