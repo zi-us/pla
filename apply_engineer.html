@@ -81,23 +81,20 @@
         form.addEventListener('submit', handleFormSubmit);
 
         function handleFormSubmit(e) {
-            // Prevent the default form submission behavior
             e.preventDefault();
-
-            // Disable the button to prevent multiple clicks
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting... Please Wait';
 
             const cvFile = document.getElementById('cv').files[0];
             const researchFile = document.getElementById('research').files[0];
 
-            // Use Promise.all to handle file reading
             Promise.all([
                 readFileAsBase64(cvFile),
                 researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
             ]).then(filesData => {
+                const jobTitle = "Fusion Systems Engineer"; // Define job title
                 const payload = {
-                    jobTitle: "Fusion Systems Engineer",
+                    jobTitle: jobTitle,
                     fullName: document.getElementById('fullName').value,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value,
@@ -113,43 +110,32 @@
                     } : null
                 };
 
-                // Send the data to the Google Apps Script
                 fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload),
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8', // Required header for Google Apps Script
-                    },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 })
-                .then(res => res.json()) // Parse the JSON response from the script
+                .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // If successful, redirect to the thank you page
-                        window.location.href = 'thankyou.html';
+                        // --- THIS IS THE UPDATED LINE ---
+                        // Redirect to the dynamic thank you page with the job title in the URL
+                        window.location.href = `thankyou.html?job=${encodeURIComponent(jobTitle)}`;
                     } else {
-                        // If the script returns an error, display it
                         throw new Error(data.message || 'An unknown error occurred on the server.');
                     }
                 })
                 .catch(error => {
-                    // If there's a network error or an error from the script, display it
                     console.error('Error:', error);
                     showErrorFeedback(`Submission failed: ${error.message}`);
                 });
             });
         }
 
-        /**
-         * Reads a file and converts it to a Base64 encoded string.
-         * @param {File} file The file to read.
-         * @returns {Promise<string>} A promise that resolves with the Base64 string.
-         */
         function readFileAsBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = (event) => {
-                    // The result includes a prefix like "data:mime/type;base64,", 
-                    // we only want the data part after the comma.
                     resolve(event.target.result.split(',')[1]);
                 };
                 reader.onerror = (error) => reject(error);
@@ -157,10 +143,6 @@
             });
         }
 
-        /**
-         * Displays an error message in the application card.
-         * @param {string} message The error message to display.
-         */
         function showErrorFeedback(message) {
             applicationCard.innerHTML = `
                 <div class="feedback error">
