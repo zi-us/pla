@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! | Zi-US Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 4rem 5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 300;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.6rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        a {
+            font-size: 1.4rem;
+            color: #0066ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 id="thank-you-heading">Thank You!</h1>
+        <p id="thank-you-message">We've received your message and a confirmation email has been sent to you. We'll be in touch shortly!</p>
+        <a href="index.html">← Go Back to Homepage</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+
+            // Personalize the message if a name is present
+            if (name) {
+                document.getElementById('thank-you-heading').innerText = 'Thank You, ' + name + '!';
+            }
+        };
+    </script>
+</body>
+</html>
