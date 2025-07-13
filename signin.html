@@ -222,38 +222,56 @@
         const passwordInput = document.getElementById('password-input');
         const errorMessage = document.getElementById('error-message');
 
-        // IMPORTANT: Make sure this is the URL for your USER LOGGING script
-        const userLoggerUrl = 'YOUR_NEW_WEB_APP_URL_HERE'; 
+        // =================================================================================
+        //
+        // FINAL URL PASTED BELOW
+        //
+        const userLoggerUrl = 'https://script.google.com/macros/s/AKfycby9czWFnE9Si_PUNLurhs7Ae9Ww8C72HfWqgHVS2jcUhoedNQE4_keFFgp0dqEDKiDYYA/exec'; 
+        //
+        // =================================================================================
+
 
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
         }
 
-        function logUserToSheet(user) {
+        function logUserAndRedirect(user) {
             const userData = {
                 name: user.displayName,
                 email: user.email
             };
+            const userName = user.displayName || user.email.split('@')[0];
+            const redirectUrl = `thank-you-signin.html?name=${encodeURIComponent(userName)}`;
+
+            if (userLoggerUrl === 'PASTE_YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
+                console.error("CRITICAL: userLoggerUrl is not set. Redirecting without logging to Google Sheet.");
+                window.location.href = redirectUrl;
+                return;
+            }
 
             fetch(userLoggerUrl, {
                 method: 'POST',
-                mode: 'no-cors', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userData)
-            }).catch(err => console.error("Error sending user data to Google Sheet:", err));
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Google Sheet Log Response:', data);
+            })
+            .catch(err => {
+                console.error("Error sending user data to Google Sheet:", err);
+            })
+            .finally(() => {
+                window.location.href = redirectUrl;
+            });
         }
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                logUserToSheet(user);
-                
-                // --- UPDATED REDIRECT ---
-                // Redirects to the new thank you page with the user's name
-                const userName = user.displayName || user.email.split('@')[0];
-                window.location.href = `thank-you-signin.html?name=${encodeURIComponent(userName)}`;
+                logUserAndRedirect(user);
             }
         });
 
