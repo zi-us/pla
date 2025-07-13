@@ -6,81 +6,15 @@
     <title>Thank You! | Zi-US Research</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
-        
-        :root {
-            --primary: #000000;
-            --secondary: #1a1a1a;
-            --accent: #0066ff;
-            --gray-100: #f8f9fa;
-            --gray-200: #e9ecef;
-            --gray-600: #6c757d;
-        }
-
+        :root { --primary: #000; --secondary: #1a1a1a; --accent: #0066ff; --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-600: #6c757d; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { font-size: 62.5%; }
-        body {
-            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 300;
-            font-size: 1.4rem;
-            line-height: 1.6;
-            color: var(--primary);
-            background: var(--gray-100);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .thank-you-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            width: 100%;
-            max-width: 480px; /* A bit wider for the message */
-            padding: 4rem 3rem;
-            text-align: center;
-        }
-
-        .card-header {
-            margin-bottom: 2.5rem;
-        }
-
-        .brand-name {
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-subtitle {
-            font-size: 1.5rem;
-            color: var(--gray-600);
-        }
-
-        .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 1.4rem;
-            margin-top: 1rem;
-            font-size: 1.4rem;
-            font-weight: 500;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            border-radius: 0.2rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 1px solid var(--primary);
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary);
-            border-color: var(--secondary);
-        }
+        body { font-family: 'Calibri Light', 'Inter', sans-serif; font-weight: 300; font-size: 1.4rem; line-height: 1.6; color: var(--primary); background: var(--gray-100); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+        .thank-you-card { background: white; border: 1px solid var(--gray-200); width: 100%; max-width: 480px; padding: 4rem 3rem; text-align: center; }
+        .card-header { margin-bottom: 2.5rem; }
+        .brand-name { font-size: 2.2rem; font-weight: 300; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .card-subtitle { font-size: 1.5rem; color: var(--gray-600); }
+        .btn { display: inline-block; width: 100%; padding: 1.4rem; margin-top: 1rem; font-size: 1.4rem; font-weight: 500; text-align: center; cursor: pointer; text-decoration: none; border-radius: 0.2rem; background: var(--primary); color: white; border: 1px solid var(--primary); }
     </style>
 </head>
 <body>
@@ -89,18 +23,15 @@
             <h1 id="thank-you-heading" class="brand-name">Thank You!</h1>
             <p class="card-subtitle">A welcome email is on its way to you.</p>
         </div>
-        
-        <a href="https://zi-us.github.io/pla/" class="btn btn-primary">Join our Team</a>
+        <a href="https://zi-us.github.io/pla/" class="btn">Join our Team</a>
     </div>
 
     <script>
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            // Use decodeURIComponent to handle names with special characters
-            const name = decodeURIComponent(urlParams.get('name') || '');
+            const name = urlParams.get('name');
 
             if (name) {
-                // Personalize the heading if a name is found in the URL
                 document.getElementById('thank-you-heading').innerText = 'Thank You, ' + name + '!';
             }
         };
