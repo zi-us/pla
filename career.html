@@ -21,13 +21,19 @@
         .page-header h1 { font-size: 4.2rem; font-weight: 200; margin-bottom: 1.6rem; }
         .page-header p { font-size: 1.4rem; color: var(--gray-600); max-width: 600px; margin: 0 auto; }
         .job-listings { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-        .job-card { background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; padding: 2.5rem; display: flex; flex-direction: column; md:flex-direction: row; justify-content: space-between; align-items: flex-start; md:align-items: center; transition: all 0.2s ease; }
+        .job-card { background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; transition: all 0.2s ease; }
         .job-card:hover { border-color: var(--accent); }
         .job-info h2 { font-size: 1.8rem; font-weight: 400; margin-bottom: 0.5rem; }
-        .job-meta { display: flex; gap: 2rem; font-size: 1.1rem; color: var(--gray-600); margin-bottom: 1.5rem; }
+        .job-meta { display: flex; flex-wrap: wrap; gap: 2rem; font-size: 1.1rem; color: var(--gray-600); margin-bottom: 1.5rem; }
         .job-description { font-size: 1.2rem; color: var(--gray-600); }
         .btn { padding: 0.8rem 2rem; font-size: 1.1rem; font-weight: 400; border: 1px solid var(--primary); background: var(--primary); color: white; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; letter-spacing: 0.02em; border-radius: 0.2rem; margin-top: 1.5rem; }
-        @media (min-width: 768px) { .job-card { flex-direction: row; align-items: center; } .btn { margin-top: 0; } }
+        .load-more-container { text-align: center; margin-top: 4rem; }
+        .job-card.hidden { display: none; } /* Style to hide jobs */
+        
+        @media (min-width: 768px) { 
+            .job-card { flex-direction: row; align-items: center; } 
+            .btn { margin-top: 0; } 
+        }
     </style>
 </head>
 <body>
@@ -43,6 +49,7 @@
     </header>
     <div class="container">
         <div class="job-listings">
+            <!-- Existing Job Listings -->
             <div class="job-card">
                 <div class="job-info">
                     <h2>Plasma Physicist (Experimental)</h2>
@@ -87,7 +94,102 @@
                 </div>
                 <a href="apply_analyst.html" class="btn">Apply Now</a>
             </div>
+
+            <!-- Newly Added Job Listings -->
+            <div class="job-card">
+                <div class="job-info">
+                    <h2>Product Manager (Team Lead)</h2>
+                    <div class="job-meta">
+                        <span><strong>Location:</strong> Research Park, HQ</span>
+                        <span><strong>Type:</strong> Full-time</span>
+                    </div>
+                    <p class="job-description">Lead a team of product managers to define the roadmap and strategy for our suite of scientific software and hardware products.</p>
+                </div>
+                <a href="apply_product_manager.html" class="btn">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-info">
+                    <h2>Project Manager (Team Lead)</h2>
+                    <div class="job-meta">
+                        <span><strong>Location:</strong> Research Park, HQ</span>
+                        <span><strong>Type:</strong> Full-time</span>
+                    </div>
+                    <p class="job-description">Oversee complex engineering projects, managing timelines, resources, and cross-functional teams to deliver next-gen fusion hardware.</p>
+                </div>
+                <a href="apply_project_manager.html" class="btn">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-info">
+                    <h2>Product Intern (SaaS)</h2>
+                    <div class="job-meta">
+                        <span><strong>Location:</strong> Remote / HQ</span>
+                        <span><strong>Type:</strong> Internship</span>
+                    </div>
+                    <p class="job-description">Assist in the product lifecycle of our SaaS platform for physics data analysis, from feature ideation to launch.</p>
+                </div>
+                <a href="apply_product_intern_saas.html" class="btn">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-info">
+                    <h2>Product Intern (HaaS)</h2>
+                    <div class="job-meta">
+                        <span><strong>Location:</strong> Research Park, HQ</span>
+                        <span><strong>Type:</strong> Internship</span>
+                    </div>
+                    <p class="job-description">Support the hardware-as-a-service product team, focusing on our proprietary diagnostic tools and sensor packages.</p>
+                </div>
+                <a href="apply_product_intern_haas.html" class="btn">Apply Now</a>
+            </div>
+            <div class="job-card">
+                <div class="job-info">
+                    <h2>Channel Partner</h2>
+                    <div class="job-meta">
+                        <span><strong>Location:</strong> Global / Remote</span>
+                        <span><strong>Type:</strong> Partnership</span>
+                    </div>
+                    <p class="job-description">Establish and manage relationships with academic institutions and private labs to expand the reach of our research tools.</p>
+                </div>
+                <a href="apply_channel_partner.html" class="btn">Apply Now</a>
+            </div>
+        </div>
+        <div class="load-more-container" id="load-more-container">
+            <button class="btn" id="load-more-btn">Load More</button>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jobListings = document.querySelector('.job-listings');
+            const jobCards = Array.from(jobListings.children);
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const loadMoreContainer = document.getElementById('load-more-container');
+            const jobsToShowInitially = 4;
+
+            // Hide all job cards except the first few
+            jobCards.forEach((card, index) => {
+                if (index >= jobsToShowInitially) {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // If there are no more jobs to show, hide the button initially
+            if (jobCards.length <= jobsToShowInitially) {
+                loadMoreContainer.style.display = 'none';
+            }
+
+            loadMoreBtn.addEventListener('click', function() {
+                // Find the next hidden card and show it
+                const hiddenCard = jobListings.querySelector('.job-card.hidden');
+                if (hiddenCard) {
+                    hiddenCard.classList.remove('hidden');
+                }
+
+                // Check if there are any more hidden cards left
+                if (!jobListings.querySelector('.job-card.hidden')) {
+                    loadMoreContainer.style.display = 'none'; // Hide button if no more jobs
+                }
+            });
+        });
+    </script>
 </body>
 </html>
