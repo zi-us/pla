@@ -90,31 +90,24 @@
     <script>
         const form = document.getElementById('contact-form');
         const loadingOverlay = document.getElementById('loading-overlay');
-        
-        // IMPORTANT: This is the URL you provided.
         const scriptURL = 'https://script.google.com/macros/s/AKfycbySxBH-BOl7YbZ6i-EsD7NazldXXJDBPIajy_mlErfQPb-U7TSlmq6GxvSmgJ10ODY/exec';
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            loadingOverlay.style.display = 'flex'; // Show loading spinner
+            loadingOverlay.style.display = 'flex';
             
             const formData = new FormData(form);
             const name = formData.get('name');
 
             fetch(scriptURL, { method: 'POST', body: formData})
-                .then(response => response.json())
-                .then(data => {
-                    loadingOverlay.style.display = 'none'; // Hide loading spinner
-                    if (data.result === 'success') {
-                        // Redirect to a thank you page, passing the name as a parameter
-                        window.location.href = 'thank-you.html?name=' + encodeURIComponent(name);
-                    } else {
-                        // Handle error case if needed
-                        alert('An error occurred. Please try again.');
-                    }
+                .then(response => {
+                    // The fetch promise resolves even on a cross-origin redirect.
+                    // We don't need to read the response, just know it completed.
+                    loadingOverlay.style.display = 'none';
+                    window.location.href = 'thank-you.html?name=' + encodeURIComponent(name);
                 })
                 .catch(error => {
-                    loadingOverlay.style.display = 'none'; // Hide loading spinner
+                    loadingOverlay.style.display = 'none';
                     console.error('Error!', error.message);
                     alert('An error occurred. Please try again.');
                 });
