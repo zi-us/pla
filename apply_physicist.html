@@ -72,7 +72,6 @@
 
     <script>
         // This script sends the form data to your central Google Apps Script.
-        // It's the same script used by your other form, ensuring all data goes to the same sheet.
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFxQK3fWWwLwnCd6qIZkP20gtm20adgmiPK7VJ8rhzajRagdBtfMI8HkAezMIdi51ufw/exec";
         
         const applicationCard = document.getElementById('application-card');
@@ -93,9 +92,9 @@
                 readFileAsBase64(cvFile),
                 researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
             ]).then(filesData => {
+                const jobTitle = "Plasma Physicist"; // Define job title for this page
                 const payload = {
-                    // --- The only change needed is the job title ---
-                    jobTitle: "Plasma Physicist", 
+                    jobTitle: jobTitle,
                     fullName: document.getElementById('fullName').value,
                     email: document.getElementById('email').value,
                     phone: document.getElementById('phone').value,
@@ -119,9 +118,9 @@
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // On success, redirect to the SAME thank you page.
-                        // It's generic enough to work for all applications.
-                        window.location.href = 'thankyou.html';
+                        // --- THIS IS THE UPDATED LINE ---
+                        // Redirect to the dynamic thank you page with the job title in the URL
+                        window.location.href = `thankyou.html?job=${encodeURIComponent(jobTitle)}`;
                     } else {
                         throw new Error(data.message || 'An unknown error occurred on the server.');
                     }
