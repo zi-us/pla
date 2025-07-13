@@ -9,6 +9,7 @@
         :root {
             --primary: #000000; --secondary: #1a1a1a; --accent: #0066ff;
             --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-600: #6c757d;
+            --success: #10b981; --danger: #ff3366;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { font-size: 62.5%; }
@@ -26,7 +27,6 @@
         .btn { display: block; width: 100%; padding: 1.2rem; font-size: 1.2rem; font-weight: 400; text-align: center; cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--primary); background: var(--primary); color: white; }
         .btn:disabled { background: var(--gray-600); border-color: var(--gray-600); cursor: not-allowed; }
         .feedback { padding: 2rem; text-align: center; border: 1px solid; border-radius: 0.4rem; }
-        .feedback.success { border-color: var(--success); color: var(--success); background-color: #f0fdf4; }
         .feedback.error { border-color: var(--danger); color: var(--danger); background-color: #fef2f2; }
     </style>
 </head>
@@ -42,7 +42,7 @@
         <div id="application-card" class="application-card">
             <div class="form-header">
                 <h1 id="job-title-header">Application for Plasma Physicist</h1>
-                <p>Please complete the form below. You will be asked to sign in to securely submit your application.</p>
+                <p>Please complete the form below to submit your application.</p>
             </div>
             <form id="application-form">
                 <div class="form-group">
@@ -65,133 +65,94 @@
                     <label for="research">Upload Research Work (Optional, PDF)</label>
                     <input type="file" id="research" class="form-input" accept=".pdf">
                 </div>
-                <button type="submit" id="submit-btn" class="btn">Sign In & Submit Application</button>
+                <button type="submit" id="submit-btn" class="btn">Submit Application</button>
             </form>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCgij7wgkirr2k2pnyspISqeLexXWDSC44",
-            authDomain: "zi-us-login.firebaseapp.com",
-            projectId: "zi-us-login",
-            storageBucket: "zi-us-login.firebasestorage.app",
-            messagingSenderId: "914293517426",
-            appId: "1:914293517426:web:188e7cf98421c70ba3a6eb",
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
-        // **** CHANGE THIS FOR EACH JOB PAGE ****
-        const jobTitle = "Plasma Physicist (Experimental)";
+    <script>
+        // This script sends the form data to your central Google Apps Script.
+        // It's the same script used by your other form, ensuring all data goes to the same sheet.
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFxQK3fWWwLwnCd6qIZkP20gtm20adgmiPK7VJ8rhzajRagdBtfMI8HkAezMIdi51ufw/exec";
         
         const applicationCard = document.getElementById('application-card');
         const form = document.getElementById('application-form');
         const submitBtn = document.getElementById('submit-btn');
 
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', handleFormSubmit);
+
+        function handleFormSubmit(e) {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Authenticating...';
+            submitBtn.textContent = 'Submitting... Please Wait';
 
-            try {
-                let user = auth.currentUser;
-                if (!user) {
-                    const provider = new GoogleAuthProvider();
-                    const result = await signInWithPopup(auth, provider);
-                    user = result.user;
-                }
-                
-                submitBtn.textContent = 'Uploading Files...';
-                await submitApplication(user);
-
-            } catch (error) {
-                console.error("Authentication or submission failed: ", error);
-                showFeedback(`Error: ${error.message}`, 'error');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Sign In & Submit Application';
-            }
-        });
-
-        async function submitApplication(user) {
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
             const cvFile = document.getElementById('cv').files[0];
             const researchFile = document.getElementById('research').files[0];
 
-            if (!cvFile) {
-                showFeedback('CV is required.', 'error');
-                return;
-            }
+            Promise.all([
+                readFileAsBase64(cvFile),
+                researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
+            ]).then(filesData => {
+                const payload = {
+                    // --- The only change needed is the job title ---
+                    jobTitle: "Plasma Physicist", 
+                    fullName: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    cv: {
+                        fileName: cvFile.name,
+                        mimeType: cvFile.type,
+                        data: filesData[0]
+                    },
+                    research: filesData[1] ? {
+                        fileName: researchFile.name,
+                        mimeType: researchFile.type,
+                        data: filesData[1]
+                    } : null
+                };
 
-            try {
-                // 1. Upload CV
-                const cvRef = ref(storage, `applications/${user.uid}/${cvFile.name}`);
-                await uploadBytes(cvRef, cvFile);
-                const cvUrl = await getDownloadURL(cvRef);
-
-                // 2. Upload Research Work (if it exists)
-                let researchUrl = null;
-                if (researchFile) {
-                    const researchRef = ref(storage, `applications/${user.uid}/${researchFile.name}`);
-                    await uploadBytes(researchRef, researchFile);
-                    researchUrl = await getDownloadURL(researchRef);
-                }
-
-                // 3. Save application data to Firestore
-                submitBtn.textContent = 'Saving Application...';
-                const applicationRef = doc(db, "applications", `${user.uid}_${jobTitle.replace(/\s+/g, '-')}`);
-                await setDoc(applicationRef, {
-                    jobTitle: jobTitle,
-                    userId: user.uid,
-                    fullName: fullName,
-                    email: email,
-                    phone: phone,
-                    cvUrl: cvUrl,
-                    researchUrl: researchUrl,
-                    submittedAt: serverTimestamp()
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // On success, redirect to the SAME thank you page.
+                        // It's generic enough to work for all applications.
+                        window.location.href = 'thankyou.html';
+                    } else {
+                        throw new Error(data.message || 'An unknown error occurred on the server.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showErrorFeedback(`Submission failed: ${error.message}`);
                 });
-
-                showFeedback('Application submitted successfully! We will be in touch.', 'success');
-
-            } catch (error) {
-                console.error("Error in submission process: ", error);
-                showFeedback(`Submission failed: ${error.message}`, 'error');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Sign In & Submit Application';
-            }
+            });
         }
 
-        function showFeedback(message, type) {
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    resolve(event.target.result.split(',')[1]);
+                };
+                reader.onerror = (error) => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function showErrorFeedback(message) {
             applicationCard.innerHTML = `
-                <div class="feedback ${type}">
-                    <h2 class="text-2xl font-normal mb-2">${type === 'success' ? 'Thank You' : 'An Error Occurred'}</h2>
+                <div class="feedback error">
+                    <h2 style="font-size: 2.4rem; font-weight: 300; margin-bottom: 0.8rem;">An Error Occurred</h2>
                     <p>${message}</p>
-                    <a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto;">Return to Careers</a>
+                    <a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto; background: var(--secondary);">Return to Careers</a>
                 </div>
             `;
         }
-        
-        // Pre-fill form if user is already logged in
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                if(document.getElementById('email')) {
-                    document.getElementById('email').value = user.email || '';
-                }
-                if(document.getElementById('fullName')) {
-                    document.getElementById('fullName').value = user.displayName || '';
-                }
-            }
-        });
     </script>
 </body>
 </html>
