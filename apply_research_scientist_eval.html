@@ -3,45 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply: Security Analyst | Zi-US Research</title>
+    <title>Apply: Research Scientist (Evaluation & Benchmarks) | Zi-US Research</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
-        :root {
-            --primary: #000000; --secondary: #1a1a1a; --accent: #0066ff;
-            --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-600: #6c757d;
-            --success: #10b981; --danger: #ff3366;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 62.5%; }
-        body { font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300; font-size: 1.4rem; line-height: 1.6; color: var(--primary); background: var(--gray-100); }
-        nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 1.2rem 0; }
-        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .brand-name { font-size: 1.4rem; font-weight: 400; letter-spacing: 0.05em; text-decoration: none; color: var(--primary); }
-        .container { max-width: 800px; margin: 6rem auto; padding: 0 2rem; }
-        .application-card { background: white; border: 1px solid var(--gray-200); padding: 3rem; }
-        .form-header h1 { font-size: 2.8rem; font-weight: 300; margin-bottom: 0.8rem; }
-        .form-header p { font-size: 1.3rem; color: var(--gray-600); margin-bottom: 3rem; }
-        .form-group { margin-bottom: 2rem; }
-        .form-group label { display: block; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.8rem; }
-        .form-input { width: 100%; padding: 1.2rem; font-size: 1.2rem; border: 1px solid var(--gray-200); background: var(--gray-100); }
-        .btn { display: block; width: 100%; padding: 1.2rem; font-size: 1.2rem; font-weight: 400; text-align: center; cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--primary); background: var(--primary); color: white; }
-        .btn:disabled { background: var(--gray-600); border-color: var(--gray-600); cursor: not-allowed; }
-        .feedback { padding: 2rem; text-align: center; border: 1px solid; border-radius: 0.4rem; }
-        .feedback.error { border-color: var(--danger); color: var(--danger); background-color: #fef2f2; }
+        :root { --primary:#000000; --secondary:#1a1a1a; --accent:#0066ff; --gray-100:#f8f9fa; --gray-200:#e9ecef; --gray-600:#6c757d; --success:#10b981; --danger:#ff3366; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{font-size:62.5%}
+        body{font-family:'Calibri Light','Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:300;font-size:1.4rem;line-height:1.6;color:var(--primary);background:var(--gray-100)}
+        nav{background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-200);padding:1.2rem 0}
+        .nav-container{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 2rem}
+        .brand-name{font-size:1.4rem;font-weight:400;letter-spacing:.05em;text-decoration:none;color:var(--primary)}
+        .container{max-width:800px;margin:6rem auto;padding:0 2rem}
+        .application-card{background:white;border:1px solid var(--gray-200);padding:3rem}
+        .form-header h1{font-size:2.8rem;font-weight:300;margin-bottom:.8rem}
+        .form-header p{font-size:1.3rem;color:var(--gray-600);margin-bottom:3rem}
+        .form-group{margin-bottom:2rem}
+        .form-group label{display:block;font-size:1.1rem;font-weight:400;margin-bottom:.8rem}
+        .form-input{width:100%;padding:1.2rem;font-size:1.2rem;border:1px solid var(--gray-200);background:var(--gray-100)}
+        .btn{display:block;width:100%;padding:1.2rem;font-size:1.2rem;font-weight:400;text-align:center;cursor:pointer;transition:all .2s ease;border:1px solid var(--primary);background:var(--primary);color:#fff}
+        .btn:disabled{background:var(--gray-600);border-color:var(--gray-600);cursor:not-allowed}
+        .feedback{padding:2rem;text-align:center;border:1px solid;border-radius:.4rem}
+        .feedback.error{border-color:var(--danger);color:var(--danger);background:#fef2f2}
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="brand-name">Zi-US Research</a>
-            <a href="career.html" style="font-size: 1.1rem; text-decoration: none; color: var(--primary);">← Back to Careers</a>
+            <a href="career.html" style="font-size:1.1rem;text-decoration:none;color:var(--primary)">← Back to Careers</a>
         </div>
     </nav>
-
     <div class="container">
         <div id="application-card" class="application-card">
             <div class="form-header">
-                <h1 id="job-title-header">Application for Security Analyst</h1>
+                <h1 id="job-title-header">Application for Research Scientist (Evaluation & Benchmarks)</h1>
                 <p>Please complete the form below to submit your application.</p>
             </div>
             <form id="application-form">
@@ -66,7 +61,7 @@
                     <input type="file" id="cv" class="form-input" accept=".pdf,.doc,.docx" required>
                 </div>
                 <div class="form-group">
-                    <label for="research">Upload Cover Letter (Optional, PDF)</label>
+                    <label for="research">Upload Research Work (Optional, PDF)</label>
                     <input type="file" id="research" class="form-input" accept=".pdf">
                 </div>
                 <button type="submit" id="submit-btn" class="btn">Submit Application</button>
@@ -76,23 +71,25 @@
 
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFxQK3fWWwLwnCd6qIZkP20gtm20adgmiPK7VJ8rhzajRagdBtfMI8HkAezMIdi51ufw/exec";
+        const applicationCard = document.getElementById('application-card');
         const form = document.getElementById('application-form');
         const submitBtn = document.getElementById('submit-btn');
-        const applicationCard = document.getElementById('application-card');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', handleFormSubmit);
+
+        function handleFormSubmit(e){
             e.preventDefault();
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting... Please Wait';
 
             const cvFile = document.getElementById('cv').files[0];
             const researchFile = document.getElementById('research').files[0];
-            const jobTitle = "Security Analyst";
 
             Promise.all([
                 readFileAsBase64(cvFile),
                 researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
             ]).then(filesData => {
+                const jobTitle = "Research Scientist (Evaluation & Benchmarks)";
                 const payload = {
                     jobTitle: jobTitle,
                     fullName: document.getElementById('fullName').value,
@@ -103,38 +100,32 @@
                     research: filesData[1] ? { fileName: researchFile.name, mimeType: researchFile.type, data: filesData[1] } : null
                 };
 
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                })
+                fetch(SCRIPT_URL, { method:'POST', body: JSON.stringify(payload), headers:{ 'Content-Type':'text/plain;charset=utf-8' } })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.status === 'success') {
+                    if(data.status === 'success'){
                         window.location.href = `thankyou.html?job=${encodeURIComponent(jobTitle)}`;
                     } else {
-                        throw new Error(data.message || 'An unknown error occurred.');
+                        throw new Error(data.message || 'An unknown error occurred on the server.');
                     }
                 })
-                .catch(error => {
-                    showErrorFeedback(`Submission failed: ${error.message}`);
-                });
+                .catch(error => { showErrorFeedback(`Submission failed: ${error.message}`); });
             });
-        });
+        }
 
-        function readFileAsBase64(file) {
-            return new Promise((resolve, reject) => {
+        function readFileAsBase64(file){
+            return new Promise((resolve,reject)=>{
                 const reader = new FileReader();
-                reader.onload = (event) => resolve(event.target.result.split(',')[1]);
-                reader.onerror = (error) => reject(error);
+                reader.onload = (e)=> resolve(e.target.result.split(',')[1]);
+                reader.onerror = (err)=> reject(err);
                 reader.readAsDataURL(file);
             });
         }
 
-        function showErrorFeedback(message) {
-            applicationCard.innerHTML = `<div class="feedback error"><h2>An Error Occurred</h2><p>${message}</p><a href="career.html" class="btn" style="margin-top: 2rem; display: inline-block; width: auto; background: var(--secondary);">Return to Careers</a></div>`;
-            console.error('Error:', message);
+        function showErrorFeedback(message){
+            applicationCard.innerHTML = `<div class="feedback error"><h2 style="font-size:2.4rem;font-weight:300;margin-bottom:.8rem;">An Error Occurred</h2><p>${message}</p><a href="career.html" class="btn" style="margin-top:2rem;display:inline-block;width:auto;background:var(--secondary);">Return to Careers</a></div>`;
         }
     </script>
 </body>
 </html>
+

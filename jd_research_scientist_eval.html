@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Description: Research Scientist (Evaluation & Benchmarks) | Zi-US Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        :root { --primary:#000; --secondary:#1a1a1a; --gray-100:#f8f9fa; --gray-200:#e9ecef; --gray-600:#6c757d; }
+        *{margin:0; padding:0; box-sizing:border-box}
+        html{font-size:62.5%}
+        body{font-family:'Calibri Light','Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:300; font-size:1.4rem; line-height:1.6; color:var(--primary); background:#ffffff}
+        nav{background:rgba(255,255,255,.98); backdrop-filter:blur(10px); border-bottom:1px solid var(--gray-200); padding:1.2rem 0}
+        .nav-container{display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:0 2rem}
+        .brand-name{font-size:1.4rem; font-weight:400; letter-spacing:.05em; text-decoration:none; color:var(--primary)}
+        .container{max-width:900px; margin:6rem auto; padding:0 2rem}
+        .card{background:white; border:1px solid var(--gray-200); padding:3rem}
+        h1{font-size:2.8rem; font-weight:300; margin-bottom:0.8rem}
+        h2{font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem}
+        p.meta{color:var(--gray-600); margin-bottom:1.6rem}
+        ul{margin-left:1.6rem}
+        .btn{display:inline-block; margin-top:2rem; padding:.8rem 2rem; border:1px solid var(--primary); background:var(--primary); color:#fff; text-decoration:none}
+        a.link{color:#0066ff; text-decoration:underline}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="brand-name">Zi-US Research</a>
+            <a href="career.html" style="font-size:1.1rem; text-decoration:none; color:var(--primary)">← Back to Careers</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <h1>Research Scientist (Evaluation & Benchmarks)</h1>
+            <p class="meta"><strong>Compensation:</strong> Paid · <strong>Timeline:</strong> 6 months · <strong>Git Enabled:</strong> Yes</p>
+            <p>
+                You will define, implement, and maintain rigorous evaluation methodologies for code-generation models, with an emphasis on
+                functional correctness, reliability, robustness, and safety. Your work will shape how the team interprets Pass@k across diverse
+                tasks, how benchmark suites evolve over time, and how reproducible, sandboxed evaluations are performed at scale. You will
+                collaborate closely with ML, Data, DevOps, QA, Documentation, and Security to ensure that our evaluation framework is trustworthy,
+                efficiently executed, and clearly communicated. This includes unit-test design, statistical analysis of metrics, and deep dives
+                into failure modes to guide iterative improvement.
+            </p>
+            <h2>Key Responsibilities</h2>
+            <ul>
+                <li>Design and iterate on benchmark suites for program synthesis and repair tasks.</li>
+                <li>Operationalize Pass@k and related estimators; analyze bias/variance and provide confidence intervals. Reference: <a class="link" href="https://arxiv.org/abs/2107.03374" target="_blank">Pass@k metric</a>.</li>
+                <li>Own the lifecycle of test harnesses and unit tests; ensure determinism where possible.</li>
+                <li>Collaborate with DevOps to execute evaluations safely in sandboxes powered by <a class="link" href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes</a> and <a class="link" href="https://gvisor.dev/docs/" target="_blank">gVisor</a>.</li>
+                <li>Work with Data Engineering to curate datasets, track lineage, and enforce data quality constraints.</li>
+                <li>Partner with QA on automated regression suites and longitudinal performance tracking.</li>
+                <li>Publish clear reports, dashboards, and readmes for internal and external stakeholders.</li>
+                <li>Conduct ablation studies; diagnose model limitations and propose controlled experiments.</li>
+            </ul>
+            <h2>Minimum Qualifications</h2>
+            <ul>
+                <li>MS or PhD in CS/EE/Math/Stats, or equivalent research experience.</li>
+                <li>Proficiency with Python, unit testing, and scientific computing workflows.</li>
+                <li>Experience with evaluation datasets such as <a class="link" href="https://github.com/openai/human-eval" target="_blank">HumanEval</a>.</li>
+                <li>Understanding of Transformers; reference: <a class="link" href="https://arxiv.org/abs/1706.03762" target="_blank">Attention Is All You Need</a>.</li>
+            </ul>
+            <h2>Preferred Qualifications</h2>
+            <ul>
+                <li>Hands-on with LLM APIs and fine-tuning (e.g., <a class="link" href="https://platform.openai.com/" target="_blank">OpenAI API</a>).</li>
+                <li>Familiarity with tokenization tooling (<a class="link" href="https://huggingface.co/docs/tokenizers/index" target="_blank">HF Tokenizers</a>).</li>
+                <li>Experience with CI, containers, and secure execution environments.</li>
+                <li>Background in statistics and experimental design.</li>
+            </ul>
+            <h2>Evaluation Methodology</h2>
+            <p>
+                We emphasize transparent and reproducible evaluation. Each benchmark run includes: pinned data snapshots, environment hashes, model
+                build identifiers, prompt versions, and seed configurations. Analyses include point estimates, bootstrap or analytical confidence
+                intervals for Pass@k, and investigation of systematic error sources such as flaky tests, dependency instability, or nondeterministic
+                decoding. Results feed into dashboards and weekly reviews. Safety reviews flag insecure patterns, referencing <a class="link" href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10</a> where relevant.
+            </p>
+            <h2>Suggested Reading</h2>
+            <ul>
+                <li>Pass@k estimation and evaluation protocols: <a class="link" href="https://arxiv.org/abs/2107.03374" target="_blank">arXiv:2107.03374</a></li>
+                <li>Transformer architecture: <a class="link" href="https://arxiv.org/abs/1706.03762" target="_blank">arXiv:1706.03762</a></li>
+                <li>Sandboxed execution: <a class="link" href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes</a>, <a class="link" href="https://gvisor.dev/docs/" target="_blank">gVisor</a></li>
+                <li>Alignment approaches (overview): <a class="link" href="https://openai.com/blog/learning-from-human-feedback" target="_blank">RLHF</a></li>
+                <li>Benchmark datasets and best practices: <a class="link" href="https://github.com/openai/human-eval" target="_blank">HumanEval</a></li>
+            </ul>
+            <a href="apply_research_scientist_eval.html" class="btn">Apply Now</a>
+        </div>
+    </div>
+</body>
+</html>
+
