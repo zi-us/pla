@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex Research | Zi-US Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        :root { --primary:#000; --secondary:#1a1a1a; --accent:#0066ff; --gray-100:#f8f9fa; --gray-200:#e9ecef; --gray-600:#6c757d; }
+        * { margin:0; padding:0; box-sizing:border-box }
+        html { font-size:62.5% }
+        body { font-family:'Calibri Light','Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:300; font-size:1.4rem; line-height:1.6; color:var(--primary); background:#ffffff }
+        nav { background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); border-bottom:1px solid var(--gray-200); padding:1.2rem 0; }
+        .nav-container { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:0 2rem; }
+        .brand-name { font-size:1.4rem; font-weight:400; letter-spacing:.05em; text-decoration:none; color:var(--primary) }
+        .container { max-width:1200px; margin:0 auto; padding:6rem 2rem; }
+        h1 { font-size:3.2rem; font-weight:300; margin-bottom:1.6rem }
+        h2 { font-size:2.2rem; font-weight:300; margin:3.2rem 0 1.2rem }
+        p.lead { font-size:1.4rem; color:var(--gray-600); max-width:900px }
+        table { width:100%; border-collapse:collapse; font-size:1.2rem; margin-top:2rem }
+        th, td { text-align:left; border-bottom:1px solid var(--gray-200); padding:.8rem }
+        a.link { color:var(--accent); text-decoration:underline }
+        .section { padding:2rem 0 }
+        .sim { margin:2rem 0; border:1px solid var(--gray-200); padding:1.6rem; }
+        iframe { width:100%; height:360px; border:none; }
+        @media (max-width: 768px) {
+            h1 { font-size:2.6rem }
+            h2 { font-size:1.8rem }
+            table { display:block; overflow-x:auto }
+            iframe { height:240px }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="brand-name">Zi-US Research</a>
+            <a href="career.html" style="font-size:1.1rem; text-decoration:none; color:var(--primary);">Careers</a>
+        </div>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>Codex Research</h1>
+            <p class="lead">Deep-dive into model training, evaluation methodologies, sandbox security, documentation generation, limitations, ethics, and economic impact for AI code-generation systems.</p>
+        </header>
+
+        <section id="overview" class="section">
+            <h2>Overview Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Description</th>
+                        <th>Example / Use Case</th>
+                        <th>Tools / Techniques</th>
+                        <th>Skillset Required</th>
+                        <th>Value / Metric</th>
+                        <th>Cost / Effort</th>
+                        <th>Collaboration Potential</th>
+                        <th>Platform Link / Resources</th>
+                        <th>Documentation Needed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Document Purpose</td>
+                        <td>Summarizes research on Codex model performance and evaluation</td>
+                        <td>Evaluation of AI code generation accuracy</td>
+                        <td>GPT models, Codex fine-tuning</td>
+                        <td>ML Research, Software Eng</td>
+                        <td>Pass@k, accuracy</td>
+                        <td>Research time, computation</td>
+                        <td>Researchers, academic labs</td>
+                        <td><a class="link" href="https://github.com/openai/human-eval" target="_blank">HumanEval Dataset</a></td>
+                        <td>Dataset details, test specs</td>
+                    </tr>
+                    <tr>
+                        <td>AI Model Training</td>
+                        <td>Large scale model trained on GitHub open source code</td>
+                        <td>Model generalizes to complex coding tasks</td>
+                        <td>Transformer models, tokenization</td>
+                        <td>Deep Learning, Data Science</td>
+                        <td>Loss, perplexity</td>
+                        <td>Months of training</td>
+                        <td>Industry, cloud providers</td>
+                        <td><a class="link" href="https://platform.openai.com/" target="_blank">OpenAI API</a></td>
+                        <td>Training logs, configs</td>
+                    </tr>
+                    <tr>
+                        <td>Evaluation Metrics</td>
+                        <td>Metrics for checking correctness and reliability of code output</td>
+                        <td>Pass@k measures functional success probability</td>
+                        <td>Unit tests, pass@k statistical estimator</td>
+                        <td>Software testing, ML eval</td>
+                        <td>Pass rates (%)</td>
+                        <td>Compute & benchmark time</td>
+                        <td>QA teams, benchmarking bodies</td>
+                        <td><a class="link" href="https://arxiv.org/abs/2107.03374" target="_blank">Pass@k metric explanation</a></td>
+                        <td>Test results, error logs</td>
+                    </tr>
+                    <tr>
+                        <td>Sandbox Environment</td>
+                        <td>Secure containerized execution setup</td>
+                        <td>Prevents execution risks from arbitrary code</td>
+                        <td>Kubernetes, gVisor runtime, firewall rules</td>
+                        <td>Cloud Ops, Security</td>
+                        <td>Runtime isolation score</td>
+                        <td>Setup & maintenance</td>
+                        <td>Security teams, DevOps</td>
+                        <td><a class="link" href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes Docs</a>, <a class="link" href="https://gvisor.dev/docs/" target="_blank">gVisor Docs</a></td>
+                        <td>Security policies, sandboxes</td>
+                    </tr>
+                    <tr>
+                        <td>Code Generation</td>
+                        <td>Auto-generation of working Python functions from docstrings</td>
+                        <td>Autocomplete and AI-assisted coding</td>
+                        <td>Transformer decoding, sampling methods</td>
+                        <td>Python, NLP, coding</td>
+                        <td>Functional correctness</td>
+                        <td>Developer testing hours</td>
+                        <td>Developers, research partners</td>
+                        <td><a class="link" href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></td>
+                        <td>Sample code, usage reports</td>
+                    </tr>
+                    <tr>
+                        <td>Documentation Generation</td>
+                        <td>Generation of descriptive docstrings from code</td>
+                        <td>Auto-maintained documentation</td>
+                        <td>Transformer sequence-to-sequence learning</td>
+                        <td>Technical writing, NLP</td>
+                        <td>Human qualitative score</td>
+                        <td>Manual annotation time</td>
+                        <td>Documentation teams, SMEs</td>
+                        <td>Documentation Standards</td>
+                        <td>Style guides, drafts</td>
+                    </tr>
+                    <tr>
+                        <td>Model Limitations</td>
+                        <td>Known performance boundaries and failure modes</td>
+                        <td>Challenges in long dependency chains and variable binding</td>
+                        <td>Diagnostic tests, error analysis</td>
+                        <td>Debugging, Research</td>
+                        <td>Failure rates</td>
+                        <td>Debugging and testing time</td>
+                        <td>Researchers, validators</td>
+                        <td>Research publications, GitHub issues</td>
+                        <td>Bug trackers, known issues</td>
+                    </tr>
+                    <tr>
+                        <td>Ethical & Security Risks</td>
+                        <td>Bias, misalignment, insecure code generation risks</td>
+                        <td>Potential safety, fairness, and security issues</td>
+                        <td>Data filtering, RLHF</td>
+                        <td>Ethics, Security audits</td>
+                        <td>Incident counts</td>
+                        <td>Oversight hours</td>
+                        <td>Legal, ethical governance</td>
+                        <td><a class="link" href="https://openai.com/research" target="_blank">Policy portals, legal docs</a></td>
+                        <td>Risk assessments</td>
+                    </tr>
+                    <tr>
+                        <td>Economic Impact</td>
+                        <td>Forecasts effect on productivity, workforce</td>
+                        <td>Impacts on jobs and coding efficiency</td>
+                        <td>Economic modeling, surveys</td>
+                        <td>Economics, social sciences</td>
+                        <td>Productivity metrics</td>
+                        <td>Survey & analysis hours</td>
+                        <td>Policymakers, industry leaders</td>
+                        <td>Funding portals, research grants</td>
+                        <td>Strategy reports</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="evaluation" class="section">
+            <h2>Evaluation Simulations</h2>
+            <div class="sim">
+                <p class="lead">Interactive visualization of Pass@k sensitivity to sample count and test flakiness (illustrative).</p>
+                <iframe srcdoc="<!DOCTYPE html><html><body><div id='viz' style='height:100%;display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:#333'>Simulation Placeholder</div></body></html>"></iframe>
+            </div>
+        </section>
+
+        <section id="sandbox" class="section">
+            <h2>Sandbox Architecture</h2>
+            <p class="lead">We evaluate code securely using containerized isolation. See <a class="link" href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes docs</a> and <a class="link" href="https://gvisor.dev/docs/" target="_blank">gVisor</a>.</p>
+            <img src="https://dummyimage.com/1200x480/efefef/333&text=Sandbox+Architecture+Diagram" alt="Sandbox" style="width:100%;border:1px solid var(--gray-200);margin-top:1.2rem"/>
+        </section>
+
+        <section id="docs" class="section">
+            <h2>Documentation Generation</h2>
+            <p class="lead">Automated docstrings and technical writing standards streamline maintainability.</p>
+        </section>
+
+        <section id="ethics" class="section">
+            <h2>Ethical & Security Considerations</h2>
+            <p class="lead">Bias mitigation, secure coding, and review workflows minimize risk. See <a class="link" href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10</a>.</p>
+        </section>
+
+        <section id="economics" class="section">
+            <h2>Economic Impact</h2>
+            <p class="lead">We assess productivity impacts and workforce upskilling under various adoption scenarios.</p>
+        </section>
+    </div>
+</body>
+</html>
+
