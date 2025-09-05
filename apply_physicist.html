@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply: Plasma Physicist | Zi-US Research</title>
+    <title>Apply: DevOps Engineer | Zi-US Research</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
         :root {
@@ -41,7 +41,7 @@
     <div class="container">
         <div id="application-card" class="application-card">
             <div class="form-header">
-                <h1 id="job-title-header">Application for Plasma Physicist</h1>
+                <h1 id="job-title-header">Application for DevOps Engineer</h1>
                 <p>Please complete the form below to submit your application.</p>
             </div>
             <form id="application-form">
@@ -92,7 +92,7 @@
                 readFileAsBase64(cvFile),
                 researchFile ? readFileAsBase64(researchFile) : Promise.resolve(null)
             ]).then(filesData => {
-                const jobTitle = "Plasma Physicist"; // Define job title for this page
+                const jobTitle = "DevOps Engineer"; // Define job title for this page
                 const payload = {
                     jobTitle: jobTitle,
                     fullName: document.getElementById('fullName').value,
