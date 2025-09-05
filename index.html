@@ -482,6 +482,114 @@
                 <div class="content-main">
                     <h3>Summary Table: Understanding Codex Research Document</h3>
                     <p>This section summarizes Codex research focus areas, evaluation practices, security posture, documentation, and value metrics. Detailed tables and POC plan follow.</p>
+                    <h4>1. Objective</h4>
+                    <p>This proposal outlines a scoped Proof of Concept (POC) to evaluate the feasibility and ROI of using Large Language Models (LLMs) for code generation to accelerate our software development lifecycle. Inspired by the success of Codex, we will explore a specialized coding assistant fine-tuned on our internal codebase. See <a href="codex.html" style="text-decoration:underline; color: var(--accent);">Codex Research</a>, <a href="https://github.com/openai/human-eval" target="_blank" style="text-decoration:underline; color: var(--accent);">HumanEval</a>, and the <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--accent);">Pass@k</a> metric.</p>
+
+                    <h4>2. Technology in Focus</h4>
+                    <p>The core technology is Generative Pre-trained Transformers for Code. We will fine-tune a foundation model (e.g., open-source Llama/Falcon or a managed model via API) on our internal Python libraries, coding standards, and best practices. References: <a href="https://platform.openai.com/" target="_blank" style="text-decoration:underline; color: var(--accent);">OpenAI API</a>, <a href="https://arxiv.org/abs/1706.03762" target="_blank" style="text-decoration:underline; color: var(--accent);">Transformers</a>.</p>
+
+                    <h4>3. Core Hypothesis</h4>
+                    <p>Fine-tuning on our proprietary codebase will reduce time spent on boilerplate, improve adherence to internal standards, accelerate onboarding, and preserve institutional knowledge.</p>
+
+                    <h4>4. Proposed Business Value</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li><strong>Increased Developer Productivity</strong>: Automate repetitive functions, unit tests, and docstrings.</li>
+                        <li><strong>Improved Code Quality & Consistency</strong>: Suggestions align with our standards and patterns.</li>
+                        <li><strong>Faster Onboarding</strong>: New hires generate code conforming to our architecture.</li>
+                        <li><strong>Knowledge Preservation</strong>: Encode best practices implicitly in the model.</li>
+                    </ul>
+
+                    <h4>5. POC Scope</h4>
+                    <p><strong>In-scope</strong>:</p>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Curate 10–20 GB of high-quality internal Python code.</li>
+                        <li>Fine-tune a 7B-class open-source model.</li>
+                        <li>Develop <em>InternalEval</em> (≈50 problems), analogous to <a href="https://github.com/openai/human-eval" target="_blank" style="text-decoration:underline; color: var(--accent);">HumanEval</a>.</li>
+                        <li>Measure <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--accent);">pass@1</a> and pass@10.</li>
+                    </ul>
+                    <p><strong>Out-of-scope</strong>:</p>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Full IDE integration or a user-facing product.</li>
+                        <li>Training very large models (>15B) from scratch.</li>
+                        <li>Real-time deployment (evaluation will be offline).</li>
+                    </ul>
+
+                    <h4>6. Success Criteria</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Fine-tuned model achieves pass@1 > 10% on InternalEval.</li>
+                        <li>≥ 50% relative improvement in pass@1 vs. base model.</li>
+                        <li>Qualitative survey (5–10 developers) confirms relevance and usefulness.</li>
+                    </ul>
+
+                    <h4>7. Risks</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li><strong>Technical</strong>: Dataset curation quality; compute cost for fine-tuning.</li>
+                        <li><strong>Security & IP</strong>: Protect proprietary data; prevent sensitive leakage in generations. Use sandboxing via <a href="https://kubernetes.io/docs/home/" target="_blank" style="text-decoration:underline; color: var(--accent);">Kubernetes</a> + <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--accent);">gVisor</a>.</li>
+                        <li><strong>Quality</strong>: Potential to learn "bad habits" (misalignment) from training data.</li>
+                    </ul>
+
+                    <h4>8. Recommendation</h4>
+                    <p>Proceed with a cost-contained POC given strong evidence of value from prior studies (e.g., Codex). The opportunity-to-risk ratio favors rapid experimentation with tight governance and secure evaluation. See <a href="codex.html" style="text-decoration:underline; color: var(--accent);">detailed rationale</a>.</p>
+
+                    <h4>Beginner Summary: What, Why, and How</h4>
+                    <div style="overflow-x: auto;">
+                        <table style="width:100%; border-collapse: collapse; font-size: 1.2rem;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Aspect</th>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Description</th>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Example / Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding:0.8rem;">What (Core Idea)</td>
+                                    <td style="padding:0.8rem;">Train a large AI model on code to generate code from natural language instructions.</td>
+                                    <td style="padding:0.8rem;">Teach an AI Python patterns so it writes code from English prompts.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Why (Problem Solved)</td>
+                                    <td style="padding:0.8rem;">Automate boilerplate and increase developer productivity.</td>
+                                    <td style="padding:0.8rem;">Let the model draft common functions in seconds.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Application</td>
+                                    <td style="padding:0.8rem;">AI autocompletion (e.g., Copilot), education, prototyping, documentation.</td>
+                                    <td style="padding:0.8rem;">In an IDE, suggests lines/blocks as you type (<a href="https://github.com/features/copilot" target="_blank" style="text-decoration:underline; color: var(--accent);">GitHub Copilot</a>).</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Tools & Techniques</td>
+                                    <td style="padding:0.8rem;">Transformer architecture; curated code datasets; unit tests and <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--accent);">pass@k</a>.</td>
+                                    <td style="padding:0.8rem;">Tested on HumanEval problems (<a href="https://github.com/openai/human-eval" target="_blank" style="text-decoration:underline; color: var(--accent);">dataset link</a>).</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Skillset Used</td>
+                                    <td style="padding:0.8rem;">ML research, data engineering, Python, large-scale compute.</td>
+                                    <td style="padding:0.8rem;">Collect/clean code, train/evaluate models, secure sandboxes.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Measured Value</td>
+                                    <td style="padding:0.8rem;">pass@k: % of problems with at least one passing sample.</td>
+                                    <td style="padding:0.8rem;">Best models solve a large fraction of tasks with k samples.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Cost</td>
+                                    <td style="padding:0.8rem;">High for large models; we scope to 7B fine-tuning to control cost.</td>
+                                    <td style="padding:0.8rem;">Training large models can require significant compute budgets.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Potential</td>
+                                    <td style="padding:0.8rem;">High—may transform developer workflows and education.</td>
+                                    <td style="padding:0.8rem;">"Autocomplete for everything"—code, scripts, configs.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Collaboration</td>
+                                    <td style="padding:0.8rem;">Academia, software companies, education platforms.</td>
+                                    <td style="padding:0.8rem;">Partner with universities to study learning outcomes.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="info-cards">
                     <div class="info-card">
