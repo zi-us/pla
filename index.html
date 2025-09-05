@@ -135,6 +135,35 @@
             text-align: center;
         }
 
+        /* Motion enhancements */
+        .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms ease, transform 600ms ease; }
+        .reveal-visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; }
+        }
+
+        /* Ticker */
+        .ticker {
+            overflow: hidden;
+            border-bottom: 1px solid var(--gray-200);
+            background: white;
+        }
+        .ticker-track {
+            display: flex;
+            gap: 3rem;
+            padding: 0.8rem 2rem;
+            white-space: nowrap;
+            animation: ticker-scroll 24s linear infinite;
+        }
+        .ticker a { color: var(--accent); text-decoration: none; font-size: 1.1rem; }
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; }
+        }
+
         /* Status Bar (Guided by sample) */
         .status-bar {
             display: flex;
@@ -579,12 +608,26 @@
             </div>
         </div>
     </section>
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>Pass@k</span>
+            <a href="https://arxiv.org/abs/2107.03374" target="_blank">Metric Paper →</a>
+            <span>HumanEval</span>
+            <a href="https://github.com/openai/human-eval" target="_blank">Dataset →</a>
+            <span>Kubernetes</span>
+            <a href="https://kubernetes.io/docs/home/" target="_blank">Docs →</a>
+            <span>gVisor</span>
+            <a href="https://gvisor.dev/docs/" target="_blank">Docs →</a>
+            <span>OpenAI API</span>
+            <a href="https://platform.openai.com/" target="_blank">Platform →</a>
+        </div>
+    </div>
 
     <!-- Main Content Grid -->
-    <section class="content-section" id="research">
+    <section class="content-section" id="research" class="reveal">
         <div class="container">
             <div class="content-grid">
-                <div class="content-main">
+                <div class="content-main reveal">
                     <h3>Summary Table: Understanding Codex Research Document</h3>
                     <p>This section summarizes Codex research focus areas, evaluation practices, security posture, documentation, and value metrics. Detailed tables and POC plan follow.</p>
                     <h4>1. Objective</h4>
@@ -696,24 +739,24 @@
                         </table>
                     </div>
                 </div>
-                <div class="info-cards">
-                    <div class="info-card">
+                <div class="info-cards reveal">
+                    <div class="info-card reveal">
                         <h4>Evaluation Metrics (Pass@k)</h4>
                         <p>Use multiple samples per prompt to estimate the chance that at least one solution passes unit tests.</p>
                     </div>
-                    <div class="info-card">
+                    <div class="info-card reveal">
                         <h4>Secure Sandboxing</h4>
                         <p>Run code in isolated environments using Kubernetes, gVisor, and eBPF to minimize risk.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="section-header" style="margin-top: 2rem;">
+            <div class="section-header reveal" style="margin-top: 2rem;">
                 <h2>POC Pillars</h2>
                 <p>Key focus areas mapped to your proposal and research links</p>
             </div>
-            <div class="frameworks-grid">
-                <div class="framework-card">
+            <div class="frameworks-grid reveal">
+                <div class="framework-card reveal">
                     <div class="framework-header">
                         <h3 class="framework-name">Training & Fine-tuning</h3>
                         <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Foundations</span>
@@ -724,7 +767,7 @@
                         <a href="https://platform.openai.com/" target="_blank">API →</a>
                     </div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card reveal">
                     <div class="framework-header">
                         <h3 class="framework-name">Evaluation</h3>
                         <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Benchmarks</span>
@@ -735,7 +778,7 @@
                         <a href="https://github.com/openai/human-eval" target="_blank">HumanEval →</a>
                     </div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card reveal">
                     <div class="framework-header">
                         <h3 class="framework-name">Sandbox Security</h3>
                         <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Safety</span>
@@ -746,7 +789,7 @@
                         <a href="https://kubernetes.io/docs/home/" target="_blank">K8s →</a>
                     </div>
                 </div>
-                <div class="framework-card">
+                <div class="framework-card reveal">
                     <div class="framework-header">
                         <h3 class="framework-name">Docs & Education</h3>
                         <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Adoption</span>
@@ -867,7 +910,7 @@
     </section>
 
     <!-- Additional Resource Section -->
-    <section class="content-section">
+    <section class="content-section reveal">
         <div class="container">
             <div class="podcast-section">
                 <div class="podcast-header">
@@ -884,7 +927,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section reveal">
         <div class="cta-content">
             <h2>Advance Your Understanding of Plasma Physics</h2>
             <p>Join our research community and explore the frontiers of the fourth state of matter</p>
@@ -901,5 +944,33 @@
             <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Physics Research Division</p>
         </div>
     </footer>
+<script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('reveal-visible');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Animated counters for status bar
+    function animateCount(el, target) {
+        const duration = 1000; const start = 0; const startTime = performance.now();
+        function tick(now){
+            const p = Math.min((now - startTime)/duration, 1);
+            el.textContent = Math.floor(start + (target - start) * p) + (el.dataset.suffix || '');
+            if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.status-value').forEach(v => {
+            const digits = (v.textContent || '').match(/\d+/);
+            const val = digits ? parseInt(digits[0], 10) : 0;
+            v.dataset.suffix = (v.textContent || '').replace(/\d+/,'');
+            animateCount(v, val);
+        });
+    });
+</script>
 </body>
 </html>
