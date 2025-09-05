@@ -366,6 +366,17 @@
             line-height: 1.6;
         }
 
+        /* Vertical Timeline */
+        .timeline {
+            border-left: 2px solid var(--gray-200);
+            margin: 1rem 0 2rem 0.8rem;
+            padding-left: 1.2rem;
+        }
+        .timeline-item { margin-bottom: 1.2rem; }
+        .timeline-item .time { font-size: 1.1rem; color: var(--gray-600); }
+        .timeline-item .title { font-size: 1.2rem; font-weight: 400; color: var(--primary); }
+        .timeline-item p { font-size: 1.1rem; color: var(--gray-600); margin: 0.2rem 0 0.6rem; }
+
         /* Equation Box */
         .equation-box {
             background: var(--gray-100);
@@ -743,6 +754,38 @@
                     <div class="info-card reveal">
                         <h4>Evaluation Metrics (Pass@k)</h4>
                         <p>Use multiple samples per prompt to estimate the chance that at least one solution passes unit tests.</p>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="time">Month 1</div>
+                                <div class="title">Dataset Curation & Baselines</div>
+                                <p>Collect internal Python tasks; establish baseline pass@1/pass@10 using a non-finetuned model.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 2</div>
+                                <div class="title">Fine-tuning & Prompt Design</div>
+                                <p>Run initial fine-tunes; iterate on prompt templates and sampling strategies.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 3</div>
+                                <div class="title">Benchmarking & Regression Suite</div>
+                                <p>Build InternalEval v1; automate regression testing and reporting dashboards.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 4</div>
+                                <div class="title">Sandbox Hardening & Safety</div>
+                                <p>Integrate network policies, seccomp profiles, and isolation runtime for evaluations.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 5</div>
+                                <div class="title">A/B Experiments & Analysis</div>
+                                <p>Compare model variants; analyze gains, flakiness, and failure modes.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 6</div>
+                                <div class="title">Stakeholder Report & Next Steps</div>
+                                <p>Deliver pass@1 targets vs. baseline, qualitative survey outcomes, and adoption plan.</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="info-card reveal">
                         <h4>Secure Sandboxing</h4>
