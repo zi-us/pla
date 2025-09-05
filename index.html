@@ -135,6 +135,19 @@
             text-align: center;
         }
 
+        /* Status Bar (Guided by sample) */
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        .status-item { text-align: center; }
+        .status-value { font-size: 2.2rem; font-weight: 400; color: var(--primary); }
+        .status-label { font-size: 1.1rem; color: var(--gray-600); }
+
         .hero h1 {
             font-size: 4.2rem;
             font-weight: 200;
@@ -219,6 +232,72 @@
             color: var(--gray-700);
         }
 
+        /* Framework Cards (POC Pillars) */
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .framework-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2.4rem;
+            border-radius: 0.4rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .framework-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .framework-card:hover::before { transform: translateX(0); }
+        .framework-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .framework-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem;
+        }
+        .framework-name { font-size: 1.6rem; font-weight: 400; }
+        .framework-description { font-size: 1.1rem; color: var(--gray-600); line-height: 1.6; }
+        .framework-links { display: flex; gap: 1rem; margin-top: 1.6rem; }
+        .framework-links a { font-size: 1rem; color: var(--accent); text-decoration: none; transition: opacity 0.2s ease; }
+        .framework-links a:hover { opacity: 0.7; }
+
+        /* Tools Grid */
+        .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
+        .tool-category { background: white; border: 1px solid var(--gray-200); padding: 2.4rem; border-radius: 0.4rem; }
+        .tool-category h3 { font-size: 1.6rem; font-weight: 400; margin-bottom: 1.6rem; color: var(--primary); }
+        .tool-list { list-style: none; }
+        .tool-list li { padding: 0.8rem 0; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: space-between; }
+        .tool-list li:last-child { border-bottom: none; }
+        .tool-name { font-size: 1.2rem; color: var(--gray-700); }
+        .tool-badge { font-size: 0.9rem; padding: 0.2rem 0.6rem; background: var(--gray-100); color: var(--gray-600); border-radius: 0.2rem; }
+
+        /* Resources Grid */
+        .resources-section { background: var(--gray-100); padding: 4rem 0; margin-top: 4rem; }
+        .resources-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin-top: 3rem; }
+        .resource-card { background: white; border: 1px solid var(--gray-200); padding: 3rem; border-radius: 0.4rem; transition: all 0.3s ease; }
+        .resource-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .resource-content h3 { font-size: 1.6rem; font-weight: 400; margin-bottom: 0.8rem; }
+        .resource-content p { font-size: 1.2rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 1.2rem; }
+        .resource-links { display: flex; gap: 1.6rem; font-size: 1.1rem; }
+        .resource-links a { color: var(--accent); text-decoration: none; }
+
+        /* Metrics Grid */
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+        .metric-card { background: white; border: 1px solid var(--gray-200); padding: 2rem; border-radius: 0.4rem; text-align: center; }
+        .metric-value { font-size: 2.2rem; font-weight: 400; color: var(--primary); margin-bottom: 0.4rem; }
+        .metric-label { font-size: 1.1rem; color: var(--gray-600); }
+        .metric-change { font-size: 1rem; color: var(--success); margin-top: 0.4rem; }
+        .metric-change.negative { color: var(--danger); }
         .content-main p {
             font-size: 1.3rem;
             color: var(--gray-700);
@@ -414,6 +493,10 @@
             .content-grid {
                 grid-template-columns: 1fr;
             }
+            .frameworks-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-grid { grid-template-columns: 1fr; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
@@ -431,6 +514,9 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .frameworks-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .status-bar { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
@@ -471,6 +557,24 @@
             <p>Explore performance, evaluation metrics (Pass@k), secure sandboxing, documentation generation, and known limitations for AI code-generation systems such as Codex and GPT models.</p>
             <div class="hero-actions">
                 <a href="codex.html" class="btn btn-lg">Learn More</a>
+            </div>
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-value">50</div>
+                    <div class="status-label">InternalEval Problems</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value">7B</div>
+                    <div class="status-label">Model Size Target</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value">>10%</div>
+                    <div class="status-label">Pass@1 Goal</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value">+50%</div>
+                    <div class="status-label">vs Base Model</div>
+                </div>
             </div>
         </div>
     </section>
@@ -600,6 +704,145 @@
                         <h4>Secure Sandboxing</h4>
                         <p>Run code in isolated environments using Kubernetes, gVisor, and eBPF to minimize risk.</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2>POC Pillars</h2>
+                <p>Key focus areas mapped to your proposal and research links</p>
+            </div>
+            <div class="frameworks-grid">
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Training & Fine-tuning</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Foundations</span>
+                    </div>
+                    <p class="framework-description">Fine-tune a 7B-class model on curated Python. Reference <a href="https://arxiv.org/abs/1706.03762" target="_blank" style="text-decoration:underline; color: var(--accent);">Transformers</a>.</p>
+                    <div class="framework-links">
+                        <a href="codex.html#overview">Overview →</a>
+                        <a href="https://platform.openai.com/" target="_blank">API →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Evaluation</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Benchmarks</span>
+                    </div>
+                    <p class="framework-description">InternalEval (~50 problems). Track <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--accent);">pass@k</a> gains vs base.</p>
+                    <div class="framework-links">
+                        <a href="codex.html#evaluation">Simulations →</a>
+                        <a href="https://github.com/openai/human-eval" target="_blank">HumanEval →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Sandbox Security</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Safety</span>
+                    </div>
+                    <p class="framework-description">Isolate execution with Kubernetes + gVisor; enforce network policies.</p>
+                    <div class="framework-links">
+                        <a href="codex.html#sandbox">Architecture →</a>
+                        <a href="https://kubernetes.io/docs/home/" target="_blank">K8s →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Docs & Education</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Adoption</span>
+                    </div>
+                    <p class="framework-description">Docstring generation and onboarding playbooks for faster ramp-up.</p>
+                    <div class="framework-links">
+                        <a href="codex.html#docs">Docs →</a>
+                        <a href="codex.html#ethics">Ethics →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Toolkit</h2>
+                <p>Essential tools and APIs for building and evaluating the POC</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h3>Build & Infra</h3>
+                    <ul class="tool-list">
+                        <li><span class="tool-name">Docker</span><span class="tool-badge">Containers</span></li>
+                        <li><span class="tool-name">Kubernetes</span><span class="tool-badge">Cluster</span></li>
+                        <li><span class="tool-name">gVisor</span><span class="tool-badge">Sandbox</span></li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h3>ML & Data</h3>
+                    <ul class="tool-list">
+                        <li><span class="tool-name">PyTorch</span><span class="tool-badge">DL</span></li>
+                        <li><span class="tool-name">HF Tokenizers</span><span class="tool-badge">NLP</span></li>
+                        <li><span class="tool-name">OpenAI API</span><span class="tool-badge">LLM</span></li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h3>Testing & QA</h3>
+                    <ul class="tool-list">
+                        <li><span class="tool-name">pytest</span><span class="tool-badge">Tests</span></li>
+                        <li><span class="tool-name">HumanEval</span><span class="tool-badge">Bench</span></li>
+                        <li><span class="tool-name">CI</span><span class="tool-badge">Pipelines</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resources-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Resources</h2>
+                        <p>Key references and external documentation for the team</p>
+                    </div>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>Pass@k Metric</h3>
+                                <p>Statistical estimator for functional success using multiple samples per task.</p>
+                                <div class="resource-links">
+                                    <a href="https://arxiv.org/abs/2107.03374" target="_blank">Paper →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>Kubernetes Sandbox</h3>
+                                <p>Guidance for secure evaluation environments with isolation and network controls.</p>
+                                <div class="resource-links">
+                                    <a href="https://kubernetes.io/docs/home/" target="_blank">Docs →</a>
+                                    <a href="https://gvisor.dev/docs/" target="_blank">gVisor →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Metrics</h2>
+                <p>Track POC health and velocity</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div class="metric-label">Bench Tasks Done</div>
+                    <div class="metric-change">+3 this week</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">9.5%</div>
+                    <div class="metric-label">Pass@1</div>
+                    <div class="metric-change">+1.2%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">41%</div>
+                    <div class="metric-label">Pass@10</div>
+                    <div class="metric-change">+5%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Security Incidents</div>
+                    <div class="metric-change">Stable</div>
                 </div>
             </div>
         </div>
