@@ -366,6 +366,18 @@
 
             renderPage(1);
 
+            // Replace Type labels per request
+            jobCards.forEach(card => {
+                const typeSpan = Array.from(card.querySelectorAll('.job-meta span')).find(s => s.textContent.trim().startsWith('Type:'));
+                if (!typeSpan) return;
+                const text = typeSpan.textContent;
+                if (text.includes('Full-time') || text.includes('Full-Time')) {
+                    typeSpan.innerHTML = '<strong>Type:</strong> Full Time Internships';
+                } else if (text.includes('Internship')) {
+                    typeSpan.innerHTML = '<strong>Type:</strong> High School Internship';
+                }
+            });
+
             // Replace bottom button with Job Description and remove inner duplicate JD links
             jobCards.forEach(card => {
                 const children = Array.from(card.children);
