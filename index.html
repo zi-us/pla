@@ -369,7 +369,7 @@
         /* Vertical Timeline (blue rail with nodes, scrollable) */
         .timeline {
             position: relative;
-            max-height: 260px;
+            max-height: 440px; /* show ~8 months at once */
             overflow-y: auto;
             padding-left: 2rem;
             margin: 1rem 0 2rem 0.2rem;
@@ -388,12 +388,11 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -0.1rem;
-            top: 0.3rem;
-            width: 10px;
-            height: 10px;
-            background: #ffffff;
-            border: 3px solid var(--accent);
+            left: 0.45rem; /* place dot on the rail */
+            top: 0.4rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
             border-radius: 50%;
         }
         .timeline-item .time { font-size: 1.1rem; color: var(--gray-600); }
