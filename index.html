@@ -377,6 +377,92 @@
         .timeline-item .title { font-size: 1.2rem; font-weight: 400; color: var(--primary); }
         .timeline-item p { font-size: 1.1rem; color: var(--gray-600); margin: 0.2rem 0 0.6rem; }
 
+        /* Research Stats */
+        .research-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .stat-card {
+            background: var(--gray-100);
+            padding: 2rem;
+            border-radius: 0.4rem;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+        .stat-number {
+            font-size: 3.6rem;
+            font-weight: 200;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label { font-size: 1.1rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* Main Simulation Container */
+        .main-simulation { background: #000; border-radius: 0.8rem; overflow: hidden; position: relative; height: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-bottom: 4rem; }
+        #mainCanvas { display: block; width: 100%; height: 100%; }
+        .simulation-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+        /* Research Areas Grid */
+        .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin: 4rem 0; }
+        .research-card { background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; padding: 3rem; transition: all 0.3s ease; }
+        .research-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .research-card h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; }
+        .research-card p { font-size: 1.2rem; color: var(--gray-600); margin-bottom: 2rem; line-height: 1.8; }
+        .research-metrics { list-style: none; margin-top: 1.5rem; }
+        .research-metrics li { font-size: 1.1rem; color: var(--gray-700); padding: 0.5rem 0; border-bottom: 1px solid var(--gray-200); }
+
+        /* QPU Architecture Grid */
+        .qpu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin: 4rem 0; }
+        .qpu-card { background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; overflow: hidden; transition: all 0.3s ease; }
+        .qpu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .qpu-preview { height: 200px; background: #000; position: relative; overflow: hidden; }
+        .qpu-info { padding: 2rem; }
+        .qpu-info h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; }
+        .qpu-info p { font-size: 1.2rem; color: var(--gray-600); margin-bottom: 1.6rem; }
+
+        /* Parameters Panel */
+        .parameters-panel { background: var(--gray-100); padding: 3rem; border-radius: 0.4rem; margin: 4rem 0; }
+        .parameters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .parameter-control { background: white; padding: 1.6rem; border-radius: 0.4rem; border: 1px solid var(--gray-200); }
+        .parameter-control label { display: block; font-size: 1.1rem; color: var(--gray-700); margin-bottom: 0.8rem; }
+        .parameter-control input[type="range"] { width: 100%; margin-bottom: 0.4rem; }
+        .parameter-value { font-size: 1.3rem; font-weight: 400; color: var(--accent); }
+
+        /* Timeline Section (scoped to avoid conflicts) */
+        .timeline-section { background: var(--gray-100); padding: 4rem 0; }
+        .timeline-section .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 3rem 0; border-left: none; }
+        .timeline-section .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--gray-300); transform: translateX(-50%); }
+        .timeline-section .timeline-item { position: relative; padding: 2rem; width: calc(50% - 2rem); background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; margin-bottom: 2rem; }
+        .timeline-section .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-section .timeline-item:nth-child(even) { left: calc(50% + 2rem); }
+        .timeline-section .timeline-item::before { content: ''; position: absolute; top: 50%; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; transform: translateY(-50%); }
+        .timeline-section .timeline-item:nth-child(odd)::before { right: -3rem; }
+        .timeline-section .timeline-item:nth-child(even)::before { left: -3rem; }
+        .timeline-date { font-size: 1.1rem; color: var(--accent); font-weight: 400; margin-bottom: 0.5rem; }
+        .timeline-title { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .timeline-desc { font-size: 1.1rem; color: var(--gray-600); }
+
+        /* Algorithm Showcase */
+        .algorithm-showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin: 4rem 0; }
+        .algorithm-card { background: var(--gray-100); padding: 3rem; border-radius: 0.4rem; border: 1px solid var(--gray-200); }
+        .algorithm-visualization { height: 250px; background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+
+        /* Collaboration Section */
+        .collab-section { background: var(--gray-100); padding: 4rem 0; }
+        .collab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .collab-item { background: white; padding: 2rem; border-radius: 0.4rem; text-align: center; border: 1px solid var(--gray-200); }
+        .collab-item h4 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .collab-item p { font-size: 1.1rem; color: var(--gray-600); }
+
+        /* Data Visualization */
+        .data-viz { background: var(--gray-100); padding: 3rem; border-radius: 0.4rem; margin: 2rem 0; }
+        .data-viz canvas { width: 100%; height: 300px; background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+
         /* Equation Box */
         .equation-box {
             background: var(--gray-100);
@@ -578,16 +664,7 @@
                     <li><a href="career.html">Careers</a></li>
                 </ul>
             </div>
-            <div class="nav-actions">
-                <a href="contact.html" class="btn">Partner us</a>
-                <a href="contact.html" class="btn">Contact Us</a>
-                <a href="https://zenodo.org/records/15863004" target="_blank" class="btn btn-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                    </svg>
-                    Download Paper
-                </a>
-            </div>
+            <div class="nav-actions"></div>
         </div>
     </nav>
 
@@ -597,7 +674,7 @@
             <h1>Codex Research: Evaluating <span class="accent">AI Code Generation</span></h1>
             <p>Explore performance, evaluation metrics (Pass@k), secure sandboxing, documentation generation, and known limitations for AI code-generation systems such as Codex and GPT models.</p>
             <div class="hero-actions">
-                <a href="codex.html" class="btn btn-lg">Learn More</a>
+                <a href="contact.html" class="btn btn-lg">Client ID</a>
             </div>
             <div class="status-bar">
                 <div class="status-item">
@@ -975,7 +1052,7 @@
             <h2>Advance Your Understanding of Plasma Physics</h2>
             <p>Join our research community and explore the frontiers of the fourth state of matter</p>
             <div class="cta-buttons">
-                <a href="career.html" class="btn btn-white btn-lg">Access Research Portal</a>
+                <a href="codex.html" class="btn btn-white btn-lg">Learn more</a>
                 <a href="career.html" class="btn btn-lg" style="background: transparent; color: white; border-color: white;">Join Our Team</a>
             </div>
         </div>
@@ -995,6 +1072,24 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile menu toggle (no-op if toggle not present)
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpen = getComputedStyle(navMenu).display !== 'none';
+            navMenu.style.display = isOpen ? 'none' : 'flex';
+            navMenu.style.position = 'absolute';
+            navMenu.style.top = '100%';
+            navMenu.style.left = '0';
+            navMenu.style.right = '0';
+            navMenu.style.background = 'white';
+            navMenu.style.flexDirection = 'column';
+            navMenu.style.padding = '2rem';
+            navMenu.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        });
+    }
 
     // Animated counters for status bar
     function animateCount(el, target) {
