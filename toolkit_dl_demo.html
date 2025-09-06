@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL Demo Dashboard | Zi-US Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        :root { --primary:#000; --secondary:#1a1a1a; --accent:#0066ff; --gray-100:#f8f9fa; --gray-200:#e9ecef; --gray-600:#6c757d; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{font-size:62.5%}
+        body{font-family:'Calibri Light','Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:300;font-size:1.2rem;line-height:1.6;color:var(--primary);background:#ffffff}
+        .wrap{max-width:1200px;margin:4rem auto;padding:0 2rem}
+        .header{margin:2rem 0}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem}
+        .card{border:1px solid var(--gray-200);padding:2rem;border-radius:.6rem}
+        .api{background:var(--gray-100);padding:1rem;border-radius:.4rem;font-family:'Courier New',monospace}
+        .cta{margin-top:2rem;text-align:center}
+        .btn{display:inline-block;padding:.8rem 1.6rem;border:1px solid var(--primary);text-decoration:none;color:var(--primary)}
+        @media(max-width:768px){.wrap{margin:2rem auto}}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <h1 style="font-size:3rem;font-weight:200;">DL Demo Dashboard</h1>
+            <p style="color:var(--gray-600)">Quick commands for training and evaluation flows.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Train (Mixed Precision)</h3>
+                <div class="api">python train.py --config configs/dl/amp.yaml</div>
+            </div>
+            <div class="card">
+                <h3>Distributed (DDP)</h3>
+                <div class="api">torchrun --nproc_per_node=4 train.py --config configs/dl/ddp.yaml</div>
+            </div>
+            <div class="card">
+                <h3>Evaluate (Pass@k)</h3>
+                <div class="api">python eval.py --checkpoint ckpt.pt --bench humaneval --k 10</div>
+            </div>
+        </div>
+        <div class="cta">
+            <h2 style="font-weight:300;margin:1.2rem 0;">Join our team</h2>
+            <a class="btn" href="career.html">Explore Careers</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
