@@ -34,6 +34,12 @@
             .job-card { flex-direction: row; align-items: center; } 
             .btn { margin-top: 0; } 
         }
+
+        /* Pagination (light blue interface) */
+        .pagination { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem; flex-wrap: wrap; }
+        .page-link { padding: 0.6rem 1rem; font-size: 1.1rem; border: 1px solid var(--accent); color: var(--accent); background: rgba(0, 102, 255, 0.08); border-radius: 0.2rem; cursor: pointer; text-decoration: none; }
+        .page-link.active { background: var(--accent); color: #ffffff; }
+        .page-link.disabled { opacity: 0.5; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -302,9 +308,7 @@
                 <a href="apply_community_outreach_intern.html" class="btn">Apply Now</a>
             </div>
         </div>
-        <div class="load-more-container" id="load-more-container" style="display:none;">
-            <button class="btn" id="load-more-btn">Load More</button>
-        </div>
+        <div class="pagination" id="pagination"></div>
         
         <!-- Team Structure & Execution Landscape (POC) -->
         <!-- Removed as requested -->
@@ -320,11 +324,47 @@
         document.addEventListener('DOMContentLoaded', function() {
             const jobListings = document.querySelector('.job-listings');
             const jobCards = Array.from(jobListings.children);
-            const loadMoreBtn = document.getElementById('load-more-btn');
-            const loadMoreContainer = document.getElementById('load-more-container');
-            // Show all jobs at once
-            jobCards.forEach((card) => { card.classList.remove('hidden'); });
-            if (loadMoreContainer) loadMoreContainer.style.display = 'none';
+            const pagination = document.getElementById('pagination');
+            const pageSize = 10;
+            let currentPage = 1;
+
+            function renderPage(page) {
+                currentPage = page;
+                const start = (page - 1) * pageSize;
+                const end = start + pageSize;
+                jobCards.forEach((card, idx) => {
+                    if (idx >= start && idx < end) card.classList.remove('hidden');
+                    else card.classList.add('hidden');
+                });
+                renderPagination();
+            }
+
+            function renderPagination() {
+                if (!pagination) return;
+                const totalPages = Math.ceil(jobCards.length / pageSize) || 1;
+                pagination.innerHTML = '';
+                const prev = document.createElement('a');
+                prev.href = '#'; prev.className = 'page-link' + (currentPage === 1 ? ' disabled' : '');
+                prev.textContent = 'Prev';
+                if (currentPage > 1) prev.addEventListener('click', (e)=>{ e.preventDefault(); renderPage(currentPage - 1); });
+                pagination.appendChild(prev);
+
+                for (let p = 1; p <= totalPages; p++) {
+                    const link = document.createElement('a');
+                    link.href = '#'; link.className = 'page-link' + (p === currentPage ? ' active' : '');
+                    link.textContent = String(p);
+                    link.addEventListener('click', (e)=>{ e.preventDefault(); renderPage(p); });
+                    pagination.appendChild(link);
+                }
+
+                const next = document.createElement('a');
+                next.href = '#'; next.className = 'page-link' + (currentPage >= totalPages ? ' disabled' : '');
+                next.textContent = 'Next';
+                if (currentPage < totalPages) next.addEventListener('click', (e)=>{ e.preventDefault(); renderPage(currentPage + 1); });
+                pagination.appendChild(next);
+            }
+
+            renderPage(1);
 
             // Replace bottom button with Job Description and remove inner duplicate JD links
             jobCards.forEach(card => {
