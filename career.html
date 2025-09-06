@@ -302,19 +302,18 @@
                 <a href="apply_community_outreach_intern.html" class="btn">Apply Now</a>
             </div>
         </div>
-        <div class="load-more-container" id="load-more-container">
+        <div class="load-more-container" id="load-more-container" style="display:none;">
             <button class="btn" id="load-more-btn">Load More</button>
         </div>
         
         <!-- Team Structure & Execution Landscape (POC) -->
-        <section style="margin-top: 6rem;">
+        <!-- Removed as requested -->
+        <!-- <section style="margin-top: 6rem;">
             <h2 style="font-size:2.2rem; font-weight:300; margin-bottom: 1.2rem;">Team Structure & Execution Landscape (POC)</h2>
-            <p style="font-size:1.3rem; color: var(--gray-600); margin-bottom: 1.6rem;">This table loads from the provided Google Sheet and Apps Script. If access isnt public yet, you will see a helpful notice.</p>
-            <div id="hiring-table-container" style="overflow-x:auto;">
-                <!-- Hiring table will render here -->
-            </div>
+            <p style="font-size:1.3rem; color: var(--gray-600); margin-bottom: 1.6rem;">This table loads from the provided Google Sheet and Apps Script. If access isn’t public yet, you will see a helpful notice.</p>
+            <div id="hiring-table-container" style="overflow-x:auto;"></div>
             <div id="hiring-table-note" style="font-size:1.1rem; color: var(--gray-600); margin-top: 0.8rem;"></div>
-        </section>
+        </section> -->
     </div>
 
     <script>
@@ -323,31 +322,10 @@
             const jobCards = Array.from(jobListings.children);
             const loadMoreBtn = document.getElementById('load-more-btn');
             const loadMoreContainer = document.getElementById('load-more-container');
-            const jobsToShowInitially = 4;
-            let jobsCurrentlyShown = jobsToShowInitially;
+            // Show all jobs at once
+            jobCards.forEach((card) => { card.classList.remove('hidden'); });
+            if (loadMoreContainer) loadMoreContainer.style.display = 'none';
 
-            jobCards.forEach((card, index) => {
-                if (index >= jobsToShowInitially) {
-                    card.classList.add('hidden');
-                }
-            });
-
-            if (jobCards.length <= jobsToShowInitially) {
-                if(loadMoreContainer) loadMoreContainer.style.display = 'none';
-            }
-
-            if(loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', function() {
-                    for (let i = jobsCurrentlyShown; i < jobsCurrentlyShown + jobsToShowInitially && i < jobCards.length; i++) {
-                        jobCards[i].classList.remove('hidden');
-                    }
-                    jobsCurrentlyShown += jobsToShowInitially;
-
-                    if (jobsCurrentlyShown >= jobCards.length) {
-                        if(loadMoreContainer) loadMoreContainer.style.display = 'none';
-                    }
-                });
-            }
             // Replace bottom button with Job Description and remove inner duplicate JD links
             jobCards.forEach(card => {
                 const children = Array.from(card.children);
@@ -364,118 +342,11 @@
                 }
             });
 
-            // Hiring data section
+            // Remove hiring table logic
             const hiringContainer = document.getElementById('hiring-table-container');
             const hiringNote = document.getElementById('hiring-table-note');
-            const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAQQvhOcN8l6QWeZFpILlAt0z_Vkyzq8DkMcgUbnHzL-oNfM575P7g-tVRUraLTSzG/exec';
-            const SHEET_ID = '1hmIb1HaYyE-VU-vx9NBgsx0TiPaUiA7JTboX7VK2mHc';
-            const GID = '0';
-
-            function renderTable(headers, rows) {
-                const table = document.createElement('table');
-                table.style.width = '100%';
-                table.style.borderCollapse = 'collapse';
-                table.style.fontSize = '1.2rem';
-
-                const thead = document.createElement('thead');
-                const headTr = document.createElement('tr');
-                headers.forEach(h => {
-                    const th = document.createElement('th');
-                    th.textContent = h;
-                    th.style.textAlign = 'left';
-                    th.style.borderBottom = '1px solid var(--gray-200)';
-                    th.style.padding = '0.8rem';
-                    headTr.appendChild(th);
-                });
-                thead.appendChild(headTr);
-                table.appendChild(thead);
-
-                const tbody = document.createElement('tbody');
-                rows.forEach(row => {
-                    const tr = document.createElement('tr');
-                    row.forEach(cell => {
-                        const td = document.createElement('td');
-                        td.textContent = cell == null ? '' : String(cell);
-                        td.style.padding = '0.8rem';
-                        td.style.borderBottom = '1px solid var(--gray-200)';
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
-                table.appendChild(tbody);
-
-                hiringContainer.innerHTML = '';
-                hiringContainer.appendChild(table);
-            }
-
-            function parseGviz(text) {
-                const match = text.match(/google\\.visualization\\.Query\\.setResponse\\((.*)\\);/s);
-                if (!match) throw new Error('GViz: response format not recognized');
-                const payload = JSON.parse(match[1]);
-                const cols = payload.table.cols.map(c => c.label || c.id || '');
-                const rows = payload.table.rows.map(r => (r.c || []).map(c => (c ? (c.f != null ? c.f : c.v) : '')));
-                return { headers: cols, rows };
-            }
-
-            function parseCsv(text) {
-                const lines = text.replace(/\r/g, '').split('\n').filter(Boolean);
-                if (lines.length === 0) return { headers: [], rows: [] };
-                const headers = lines[0].split(',').map(s => s.replace(/^\"|\"$/g, ''));
-                const rows = lines.slice(1).map(line => line.split(',').map(s => s.replace(/^\"|\"$/g, '')));
-                return { headers, rows };
-            }
-
-            async function tryAppsScript() {
-                const res = await fetch(APPS_SCRIPT_URL, { credentials: 'omit' });
-                const text = await res.text();
-                if (text.includes('Script function not found')) {
-                    throw new Error('Apps Script not published with doGet');
-                }
-                let json;
-                try { json = JSON.parse(text); } catch (e) { throw new Error('Apps Script did not return JSON'); }
-                if (!Array.isArray(json)) throw new Error('Apps Script JSON not an array');
-                const headers = Object.keys(json[0] || {});
-                const rows = json.map(obj => headers.map(h => obj[h]));
-                return { headers, rows };
-            }
-
-            async function tryGviz() {
-                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${GID}`;
-                const res = await fetch(url, { credentials: 'omit' });
-                const text = await res.text();
-                return parseGviz(text);
-            }
-
-            async function tryCsv() {
-                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
-                const res = await fetch(url, { credentials: 'omit' });
-                const text = await res.text();
-                return parseCsv(text);
-            }
-
-            (async () => {
-                hiringNote.textContent = 'Loading team structure from Google Sheet...';
-                try {
-                    const { headers, rows } = await tryAppsScript();
-                    renderTable(headers, rows);
-                    hiringNote.textContent = 'Source: Apps Script';
-                } catch (e1) {
-                    try {
-                        const { headers, rows } = await tryGviz();
-                        renderTable(headers, rows);
-                        hiringNote.innerHTML = 'Source: Google Sheets (gviz). If you prefer Apps Script, ensure a published doGet handler at <a href="https://script.google.com/macros/s/AKfycbzAQQvhOcN8l6QWeZFpILlAt0z_Vkyzq8DkMcgUbnHzL-oNfM575P7g-tVRUraLTSzG/exec" target="_blank">Apps Script URL</a>.';
-                    } catch (e2) {
-                        try {
-                            const { headers, rows } = await tryCsv();
-                            renderTable(headers, rows);
-                            hiringNote.textContent = 'Source: Google Sheets (CSV export)';
-                        } catch (e3) {
-                            hiringContainer.innerHTML = '<p style="font-size:1.2rem; color: var(--gray-600);">Could not load hiring table. Please publish the sheet (Anyone with link can view) or publish the Apps Script with a doGet() JSON response.</p>';
-                            hiringNote.innerHTML = `Sheet: <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?gid=${GID}#gid=${GID}" target="_blank">open</a>`;
-                        }
-                    }
-                }
-            })();
+            if (hiringContainer) hiringContainer.remove();
+            if (hiringNote) hiringNote.remove();
         });
     </script>
 </body>
