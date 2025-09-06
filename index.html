@@ -366,13 +366,36 @@
             line-height: 1.6;
         }
 
-        /* Vertical Timeline */
+        /* Vertical Timeline (blue rail with nodes, scrollable) */
         .timeline {
-            border-left: 2px solid var(--gray-200);
-            margin: 1rem 0 2rem 0.8rem;
-            padding-left: 1.2rem;
+            position: relative;
+            max-height: 260px;
+            overflow-y: auto;
+            padding-left: 2rem;
+            margin: 1rem 0 2rem 0.2rem;
         }
-        .timeline-item { margin-bottom: 1.2rem; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.6rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .timeline-item { position: relative; margin: 0 0 1.2rem 0; padding-left: 0.8rem; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.1rem;
+            top: 0.3rem;
+            width: 10px;
+            height: 10px;
+            background: #ffffff;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+        }
         .timeline-item .time { font-size: 1.1rem; color: var(--gray-600); }
         .timeline-item .title { font-size: 1.2rem; font-weight: 400; color: var(--primary); }
         .timeline-item p { font-size: 1.1rem; color: var(--gray-600); margin: 0.2rem 0 0.6rem; }
@@ -865,6 +888,36 @@
                                 <div class="time">Month 6</div>
                                 <div class="title">Stakeholder Report & Next Steps</div>
                                 <p>Deliver pass@1 targets vs. baseline, qualitative survey outcomes, and adoption plan.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 7</div>
+                                <div class="title">Data Expansion & Cleaning</div>
+                                <p>Curate new tasks; add filters for noisy examples and strengthen governance.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 8</div>
+                                <div class="title">Prompt Library & Templates</div>
+                                <p>Standardize prompt families and versioning; introduce task-specific defaults.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 9</div>
+                                <div class="title">Checkpoint Promotion Policy</div>
+                                <p>Define metrics and gates for promoting models in registry.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 10</div>
+                                <div class="title">Cost & Performance Tuning</div>
+                                <p>Optimize compute usage, caching, and sample counts for evaluation throughput.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 11</div>
+                                <div class="title">Robustness & Safety Audits</div>
+                                <p>Run adversarial tasks and policy checks; document residual risks.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 12</div>
+                                <div class="title">Final Report & Roadmap</div>
+                                <p>Synthesize findings; propose roadmap for productization and scaling.</p>
                             </div>
                         </div>
                     </div>
