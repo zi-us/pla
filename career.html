@@ -348,7 +348,22 @@
                     }
                 });
             }
-            
+            // Replace bottom button with Job Description and remove inner duplicate JD links
+            jobCards.forEach(card => {
+                const children = Array.from(card.children);
+                const jobInfo = children.find(el => el.classList && el.classList.contains('job-info'));
+                const bottomBtn = children.find(el => el.tagName === 'A');
+                if (!jobInfo || !bottomBtn) return;
+                const innerJD = jobInfo.querySelector('a.btn[href*="jd_"]');
+                if (innerJD) {
+                    bottomBtn.href = innerJD.href;
+                    bottomBtn.textContent = 'Job Description';
+                    innerJD.remove();
+                } else {
+                    bottomBtn.textContent = 'Job Description';
+                }
+            });
+
             // Hiring data section
             const hiringContainer = document.getElementById('hiring-table-container');
             const hiringNote = document.getElementById('hiring-table-note');
