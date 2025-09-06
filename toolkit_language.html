@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Toolkit | Zi-US Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        :root { --primary:#000; --secondary:#1a1a1a; --accent:#0066ff; --gray-100:#f8f9fa; --gray-200:#e9ecef; --gray-300:#dee2e6; --gray-400:#ced4da; --gray-600:#6c757d; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{font-size:62.5%;scroll-behavior:smooth}
+        body{font-family:'Calibri Light','Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:300;font-size:1.2rem;line-height:1.6;color:var(--primary);background:#ffffff;overflow-x:hidden}
+        .top-nav{position:fixed;top:0;left:0;right:0;height:60px;background:white;border-bottom:1px solid var(--gray-200);z-index:1000;display:flex;align-items:center;padding:0 2rem}
+        .top-nav-content{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1600px;margin:0 auto}
+        .brand-section{display:flex;align-items:center;gap:2rem}
+        .page-indicator{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--accent);color:#fff;border-radius:2rem;font-size:1rem}
+        .dashboard-wrapper{display:flex;margin-top:60px}
+        .sidebar{width:260px;background:white;border-right:1px solid var(--gray-200);min-height:calc(100vh - 60px);position:fixed;padding:2rem}
+        .sidebar-nav{list-style:none}
+        .sidebar-nav li{margin-bottom:.5rem}
+        .sidebar-nav a{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;border-radius:.4rem;text-decoration:none;color:#495057;font-size:1.2rem;transition:all .2s ease}
+        .sidebar-nav a:hover{background:var(--gray-100);color:var(--primary)}
+        .sidebar-nav a.active{background:var(--accent);color:#fff}
+        .main-content{margin-left:260px;width:calc(100% - 260px);padding:3rem}
+        .page-header{margin-bottom:3rem}
+        .page-header h1{font-size:3.0rem;font-weight:200;margin-bottom:.5rem}
+        .page-header p{font-size:1.3rem;color:var(--gray-600)}
+        .integration-status{background:white;border:1px solid var(--gray-200);border-radius:.8rem;padding:2rem;margin-bottom:3rem}
+        .status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:1.5rem}
+        .status-item{text-align:center;padding:1.5rem;background:var(--gray-100);border-radius:.4rem}
+        .status-value{font-size:2.2rem;font-weight:300;color:var(--accent);display:block}
+        .status-label{font-size:1.1rem;color:var(--gray-600);margin-top:.5rem}
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem}
+        .tool-card{background:white;border:1px solid var(--gray-200);border-radius:.8rem;padding:2rem;transition:all .3s ease;text-decoration:none;color:var(--primary);display:flex;flex-direction:column;position:relative;overflow:hidden}
+        .tool-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent);transform:translateX(-100%);transition:transform .3s ease}
+        .tool-card:hover::before{transform:translateX(0)}
+        .tool-name{font-size:1.6rem;font-weight:400;margin-bottom:.6rem}
+        .tool-description{font-size:1.2rem;color:var(--gray-600);margin-bottom:1.2rem}
+        .api-section{background:white;border:1px solid var(--gray-200);border-radius:.8rem;padding:2rem;margin-top:3rem}
+        .api-endpoint{background:var(--gray-100);padding:1rem;border-radius:.4rem;font-family:'Courier New',monospace;font-size:1.1rem;margin:1rem 0}
+        @media (max-width:768px){.sidebar{display:none}.main-content{margin-left:0;width:100%;padding:2rem}}
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="top-nav-content">
+            <div class="brand-section">
+                <a href="index.html" style="text-decoration:none;color:var(--primary);font-size:1.2rem;">Zi-US Research</a>
+                <div class="page-indicator">Language Toolkit</div>
+            </div>
+            <div>
+                <a href="contact.html" style="border:1px solid var(--primary);padding:.6rem 1.2rem;text-decoration:none;color:var(--primary);border-radius:.2rem;">Partner us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="#intro" class="active">Overview</a></li>
+                    <li><a href="#parsing">Parsing</a></li>
+                    <li><a href="#semantics">Semantics</a></li>
+                    <li><a href="#metrics">Metrics</a></li>
+                    <li><a href="#api">API</a></li>
+                    <li><a href="toolkit_language_demo.html" target="_blank">Demo Dashboard →</a></li>
+                    <li><a href="toolkit_language_docs.html" target="_blank">Documentation →</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header" id="intro">
+                <h1>Language Overview</h1>
+                <p>Language-focused utilities across parsing, semantic checks, and linguistic metrics.</p>
+            </header>
+
+            <div class="integration-status">
+                <h2 style="font-size:1.8rem;font-weight:400;margin-bottom:1rem;">System Status</h2>
+                <div class="status-grid">
+                    <div class="status-item"><span class="status-value">6</span><span class="status-label">Parsers</span></div>
+                    <div class="status-item"><span class="status-value">4</span><span class="status-label">Taggers</span></div>
+                    <div class="status-item"><span class="status-value">3</span><span class="status-label">Metrics</span></div>
+                    <div class="status-item"><span class="status-value">spaCy</span><span class="status-label">NLP</span></div>
+                </div>
+            </div>
+
+            <section class="tools-section" id="parsing">
+                <h2 class="section-title" style="font-size:2rem;font-weight:300;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--gray-200);">Parsing</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3 class="tool-name">Syntax Trees</h3>
+                        <p class="tool-description">Dependency and constituency parsing for structural analysis.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3 class="tool-name">NER</h3>
+                        <p class="tool-description">Named entity recognition for domain-specific extraction.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="api-section" id="api">
+                <h2 style="font-size:1.8rem;font-weight:400;margin-bottom:1rem;">CLI & API</h2>
+                <div class="api-endpoint">python parse.py --model en_core_web_md --input docs/</div>
+                <div class="api-endpoint">python metrics.py --metric rouge --refs refs.txt --hyps hyps.txt</div>
+            </section>
+
+            <section style="margin-top:3rem;">
+                <div style="background:var(--gray-100);border:1px solid var(--gray-200);border-radius:.8rem;padding:2rem;text-align:center;">
+                    <h2 style="font-size:2rem;font-weight:300;margin-bottom:1rem;">Join our team</h2>
+                    <p style="color:var(--gray-600);margin-bottom:1.2rem;">Help advance our language tooling and metrics.</p>
+                    <a href="career.html" class="btn" style="display:inline-block;padding:.8rem 1.6rem;border:1px solid var(--primary);text-decoration:none;color:var(--primary);">Explore Careers</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+
+
