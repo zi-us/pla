@@ -371,7 +371,7 @@
             position: relative;
             max-height: 440px; /* show ~8 months at once */
             overflow-y: auto;
-            padding-left: 2rem;
+            padding-left: 1.6rem;
             margin: 1rem 0 2rem 0.2rem;
         }
         .timeline::before {
@@ -380,21 +380,11 @@
             left: 0.6rem;
             top: 0;
             bottom: 0;
-            width: 3px;
+            width: 1px; /* thinnest rail */
             background: var(--accent);
-            border-radius: 2px;
         }
         .timeline-item { position: relative; margin: 0 0 1.2rem 0; padding-left: 0.8rem; }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0.45rem; /* place dot on the rail */
-            top: 0.4rem;
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
+        .timeline-item::before { display: none; }
         .timeline-item .time { font-size: 1.1rem; color: var(--gray-600); }
         .timeline-item .title { font-size: 1.2rem; font-weight: 400; color: var(--primary); }
         .timeline-item p { font-size: 1.1rem; color: var(--gray-600); margin: 0.2rem 0 0.6rem; }
