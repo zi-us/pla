@@ -332,7 +332,7 @@
         /* Metrics Grid */
         .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
         .metric-card { background: white; border: 1px solid var(--gray-200); padding: 2rem; border-radius: 0.4rem; text-align: center; }
-        .metric-value { font-size: 2.2rem; font-weight: 400; color: var(--primary); margin-bottom: 0.4rem; }
+        .metric-value { font-size: 2.2rem; font-weight: 400; color: var(--accent); margin-bottom: 0.4rem; }
         .metric-label { font-size: 1.1rem; color: var(--gray-600); }
         .metric-change { font-size: 1rem; color: var(--success); margin-top: 0.4rem; }
         .metric-change.negative { color: var(--danger); }
@@ -850,8 +850,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
                 </div>
+                    </div>
                 <div class="info-cards reveal">
                     <div class="info-card reveal">
                         <h4>Evaluation Metrics (Pass@k)</h4>
@@ -861,12 +861,12 @@
                                 <div class="time">Month 1</div>
                                 <div class="title">Dataset Curation & Baselines</div>
                                 <p>Collect internal Python tasks; establish baseline pass@1/pass@10 using a non-finetuned model.</p>
-                            </div>
+                    </div>
                             <div class="timeline-item">
                                 <div class="time">Month 2</div>
                                 <div class="title">Fine-tuning & Prompt Design</div>
                                 <p>Run initial fine-tunes; iterate on prompt templates and sampling strategies.</p>
-                            </div>
+                </div>
                             <div class="timeline-item">
                                 <div class="time">Month 3</div>
                                 <div class="title">Benchmarking & Regression Suite</div>
@@ -1149,22 +1149,22 @@
             </div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-value">12</div>
+                    <div class="metric-value status-value">12</div>
                     <div class="metric-label">Bench Tasks Done</div>
                     <div class="metric-change">+3 this week</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">9.5%</div>
+                    <div class="metric-value status-value">9.5%</div>
                     <div class="metric-label">Pass@1</div>
                     <div class="metric-change">+1.2%</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">41%</div>
+                    <div class="metric-value status-value">41%</div>
                     <div class="metric-label">Pass@10</div>
                     <div class="metric-change">+5%</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">0</div>
+                    <div class="metric-value status-value">0</div>
                     <div class="metric-label">Security Incidents</div>
                     <div class="metric-change">Stable</div>
                 </div>
