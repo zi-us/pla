@@ -925,6 +925,88 @@
                     <div class="info-card reveal">
                         <h4>Secure Sandboxing</h4>
                         <p>Run code in isolated environments using Kubernetes, gVisor, and eBPF to minimize risk.</p>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="time">Month 1</div>
+                                <div class="title">Threat Modeling & Requirements</div>
+                                <p>Define security goals, trust boundaries, and compliance needs for evaluation workloads.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 2</div>
+                                <div class="title">Baseline Cluster Hardening</div>
+                                <p>Apply CIS benchmarks; restrict container capabilities; enable audit logging.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 3</div>
+                                <div class="title">Runtime Isolation (gVisor)</div>
+                                <p>Introduce gVisor containerd shim for untrusted code paths; validate compatibility.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 4</div>
+                                <div class="title">Network Policies & Egress Control</div>
+                                <p>Default-deny policies; controlled egress via proxies; DNS allowlist for evaluation.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 5</div>
+                                <div class="title">Seccomp & AppArmor Profiles</div>
+                                <p>Attach least-privilege seccomp profiles; verify syscall coverage for toolchains.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 6</div>
+                                <div class="title">Secrets & KMS Integration</div>
+                                <p>Rotate credentials; use sealed secrets; enforce runtime-only secret access.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 7</div>
+                                <div class="title">SBOM & Image Policy</div>
+                                <p>Generate SBOMs; enforce image signing and admission controls (e.g., Cosign/OPA).</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 8</div>
+                                <div class="title">Storage & Artifact Controls</div>
+                                <p>Isolate PVCs; enable read-only mounts; quarantine outputs prior to publishing.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 9</div>
+                                <div class="title">Sandbox API Gateway</div>
+                                <p>Introduce authN/Z, rate limits, and schema validation for evaluation submissions.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 10</div>
+                                <div class="title">Observability & Forensics</div>
+                                <p>Centralize logs/metrics; enable syscall tracing and workload-level audit trails.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 11</div>
+                                <div class="title">Adversarial Testing</div>
+                                <p>Fuzz prompts and code; run red-team scenarios; validate policy escapes are blocked.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 12</div>
+                                <div class="title">Policy Automation</div>
+                                <p>Codify guardrails as code; enforce via admission controllers and CI policy checks.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 13</div>
+                                <div class="title">Cost & Performance Tuning</div>
+                                <p>Right-size nodes; optimize cold-start; cache base images for sandbox throughput.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 14</div>
+                                <div class="title">Multi-tenancy Boundaries</div>
+                                <p>Namespaced quotas; Pod Security Standards; separate node pools for risk tiers.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 15</div>
+                                <div class="title">Compliance Readiness</div>
+                                <p>Prepare evidence for audits; map controls to frameworks; document procedures.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="time">Month 16</div>
+                                <div class="title">Final Review & Rollout</div>
+                                <p>Sign-off on risk posture; publish runbooks; plan incremental expansion.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
