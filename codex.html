@@ -55,6 +55,26 @@
         @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
         
+        /* Cards Grid (Overview) */
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
+        .card { background: #fff; border: 1px solid var(--gray-200); border-radius: 0.4rem; padding: 2rem; transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .card h3 { font-size: 1.6rem; font-weight: 400; margin-bottom: 0.6rem; }
+        .card p { font-size: 1.2rem; color: var(--gray-600); line-height: 1.7; margin: 0.4rem 0; }
+        .card small { font-size: 1.1rem; color: var(--gray-600); }
+        .card .tag { display:inline-block; font-size:1rem; color: var(--gray-600); background: var(--gray-100); padding: .2rem .6rem; border-radius: .2rem; margin-top: .6rem; }
+        .card-links { display:flex; gap:1rem; margin-top:1rem; }
+        .card-links a { color: var(--accent); text-decoration: none; font-size: 1.1rem; }
+        
+        /* Vertical Timeline (thin blue rail) */
+        .timeline { position: relative; max-height: 440px; overflow-y: auto; padding-left: 1.6rem; margin: 1rem 0 2rem 0.2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0.6rem; top: 0; bottom: 0; width: 1px; background: var(--accent); }
+        .timeline-item { position: relative; margin: 0 0 1.2rem 0; padding-left: 0.8rem; }
+        .timeline-item::before { display: none; }
+        .timeline-item .time { font-size: 1.1rem; color: var(--accent); }
+        .timeline-item .title { font-size: 1.2rem; font-weight: 400; color: var(--primary); }
+        .timeline-item p { font-size: 1.1rem; color: var(--gray-600); margin: 0.2rem 0 0.6rem; }
+        
         /* Footer (match index.html) */
         footer { padding: 4rem 0 2rem; border-top: 1px solid var(--gray-200); }
         .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
@@ -64,6 +84,10 @@
             h2 { font-size:1.8rem }
             table { display:block; overflow-x:auto }
             iframe { height:240px }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 1024px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -129,133 +153,109 @@
     <div class="container">
 
         <section id="overview" class="section reveal">
-            <h2>Overview Table</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Aspect</th>
-                        <th>Description</th>
-                        <th>Example / Use Case</th>
-                        <th>Tools / Techniques</th>
-                        <th>Skillset Required</th>
-                        <th>Value / Metric</th>
-                        <th>Cost / Effort</th>
-                        <th>Collaboration Potential</th>
-                        <th>Platform Link / Resources</th>
-                        <th>Documentation Needed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Document Purpose</td>
-                        <td>Summarizes research on Codex model performance and evaluation</td>
-                        <td>Evaluation of AI code generation accuracy</td>
-                        <td>GPT models, Codex fine-tuning</td>
-                        <td>ML Research, Software Eng</td>
-                        <td>Pass@k, accuracy</td>
-                        <td>Research time, computation</td>
-                        <td>Researchers, academic labs</td>
-                        <td><a class="link" href="https://github.com/openai/human-eval" target="_blank">HumanEval Dataset</a></td>
-                        <td>Dataset details, test specs</td>
-                    </tr>
-                    <tr>
-                        <td>AI Model Training</td>
-                        <td>Large scale model trained on GitHub open source code</td>
-                        <td>Model generalizes to complex coding tasks</td>
-                        <td>Transformer models, tokenization</td>
-                        <td>Deep Learning, Data Science</td>
-                        <td>Loss, perplexity</td>
-                        <td>Months of training</td>
-                        <td>Industry, cloud providers</td>
-                        <td><a class="link" href="https://platform.openai.com/" target="_blank">OpenAI API</a></td>
-                        <td>Training logs, configs</td>
-                    </tr>
-                    <tr>
-                        <td>Evaluation Metrics</td>
-                        <td>Metrics for checking correctness and reliability of code output</td>
-                        <td>Pass@k measures functional success probability</td>
-                        <td>Unit tests, pass@k statistical estimator</td>
-                        <td>Software testing, ML eval</td>
-                        <td>Pass rates (%)</td>
-                        <td>Compute & benchmark time</td>
-                        <td>QA teams, benchmarking bodies</td>
-                        <td><a class="link" href="https://arxiv.org/abs/2107.03374" target="_blank">Pass@k metric explanation</a></td>
-                        <td>Test results, error logs</td>
-                    </tr>
-                    <tr>
-                        <td>Sandbox Environment</td>
-                        <td>Secure containerized execution setup</td>
-                        <td>Prevents execution risks from arbitrary code</td>
-                        <td>Kubernetes, gVisor runtime, firewall rules</td>
-                        <td>Cloud Ops, Security</td>
-                        <td>Runtime isolation score</td>
-                        <td>Setup & maintenance</td>
-                        <td>Security teams, DevOps</td>
-                        <td><a class="link" href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes Docs</a>, <a class="link" href="https://gvisor.dev/docs/" target="_blank">gVisor Docs</a></td>
-                        <td>Security policies, sandboxes</td>
-                    </tr>
-                    <tr>
-                        <td>Code Generation</td>
-                        <td>Auto-generation of working Python functions from docstrings</td>
-                        <td>Autocomplete and AI-assisted coding</td>
-                        <td>Transformer decoding, sampling methods</td>
-                        <td>Python, NLP, coding</td>
-                        <td>Functional correctness</td>
-                        <td>Developer testing hours</td>
-                        <td>Developers, research partners</td>
-                        <td><a class="link" href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></td>
-                        <td>Sample code, usage reports</td>
-                    </tr>
-                    <tr>
-                        <td>Documentation Generation</td>
-                        <td>Generation of descriptive docstrings from code</td>
-                        <td>Auto-maintained documentation</td>
-                        <td>Transformer sequence-to-sequence learning</td>
-                        <td>Technical writing, NLP</td>
-                        <td>Human qualitative score</td>
-                        <td>Manual annotation time</td>
-                        <td>Documentation teams, SMEs</td>
-                        <td>Documentation Standards</td>
-                        <td>Style guides, drafts</td>
-                    </tr>
-                    <tr>
-                        <td>Model Limitations</td>
-                        <td>Known performance boundaries and failure modes</td>
-                        <td>Challenges in long dependency chains and variable binding</td>
-                        <td>Diagnostic tests, error analysis</td>
-                        <td>Debugging, Research</td>
-                        <td>Failure rates</td>
-                        <td>Debugging and testing time</td>
-                        <td>Researchers, validators</td>
-                        <td>Research publications, GitHub issues</td>
-                        <td>Bug trackers, known issues</td>
-                    </tr>
-                    <tr>
-                        <td>Ethical & Security Risks</td>
-                        <td>Bias, misalignment, insecure code generation risks</td>
-                        <td>Potential safety, fairness, and security issues</td>
-                        <td>Data filtering, RLHF</td>
-                        <td>Ethics, Security audits</td>
-                        <td>Incident counts</td>
-                        <td>Oversight hours</td>
-                        <td>Legal, ethical governance</td>
-                        <td><a class="link" href="https://openai.com/research" target="_blank">Policy portals, legal docs</a></td>
-                        <td>Risk assessments</td>
-                    </tr>
-                    <tr>
-                        <td>Economic Impact</td>
-                        <td>Forecasts effect on productivity, workforce</td>
-                        <td>Impacts on jobs and coding efficiency</td>
-                        <td>Economic modeling, surveys</td>
-                        <td>Economics, social sciences</td>
-                        <td>Productivity metrics</td>
-                        <td>Survey & analysis hours</td>
-                        <td>Policymakers, industry leaders</td>
-                        <td>Funding portals, research grants</td>
-                        <td>Strategy reports</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Overview</h2>
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <h3>Document Purpose</h3>
+                    <p>Summarizes research on model performance and evaluation for AI code generation.</p>
+                    <p><small>Value / Metric: Pass@k, accuracy</small></p>
+                    <span class="tag">ML Research</span>
+                    <div class="card-links"><a href="https://github.com/openai/human-eval" target="_blank">HumanEval →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>AI Model Training</h3>
+                    <p>Large-scale models trained on open-source code; aims to generalize to complex coding tasks.</p>
+                    <p><small>Tools: Transformers, tokenization | Metric: Loss, perplexity</small></p>
+                    <span class="tag">Deep Learning</span>
+                    <div class="card-links"><a href="https://platform.openai.com/" target="_blank">OpenAI API →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Evaluation Metrics</h3>
+                    <p>Measures correctness and reliability via unit tests and pass@k estimators.</p>
+                    <p><small>Cost: Compute & benchmark time | Collab: QA teams</small></p>
+                    <span class="tag">Benchmarks</span>
+                    <div class="card-links"><a href="https://arxiv.org/abs/2107.03374" target="_blank">Pass@k Paper →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Sandbox Environment</h3>
+                    <p>Secure containerized execution with runtime isolation, network policies, and firewalls.</p>
+                    <p><small>Tools: Kubernetes, gVisor | Metric: Isolation score</small></p>
+                    <span class="tag">Security</span>
+                    <div class="card-links"><a href="#sandbox">Architecture →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Code Generation</h3>
+                    <p>Auto-generates Python functions from docstrings; boosts developer efficiency.</p>
+                    <p><small>Metric: Functional correctness | Effort: Developer testing hours</small></p>
+                    <span class="tag">Dev Experience</span>
+                    <div class="card-links"><a href="https://github.com/features/copilot" target="_blank">Copilot →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Documentation Generation</h3>
+                    <p>Seq2seq methods create maintainable docstrings and developer docs.</p>
+                    <p><small>Metric: Human qualitative score | Effort: Annotation time</small></p>
+                    <span class="tag">Docs</span>
+                    <div class="card-links"><a href="#docs">Docs →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Model Limitations</h3>
+                    <p>Challenges in long dependency chains and variable binding; requires diagnostics.</p>
+                    <p><small>Metric: Failure rates | Effort: Debugging time</small></p>
+                    <span class="tag">Risks</span>
+                    <div class="card-links"><a href="#evaluation">Simulations →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Ethical & Security Risks</h3>
+                    <p>Bias, misalignment, and insecure generation risks; needs audits and policy.</p>
+                    <p><small>Metric: Incidents | Effort: Oversight hours</small></p>
+                    <span class="tag">Governance</span>
+                    <div class="card-links"><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP →</a></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Economic Impact</h3>
+                    <p>Productivity and workforce impacts; consider adoption scenarios and upskilling.</p>
+                    <p><small>Metric: Productivity | Effort: Survey & analysis</small></p>
+                    <span class="tag">Economics</span>
+                    <div class="card-links"><a href="#economics">Read More →</a></div>
+                </div>
+            </div>
+
+            <h2 style="margin-top:3rem">Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="time">Month 1</div>
+                    <div class="title">Dataset Curation & Baselines</div>
+                    <p>Collect internal tasks and establish baseline metrics.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">Month 2</div>
+                    <div class="title">Fine-tuning & Prompt Design</div>
+                    <p>Run initial fine-tunes; iterate on prompt templates.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">Month 3</div>
+                    <div class="title">Benchmarking & Regression Suite</div>
+                    <p>Automate regression testing and reporting.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">Month 4</div>
+                    <div class="title">Sandbox Hardening</div>
+                    <p>Enforce network policies and isolation for evaluations.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">Month 5</div>
+                    <div class="title">A/B Experiments & Analysis</div>
+                    <p>Compare variants; analyze gains and failure modes.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="time">Month 6</div>
+                    <div class="title">Stakeholder Report</div>
+                    <p>Report pass@1 vs baseline and survey outcomes.</p>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
+                <a href="contact.html" class="btn" style="background: var(--accent); color: #fff; border-color: var(--accent); font-size:1.0rem; padding:0.6rem 1.2rem;">API Document</a>
+            </div>
         </section>
 
         <section id="evaluation" class="section reveal">
