@@ -33,19 +33,94 @@
         <div class="card">
             <h1>Project Lead (Senior Engineer / Lead Scientist)</h1>
             <p class="meta"><strong>Compensation:</strong> Paid · <strong>Timeline:</strong> 6 months · <strong>Git Enabled:</strong> Yes</p>
-            <p>Lead the Codex POC end-to-end: roadmap, milestones, stakeholder alignment, delivery and governance.</p>
-            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Responsibilities</h2>
+            <p>Lead the S5 0014+81 AI Code-Generation Proof of Concept (POC) end-to-end: define the roadmap, set milestones, align stakeholders, manage risks, and deliver measurable outcomes. You will bring together ML research, data engineering, developer tooling, sandbox security, testing & QA, and program governance into a single, cohesive execution plan. The ideal candidate is a senior engineer or lead scientist who can think strategically, operate tactically, and communicate clearly with executives and practitioners alike.</p>
+
+            <p>Our objective is to evaluate whether a fine‑tuned model can improve developer productivity and quality on a curated internal benchmark while meeting safety and governance requirements. You will orchestrate experiments, build the regression and reporting muscle, and ensure the infrastructure is reliable, cost‑aware, and secure. Familiarity with evaluation frameworks such as <a href="https://github.com/openai/human-eval" target="_blank" style="text-decoration:underline; color: var(--primary);">HumanEval</a> and metrics like <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--primary);">pass@k</a> is a strong plus. Experience with containerized isolation (e.g., <a href="https://kubernetes.io/docs/home/" target="_blank" style="text-decoration:underline; color: var(--primary);">Kubernetes</a>) and sandboxing (e.g., <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--primary);">gVisor</a>) is welcome.</p>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Key Responsibilities</h2>
             <ul>
-                <li>Own POC strategy and progress across ML, Data, DevOps, QA and Security.</li>
-                <li>Define KPIs including Pass@k target benchmarks and sandbox readiness.</li>
-                <li>Coordinate external collaborations and reporting cadence.</li>
+                <li>Own the cross‑functional plan across ML, Data, DevOps, QA, Security, and Program Management; define scope, milestones, and dependencies.</li>
+                <li>Design the evaluation methodology: sampling strategies, prompt templates, and the statistical approach to pass@1/pass@10, flakiness controls, and reporting.</li>
+                <li>Stand up a reliable evaluation pipeline and dashboarding layer so results are reproducible and explainable; automate regression checks and alerts.</li>
+                <li>Partner with infrastructure teams to deliver a hardened sandbox with clear trust boundaries: network policies, syscall restrictions (seccomp/AppArmor), image policy, and secrets management.</li>
+                <li>Guide dataset curation: define what “good” looks like, maintain data quality bars, and ensure provenance, governance, and privacy constraints are respected.</li>
+                <li>Set quantitative targets and leading indicators (e.g., pass@1 uplift, developer time saved, mean time‑to‑first‑successful‑run, cost per evaluation).</li>
+                <li>Facilitate technical reviews and decision records; keep architecture, experiments, and policies well documented for auditability and onboarding.</li>
+                <li>Coordinate A/B comparisons among model variants; manage the model registry and promotion criteria (what gets promoted and why).</li>
+                <li>Collaborate with QA to expand the benchmark suite and edge‑case coverage; ensure test determinism, seed control, and traceability.</li>
+                <li>Partner with Security and Compliance on risk assessments, red‑teaming, and incident response playbooks; track mitigations to closure.</li>
+                <li>Drive the program operating rhythm: weekly standups, risk reviews, executive readouts, quarterly planning, and post‑mortems.</li>
+                <li>Manage costs: plan budget for compute, storage, and tooling; monitor utilization; optimize for throughput and cost‑per‑signal.</li>
+                <li>Mentor engineers and interns; instill high standards for code review, documentation, and scientific rigor.</li>
+                <li>Represent the program to leadership and partners; communicate with clarity using well‑structured briefs and evidence‑based narratives.</li>
+                <li>Champion developer experience: integration with editors, APIs for submissions, and simple tooling that reduces friction.</li>
             </ul>
-            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Requirements</h2>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Minimum Qualifications</h2>
             <ul>
-                <li>Senior experience in AI/ML or engineering leadership.</li>
-                <li>Evidence of shipping complex cross-functional projects.</li>
-                <li>Fluency with GitHub and documentation practices.</li>
+                <li>8+ years of experience across software engineering, ML engineering, data engineering, or research engineering, with 2+ years in a lead/manager capacity.</li>
+                <li>Demonstrated delivery of complex cross‑functional initiatives with measurable outcomes and stakeholder satisfaction.</li>
+                <li>Strong working knowledge of Python, unit testing, CI, and containerized workflows (Docker, Kubernetes, or equivalent).</li>
+                <li>Comfort with experimental design, metrics, and statistical reasoning; ability to explain trade‑offs and confidence intervals to non‑experts.</li>
+                <li>Experience building dashboards or analytics for technical/exec audiences; fluency with Git and collaborative workflows.</li>
+                <li>Excellent written communication; ability to produce briefs, specs, and decision records that stand on their own.</li>
+                <li>Security mindset: familiarity with least‑privilege principles, secrets hygiene, and basic threat modeling.</li>
+                <li>Ability to operate autonomously, structure ambiguity, and create momentum across distributed teams.</li>
             </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Preferred Qualifications</h2>
+            <ul>
+                <li>Hands‑on experience evaluating code‑generation models or building developer tools for ML systems.</li>
+                <li>Background with prompt engineering, sampling strategies, or fine‑tuning workflows (e.g., LoRA, PEFT).</li>
+                <li>Experience designing or operating hardened sandboxes (e.g., <a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/" target="_blank" style="text-decoration:underline; color: var(--primary);">Pod Security Standards</a>, <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--primary);">gVisor</a>, <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank" style="text-decoration:underline; color: var(--primary);">NetworkPolicy</a>).</li>
+                <li>Familiarity with model registries and experiment tracking (e.g., MLflow, W&B), as well as test harnesses (e.g., <a href="https://docs.pytest.org/" target="_blank" style="text-decoration:underline; color: var(--primary);">pytest</a>).</li>
+                <li>Working knowledge of <a href="https://arxiv.org/abs/1706.03762" target="_blank" style="text-decoration:underline; color: var(--primary);">Transformers</a>, tokenization, and common pitfalls in long‑range dependency modeling.</li>
+                <li>Prior experience with formal risk assessments, internal audit, or external compliance engagements.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Methodology & Practices</h2>
+            <ul>
+                <li>Benchmarking: adopt or adapt tasks from <a href="https://github.com/openai/human-eval" target="_blank" style="text-decoration:underline; color: var(--primary);">HumanEval</a> and internal analogs; define acceptance criteria.</li>
+                <li>Metrics: estimate pass@k with proper sampling; consult the <a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--primary);">original paper</a> for estimator properties and caveats.</li>
+                <li>Reproducibility: pin versions, control seeds, and archive artifacts for post‑hoc analysis.</li>
+                <li>Safety: isolate execution using <a href="https://kubernetes.io/docs/home/" target="_blank" style="text-decoration:underline; color: var(--primary);">Kubernetes</a> with restrictive policies and <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--primary);">gVisor</a> where appropriate.</li>
+                <li>Governance: codify gates and promotion policies; prefer “guardrails as code” via admission controllers and CI checks.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Tooling Stack</h2>
+            <ul>
+                <li>Containers & Orchestration: Docker, <a href="https://kubernetes.io/docs/home/" target="_blank" style="text-decoration:underline; color: var(--primary);">Kubernetes</a>, <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--primary);">gVisor</a>.</li>
+                <li>Evaluation: Python, <a href="https://docs.pytest.org/" target="_blank" style="text-decoration:underline; color: var(--primary);">pytest</a>, regression dashboards, experiment trackers.</li>
+                <li>ML: PyTorch and compatible libraries; model registry and artifact stores.</li>
+                <li>DevEx: PR templates, pre‑commit hooks, linting, and documentation generators.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">90‑Day Plan</h2>
+            <ul>
+                <li><strong>Days 0–30:</strong> Confirm objectives and constraints; baseline pass@1/pass@10; set up dashboards and the initial sandbox with default‑deny network posture.</li>
+                <li><strong>Days 31–60:</strong> Run targeted experiments on prompts and sampling; expand benchmark coverage; publish mid‑point report and risk log.</li>
+                <li><strong>Days 61–90:</strong> Lock promotion policy; run A/Bs on shortlisted variants; finalize executive recommendations and adoption plan.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Success Metrics (Examples)</h2>
+            <ul>
+                <li>≥ 50% relative improvement in pass@1 versus baseline on InternalEval.</li>
+                <li>Meaningful reduction in developer time for targeted tasks (qualitative + quantitative).</li>
+                <li>Secure evaluation posture: policy compliance, auditability, incident‑free runs.</li>
+                <li>Clear documentation: decision records, architecture diagrams, and onboarding guides.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">Suggested Reading</h2>
+            <ul>
+                <li><a href="https://arxiv.org/abs/2107.03374" target="_blank" style="text-decoration:underline; color: var(--primary);">Evaluating Large Language Models Trained on Code (pass@k)</a></li>
+                <li><a href="https://arxiv.org/abs/1706.03762" target="_blank" style="text-decoration:underline; color: var(--primary);">Attention Is All You Need (Transformers)</a></li>
+                <li><a href="https://kubernetes.io/docs/home/" target="_blank" style="text-decoration:underline; color: var(--primary);">Kubernetes Documentation</a> and <a href="https://gvisor.dev/docs/" target="_blank" style="text-decoration:underline; color: var(--primary);">gVisor Runtime</a></li>
+                <li><a href="https://owasp.org/www-project-top-ten/" target="_blank" style="text-decoration:underline; color: var(--primary);">OWASP Top 10</a> for secure development practices.</li>
+            </ul>
+
+            <h2 style="font-size:2rem; font-weight:400; margin:1.6rem 0 .8rem">How to Apply</h2>
+            <p>Please submit your application via the button below. The application form requests a short cover note, your résumé/CV, and a link to your LinkedIn profile (required). You may also include links to code samples, publications, or public talks that best represent your work.</p>
+
             <a href="apply_project_manager.html" class="btn">Apply Now</a>
         </div>
     </div>
