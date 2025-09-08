@@ -258,6 +258,226 @@
             </div>
         </section>
 
+        <section id="focus" class="section reveal">
+            <h2>Focus Areas</h2>
+            <div class="cards-grid">
+                <div class="card reveal">
+                    <h3>Evaluation Simulations</h3>
+                    <p>Interactive analysis of pass@k sensitivity to sample count and test flakiness.</p>
+                    <div style="margin:.4rem 0 .6rem">
+                        <span class="tag">Pass@k</span>
+                        <span class="tag">HumanEval</span>
+                        <span class="tag">pytest</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1</div>
+                            <div class="title">Metrics & Baselines</div>
+                            <p>Define targets; reproduce baseline pass@1/pass@10.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 2</div>
+                            <div class="title">Simulation Harness</div>
+                            <p>Build notebook/CI harness for sampling sweeps and plots.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3</div>
+                            <div class="title">Sampling Experiments</div>
+                            <p>Grid search temperature, nucleus/top-k, n samples.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 4</div>
+                            <div class="title">Flakiness Controls</div>
+                            <p>Stabilize test flakiness; add retries and seed controls.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5</div>
+                            <div class="title">Dashboards</div>
+                            <p>Publish regression dashboards and alerts.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 6</div>
+                            <div class="title">Report</div>
+                            <p>Summarize sensitivity and recommended settings.</p>
+                        </div>
+                    </div>
+                    <div class="card-links"><a href="#evaluation">Learn More →</a></div>
+                </div>
+
+                <div class="card reveal">
+                    <h3>Sandbox Architecture</h3>
+                    <p>Isolated execution with runtime hardening, network policies, and forensics.</p>
+                    <div style="margin:.4rem 0 .6rem">
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">gVisor</span>
+                        <span class="tag">NetworkPolicy</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1</div>
+                            <div class="title">Threat Model</div>
+                            <p>Bound trust; catalog sensitive resources.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 2</div>
+                            <div class="title">Cluster Hardening</div>
+                            <p>Apply CIS controls; lock down container privileges.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3</div>
+                            <div class="title">gVisor Runtime</div>
+                            <p>Enable gVisor shim for untrusted workloads.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 4</div>
+                            <div class="title">Network Policies</div>
+                            <p>Default-deny; curated egress and DNS allowlists.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5</div>
+                            <div class="title">Seccomp Profiles</div>
+                            <p>Attach least-privilege syscall profiles per toolchain.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 6</div>
+                            <div class="title">Observability</div>
+                            <p>Centralize logs/metrics; enable workload forensics.</p>
+                        </div>
+                    </div>
+                    <div class="card-links"><a href="#sandbox">Architecture →</a></div>
+                </div>
+
+                <div class="card reveal">
+                    <h3>Documentation Generation</h3>
+                    <p>Seq2seq docstrings and style-guided templates for maintainability.</p>
+                    <div style="margin:.4rem 0 .6rem">
+                        <span class="tag">Seq2Seq</span>
+                        <span class="tag">Style Guides</span>
+                        <span class="tag">ReadTheDocs</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1</div>
+                            <div class="title">Standards</div>
+                            <p>Adopt style guide; define doc coverage SLOs.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 2</div>
+                            <div class="title">Templates</div>
+                            <p>Author templates for modules, functions, tests.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3</div>
+                            <div class="title">Model Integration</div>
+                            <p>Wire generation into CI with human-in-the-loop review.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 4</div>
+                            <div class="title">Review Workflow</div>
+                            <p>Annotate and approve generated docs in PRs.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5</div>
+                            <div class="title">Lints & Checks</div>
+                            <p>Add docstring linters and broken-link checks.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 6</div>
+                            <div class="title">Rollout</div>
+                            <p>Expand coverage to priority repositories.</p>
+                        </div>
+                    </div>
+                    <div class="card-links"><a href="#docs">Docs →</a></div>
+                </div>
+
+                <div class="card reveal">
+                    <h3>Ethical & Security Considerations</h3>
+                    <p>Bias mitigation, secure generation, and policy governance with audits.</p>
+                    <div style="margin:.4rem 0 .6rem">
+                        <span class="tag">RLHF</span>
+                        <span class="tag">OWASP</span>
+                        <span class="tag">Policy</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1</div>
+                            <div class="title">Risk Taxonomy</div>
+                            <p>Define classes of risk and mitigations.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 2</div>
+                            <div class="title">Data Filters</div>
+                            <p>Specify filtering and redaction policies.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3</div>
+                            <div class="title">RLHF & Reviews</div>
+                            <p>Human preference signals and secure code review.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 4</div>
+                            <div class="title">Red-Teaming</div>
+                            <p>Adversarial prompts; evaluate residual risks.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5</div>
+                            <div class="title">Audit Trails</div>
+                            <p>Immutable logs, approvals, and policy enforcement.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 6</div>
+                            <div class="title">Governance</div>
+                            <p>Periodic reviews and sign-offs with stakeholders.</p>
+                        </div>
+                    </div>
+                    <div class="card-links"><a href="#ethics">Ethics →</a></div>
+                </div>
+
+                <div class="card reveal">
+                    <h3>Economic Impact</h3>
+                    <p>Model productivity gains and adoption scenarios backed by data.</p>
+                    <div style="margin:.4rem 0 .6rem">
+                        <span class="tag">Econometrics</span>
+                        <span class="tag">Surveys</span>
+                        <span class="tag">KPIs</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1</div>
+                            <div class="title">Baseline</div>
+                            <p>Measure current productivity and costs.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 2</div>
+                            <div class="title">Survey Design</div>
+                            <p>Design instruments to capture quality and time savings.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3</div>
+                            <div class="title">Pilot Cohort</div>
+                            <p>Run controlled pilot to estimate effect sizes.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 4</div>
+                            <div class="title">KPI Modeling</div>
+                            <p>Model pass@1 uplift and throughput changes.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5</div>
+                            <div class="title">Cost/Benefit</div>
+                            <p>Compute ROI under adoption scenarios.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 6</div>
+                            <div class="title">Publish</div>
+                            <p>Deliver summary and executive recommendations.</p>
+                        </div>
+                    </div>
+                    <div class="card-links"><a href="#economics">Economics →</a></div>
+                </div>
+            </div>
+        </section>
+
         <section id="evaluation" class="section reveal">
             <h2>Evaluation Simulations</h2>
             <div class="sim">
