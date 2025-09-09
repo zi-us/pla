@@ -444,11 +444,33 @@
         /* Calculator Styles */
         .calculator-container {
             background: white;
-            border: 1px solid var(--gray-200);
+            border: 2px solid var(--accent);
             border-radius: 0.8rem;
             padding: 3rem;
             margin: 4rem 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 32px rgba(0,102,255,0.15);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .calculator-container::before {
+            content: 'SCIENTIFIC CALCULATOR';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
         
         .calculator-header {
@@ -737,12 +759,16 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>The <span class="accent">2025 Smartphone Revolution</span>: Beyond the iPhone 17</h1>
-            <p>A deep technical analysis of the hardware, AI, and optical innovations defining the next generation of mobile computing, and why the market is no longer a one-horse race.</p>
-        </div>
-    </section>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>The <span class="accent">2025 Smartphone Revolution</span>: Beyond the iPhone 17</h1>
+                    <p>A deep technical analysis of the hardware, AI, and optical innovations defining the next generation of mobile computing, and why the market is no longer a one-horse race.</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="scrollToCalculator()" style="background: var(--accent); color: white; border: none; padding: 1rem 2rem; border-radius: 0.4rem; font-size: 1.4rem; cursor: pointer; margin-right: 1rem;">🧮 Launch Calculator</button>
+                        <button onclick="testCalculator()" style="background: var(--purple); color: white; border: none; padding: 1rem 2rem; border-radius: 0.4rem; font-size: 1.4rem; cursor: pointer;">🔍 Test Calculator</button>
+                    </div>
+                </div>
+            </section>
 
     <section class="content-section" id="overview">
         <div class="container">
@@ -1201,8 +1227,37 @@ output_data = interpreter.get_tensor(output_details[<span class="number">0</span
                         // Add a subtle highlight effect
                         calculator.style.boxShadow = '0 0 20px rgba(0, 102, 255, 0.3)';
                         setTimeout(() => {
-                            calculator.style.boxShadow = '0 4px 16px rgba(0,0,0,0.05)';
+                            calculator.style.boxShadow = '0 8px 32px rgba(0,102,255,0.15)';
                         }, 2000);
+                    } else {
+                        alert('Calculator not found! Check console for errors.');
+                    }
+                }
+                
+                // Test Calculator Function
+                function testCalculator() {
+                    const calculator = document.querySelector('.calculator-container');
+                    const calculatorCard = document.querySelector('.calculator-card');
+                    
+                    let message = 'Calculator Test Results:\n\n';
+                    message += `✅ Calculator Container: ${calculator ? 'FOUND' : 'NOT FOUND'}\n`;
+                    message += `✅ Calculator Card: ${calculatorCard ? 'FOUND' : 'NOT FOUND'}\n`;
+                    message += `✅ API Available: ${window.SmartphoneCalculatorAPI ? 'YES' : 'NO'}\n`;
+                    
+                    if (calculator) {
+                        message += `✅ Calculator Visible: ${calculator.style.display !== 'none' ? 'YES' : 'NO'}\n`;
+                        message += `✅ Calculator Position: ${calculator.offsetTop}px from top\n`;
+                    }
+                    
+                    alert(message);
+                    
+                    if (calculator) {
+                        calculator.style.border = '3px solid #ff3366';
+                        calculator.style.animation = 'pulse 1s infinite';
+                        setTimeout(() => {
+                            calculator.style.border = '2px solid var(--accent)';
+                            calculator.style.animation = 'none';
+                        }, 3000);
                     }
                 }
 
@@ -1422,6 +1477,19 @@ output_data = interpreter.get_tensor(output_details[<span class="number">0</span
 
                 // Scientific Calculator Functionality
                 document.addEventListener('DOMContentLoaded', () => {
+                    // Debug: Check if calculator elements exist
+                    const calculator = document.querySelector('.calculator-container');
+                    const calculatorCard = document.querySelector('.calculator-card');
+                    
+                    console.log('Calculator container found:', !!calculator);
+                    console.log('Calculator card found:', !!calculatorCard);
+                    
+                    if (calculator) {
+                        calculator.style.display = 'block';
+                        calculator.style.visibility = 'visible';
+                        console.log('Calculator made visible');
+                    }
+                    
                     // Initialize API
                     window.SmartphoneCalculatorAPI = new SmartphoneCalculatorAPI();
                     
