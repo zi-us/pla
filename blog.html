@@ -3,32 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zi-US Research | The 2025 Smartphone Revolution: Beyond iPhone 17</title>
-        <meta name="description" content="A deep technical analysis of 2025's flagship smartphones, from next-gen AI processing in the Snapdragon 8 Gen 4 to the computational optics of the Pixel 10 Pro. Interactive calculator for smartphone comparison.">
-        <meta name="keywords" content="smartphone analysis, iPhone 17, Galaxy S25, Pixel 10, AI processing, computational photography, smartphone calculator, device comparison, 2025 smartphones">
-        <meta name="author" content="Zi-US Research">
-        <meta name="robots" content="index, follow">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-        
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="article">
-        <meta property="og:url" content="https://www.zi-us.com/blog.html">
-        <meta property="og:title" content="The 2025 Smartphone Revolution: Beyond iPhone 17">
-        <meta property="og:description" content="Deep technical analysis of 2025's flagship smartphones with interactive comparison calculator.">
-        <meta property="og:image" content="https://www.zi-us.com/assets/smartphone-analysis-og.jpg">
-        
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="https://www.zi-us.com/blog.html">
-        <meta property="twitter:title" content="The 2025 Smartphone Revolution: Beyond iPhone 17">
-        <meta property="twitter:description" content="Deep technical analysis of 2025's flagship smartphones with interactive comparison calculator.">
-        <meta property="twitter:image" content="https://www.zi-us.com/assets/smartphone-analysis-og.jpg">
-        
-        <!-- Mobile Optimization -->
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <meta name="theme-color" content="#000000">
+    <title>Zi-US Research | Mobile Technology Research Platform</title>
+    <meta name="description" content="Comprehensive smartphone technology evaluation and comparison platform with advanced benchmarking, AI processing analysis, and device comparison tools.">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
@@ -67,8 +43,8 @@
         body {
             font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 300;
-            font-size: 1.4rem;
-            line-height: 1.7;
+            font-size: 1.2rem;
+            line-height: 1.6;
             color: var(--primary);
             background: #ffffff;
             overflow-x: hidden;
@@ -161,13 +137,39 @@
             letter-spacing: -0.02em;
         }
         
-        .hero h1 .accent { color: var(--purple); }
+        .hero h1 .accent { color: var(--accent); }
 
         .hero p {
             font-size: 1.6rem;
             color: var(--gray-600);
             max-width: 800px;
             margin: 0 auto 3rem;
+        }
+
+        /* Ticker */
+        .ticker {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+        }
+
+        .ticker span {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* General Content Styling */
@@ -219,6 +221,13 @@
             color: var(--primary);
         }
 
+        .content-main h4 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
+        }
+
         .content-main p {
             font-size: 1.5rem;
             color: var(--gray-700);
@@ -233,228 +242,273 @@
         
         .content-main a:hover { text-decoration: underline; }
         
-        .content-main img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.4rem;
-            margin-top: 2rem;
-            border: 1px solid var(--gray-200);
-        }
-        
-        /* Code Blocks */
-        pre {
-            background: var(--gray-900);
-            color: var(--gray-200);
-            padding: 2rem;
-            border-radius: 0.4rem;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
-            margin: 2rem 0;
-        }
-        
-        code .comment { color: var(--gray-500); }
-        code .keyword { color: var(--pink); }
-        code .string { color: var(--success); }
-        code .function { color: var(--purple); }
-        code .number { color: var(--warning); }
-
-        /* Info Cards */
-        .info-cards { display: grid; gap: 2rem; }
-        .info-card {
+        /* Sidebar Timeline */
+        .content-sidebar {
             background: white;
             border: 1px solid var(--gray-200);
-            padding: 2.5rem;
+            padding: 3rem;
+            border-radius: 0.4rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-height: 720px;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.6rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item { 
+            position: relative; 
+            margin: 0 0 1.2rem 0; 
+            padding-left: 0.8rem; 
+        }
+
+        .timeline-item .time { 
+            font-size: 1.1rem; 
+            color: var(--accent); 
+            font-weight: 400;
+        }
+
+        .timeline-item .title { 
+            font-size: 1.2rem; 
+            font-weight: 400; 
+            color: var(--primary); 
+            margin: 0.2rem 0;
+        }
+
+        .timeline-item p { 
+            font-size: 1.1rem; 
+            color: var(--gray-600); 
+            margin: 0.2rem 0 0.6rem; 
+        }
+
+        /* Framework Cards */
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .framework-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2.4rem;
             border-radius: 0.4rem;
             transition: all 0.3s ease;
-        }
-        .info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
-        .info-card h4 {
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        .info-card p { font-size: 1.3rem; color: var(--gray-600); line-height: 1.6; }
-        
-        /* Calculator Card Styles */
-        .calculator-card {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
-            color: white;
-            border: none;
             position: relative;
             overflow: hidden;
         }
-        
-        .calculator-card::before {
+
+        .framework-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
-        
-        .calculator-card h4 {
-            color: white;
-            position: relative;
-            z-index: 1;
+
+        .framework-card:hover::before { transform: translateX(0); }
+        .framework-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
-        
-        .calculator-card p {
-            color: rgba(255, 255, 255, 0.9);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .calculator-preview {
-            margin-top: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .preview-stats {
+
+        .framework-header {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 1rem;
-            flex-wrap: wrap;
         }
-        
-        .preview-stats .stat {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 1.1rem;
+
+        .framework-name {
+            font-size: 1.6rem;
             font-weight: 400;
-            backdrop-filter: blur(10px);
+            color: var(--primary);
         }
-        
-        .preview-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.8rem 1.5rem;
-            border-radius: 0.4rem;
-            font-size: 1.2rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            width: 100%;
+
+        .framework-description {
+            font-size: 1.3rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
-        
-        .preview-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+
+        .framework-links {
+            display: flex;
+            gap: 1.5rem;
         }
-        
-        /* Real-time Insights Styles */
-        .realtime-insights {
-            background: rgba(0, 102, 255, 0.05);
-            border: 1px solid rgba(0, 102, 255, 0.2);
-            border-radius: 0.4rem;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .realtime-insights h5 {
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
+
+        .framework-links a {
             color: var(--accent);
-        }
-        
-        .insights-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        
-        .insight-item {
-            background: white;
-            padding: 0.8rem 1rem;
-            border-radius: 0.3rem;
+            text-decoration: none;
             font-size: 1.2rem;
-            color: var(--gray-700);
-            border-left: 3px solid var(--accent);
+            font-weight: 400;
         }
-        
-        .detailed-insights {
-            margin-top: 2rem;
+
+        .framework-links a:hover {
+            text-decoration: underline;
         }
-        
-        .detailed-insights h6 {
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .tool-category h3 {
             font-size: 1.6rem;
             font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--primary);
         }
-        
-        .insights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .insight-card {
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            border-radius: 0.4rem;
-            padding: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .insight-icon {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-        
-        .insight-text {
-            font-size: 1.3rem;
-            color: var(--gray-700);
-            line-height: 1.5;
-        }
-        
-        /* Simulation Section */
-        .simulation-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-        .simulation-container { background: #000; border-radius: 0.8rem; overflow: hidden; position: relative; height: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        #neural-canvas { display: block; width: 100%; height: 100%; }
-        .simulation-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .sim-stat { text-align: center; padding: 1.5rem; background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; }
-        .sim-stat h4 { font-size: 1.2rem; color: var(--gray-600); margin-bottom: 0.5rem; }
-        .sim-stat p { font-size: 2rem; font-weight: 400; color: var(--primary); }
-        
-        /* Multimedia & Citations */
-        .video-container { text-align: center; margin-top: 4rem; }
-        iframe { max-width: 100%; border: 1px solid var(--gray-300); border-radius: 0.4rem; }
-        
-        .citations { margin-top: 4rem; font-size: 1.2rem; color: var(--gray-600); }
-        .citations h3 { font-size: 1.8rem; margin-bottom: 1rem; }
-        .citations ul { list-style-position: inside; }
 
-        /* Footer */
-        footer { padding: 4rem 0 2rem; border-top: 1px solid var(--gray-200); }
-        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
-        .footer-text { font-size: 1.1rem; color: var(--gray-600); }
-        
-        /* Calculator Styles */
-        .calculator-container {
+        .tool-list {
+            list-style: none;
+        }
+
+        .tool-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .tool-name {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .tool-name:hover {
+            color: var(--accent);
+        }
+
+        .tool-badge { 
+            font-size: 0.9rem; 
+            padding: 0.2rem 0.6rem; 
+            background: var(--gray-100); 
+            color: var(--gray-600); 
+            border-radius: 0.2rem; 
+        }
+
+        /* Resources Section */
+        .resources-section { 
+            background: var(--gray-100); 
+            padding: 4rem 0; 
+            margin-top: 4rem; 
+        }
+
+        .resources-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 3rem; 
+            margin-top: 3rem; 
+        }
+
+        .resource-card { 
+            background: white; 
+            border: 1px solid var(--gray-200); 
+            padding: 3rem; 
+            border-radius: 0.4rem; 
+            transition: all 0.3s ease; 
+        }
+
+        .resource-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08); 
+        }
+
+        .resource-content h3 { 
+            font-size: 1.6rem; 
+            font-weight: 400; 
+            margin-bottom: 0.8rem; 
+        }
+
+        .resource-content p { 
+            font-size: 1.2rem; 
+            color: var(--gray-600); 
+            line-height: 1.8; 
+            margin-bottom: 1.2rem; 
+        }
+
+        .resource-links { 
+            display: flex; 
+            gap: 1.6rem; 
+            font-size: 1.1rem; 
+        }
+
+        .resource-links a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .resource-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 2rem; 
+            margin-top: 3rem; 
+        }
+
+        .metric-card { 
+            background: white; 
+            border: 1px solid var(--gray-200); 
+            padding: 2rem; 
+            border-radius: 0.4rem; 
+            text-align: center; 
+        }
+
+        .metric-value { 
+            font-size: 2.2rem; 
+            font-weight: 400; 
+            color: var(--accent); 
+            margin-bottom: 0.4rem; 
+        }
+
+        .metric-label { 
+            font-size: 1.1rem; 
+            color: var(--gray-600); 
+        }
+
+        .metric-change { 
+            font-size: 1rem; 
+            color: var(--success); 
+            margin-top: 0.4rem; 
+        }
+
+        /* Calculator Section */
+        .calculator-section {
             background: white;
             border: 2px solid var(--accent);
             border-radius: 0.8rem;
             padding: 3rem;
             margin: 4rem 0;
-            box-shadow: 0 8px 32px rgba(0,102,255,0.15);
             position: relative;
-            z-index: 10;
         }
-        
-        .calculator-container::before {
-            content: 'SCIENTIFIC CALCULATOR';
+
+        .calculator-section::before {
+            content: 'SMARTPHONE ANALYSIS CALCULATOR';
             position: absolute;
             top: -12px;
             left: 20px;
@@ -466,62 +520,56 @@
             border-radius: 4px;
             letter-spacing: 0.5px;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        
+
         .calculator-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
+
         .calculator-header h3 {
             font-size: 2.4rem;
             font-weight: 300;
             margin-bottom: 1rem;
             color: var(--primary);
         }
-        
+
         .calculator-header p {
             font-size: 1.4rem;
             color: var(--gray-600);
         }
-        
+
         .calculator-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
         }
-        
+
         .calculator-panel {
             background: var(--gray-100);
             border: 1px solid var(--gray-200);
             border-radius: 0.4rem;
             padding: 2rem;
         }
-        
+
         .calculator-panel h4 {
             font-size: 1.6rem;
             font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--primary);
         }
-        
+
         .device-selector, .input-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .device-selector label, .input-group label {
             display: block;
             font-size: 1.2rem;
             color: var(--gray-700);
             margin-bottom: 0.5rem;
         }
-        
+
         .device-selector select, .input-group input {
             width: 100%;
             padding: 0.8rem;
@@ -530,18 +578,18 @@
             font-size: 1.3rem;
             background: white;
         }
-        
+
         .slider-group {
             margin-bottom: 1.5rem;
         }
-        
+
         .slider-group label {
             display: block;
             font-size: 1.2rem;
             color: var(--gray-700);
             margin-bottom: 0.5rem;
         }
-        
+
         .slider-group input[type="range"] {
             width: 100%;
             height: 6px;
@@ -550,7 +598,7 @@
             outline: none;
             -webkit-appearance: none;
         }
-        
+
         .slider-group input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -560,13 +608,13 @@
             background: var(--accent);
             cursor: pointer;
         }
-        
+
         .checkbox-group {
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
         }
-        
+
         .checkbox-group label {
             display: flex;
             align-items: center;
@@ -574,20 +622,20 @@
             color: var(--gray-700);
             cursor: pointer;
         }
-        
+
         .checkbox-group input[type="checkbox"] {
             margin-right: 0.8rem;
             width: 16px;
             height: 16px;
         }
-        
+
         .calculator-actions {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin-bottom: 3rem;
         }
-        
+
         .calc-btn {
             padding: 1.2rem 2.4rem;
             font-size: 1.4rem;
@@ -599,43 +647,44 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .calc-btn:hover {
             background: var(--primary);
             border-color: var(--primary);
         }
-        
+
         .calc-btn.secondary {
             background: transparent;
             color: var(--accent);
         }
-        
+
         .calc-btn.secondary:hover {
             background: var(--accent);
             color: white;
         }
-        
+
         .results-container {
             background: var(--gray-100);
             border: 1px solid var(--gray-200);
             border-radius: 0.4rem;
             padding: 2rem;
+            display: none;
         }
-        
+
         .results-container h4 {
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 2rem;
             color: var(--primary);
         }
-        
+
         .results-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
-        
+
         .result-card {
             background: white;
             border: 1px solid var(--gray-200);
@@ -643,43 +692,43 @@
             padding: 1.5rem;
             text-align: center;
         }
-        
+
         .result-card h5 {
             font-size: 1.3rem;
             font-weight: 400;
             margin-bottom: 1rem;
             color: var(--gray-700);
         }
-        
+
         .score-display {
             display: flex;
             align-items: baseline;
             justify-content: center;
             gap: 0.5rem;
         }
-        
+
         .score {
             font-size: 2.4rem;
             font-weight: 200;
             color: var(--accent);
         }
-        
+
         .score-label {
             font-size: 1.2rem;
             color: var(--gray-600);
         }
-        
+
         .comparison-chart {
             margin-bottom: 3rem;
         }
-        
+
         .comparison-chart h5 {
             font-size: 1.6rem;
             font-weight: 400;
             margin-bottom: 1.5rem;
             color: var(--primary);
         }
-        
+
         .chart-container {
             background: white;
             border: 1px solid var(--gray-200);
@@ -687,60 +736,82 @@
             padding: 1.5rem;
             text-align: center;
         }
-        
+
         .recommendation {
             background: white;
             border: 1px solid var(--gray-200);
             border-radius: 0.4rem;
             padding: 2rem;
         }
-        
+
         .recommendation h5 {
             font-size: 1.6rem;
             font-weight: 400;
             margin-bottom: 1rem;
             color: var(--primary);
         }
-        
+
         .recommendation p {
             font-size: 1.4rem;
             color: var(--gray-700);
             line-height: 1.6;
         }
-        
-        /* Mobile Optimizations */
-        @media (max-width: 768px) {
-            .preview-stats {
-                justify-content: center;
-            }
-            
-            .preview-stats .stat {
-                font-size: 1rem;
-                padding: 0.4rem 0.8rem;
-            }
-            
-            .preview-btn {
-                font-size: 1.1rem;
-                padding: 0.7rem 1.2rem;
-            }
+
+        /* Buttons */
+        .btn {
+            padding: 1.2rem 2.4rem;
+            font-size: 1.3rem;
+            font-weight: 400;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.4rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer { 
+            padding: 4rem 0 2rem; 
+            border-top: 1px solid var(--gray-200); 
+        }
+
+        .footer-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+            text-align: center; 
+        }
+
+        .footer-text { 
+            font-size: 1.1rem; 
+            color: var(--gray-600); 
         }
         
         /* Responsive */
         @media (max-width: 992px) {
             .content-grid { grid-template-columns: 1fr; }
-            .info-cards { order: -1; margin-bottom: 3rem; }
             .calculator-grid { grid-template-columns: 1fr; }
             .results-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-grid { grid-template-columns: 1fr; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
         @media (max-width: 768px) {
             html { font-size: 58%; }
             .hero h1 { font-size: 3.2rem; }
             .nav-menu { display: none; }
-            .simulation-info { grid-template-columns: 1fr; }
             .results-grid { grid-template-columns: 1fr; }
             .calculator-actions { flex-direction: column; }
+            .metrics-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
@@ -749,970 +820,33 @@
             <div class="nav-left">
                 <span class="brand-name">Zi-US Research</span>
                 <ul class="nav-menu">
-                    <li><a href="#overview" class="active">Overview</a></li>
-                    <li><a href="#ai-processing">AI & Processing</a></li>
-                    <li><a href="#simulation">Simulation</a></li>
-                    <li><a href="#camera-tech">Camera Tech</a></li>
-                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#" class="active">Overview</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#metrics">Metrics</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>The <span class="accent">2025 Smartphone Revolution</span>: Beyond the iPhone 17</h1>
-                    <p>A deep technical analysis of the hardware, AI, and optical innovations defining the next generation of mobile computing, and why the market is no longer a one-horse race.</p>
-                    <div style="margin-top: 2rem;">
-                        <button onclick="scrollToCalculator()" style="background: var(--accent); color: white; border: none; padding: 1rem 2rem; border-radius: 0.4rem; font-size: 1.4rem; cursor: pointer; margin-right: 1rem;">🧮 Launch Calculator</button>
-                        <button onclick="testCalculator()" style="background: var(--purple); color: white; border: none; padding: 1rem 2rem; border-radius: 0.4rem; font-size: 1.4rem; cursor: pointer;">🔍 Test Calculator</button>
-                    </div>
-                </div>
-            </section>
-
-    <section class="content-section" id="overview">
-        <div class="container">
-            <div class="section-header">
-                <h2>A Paradigm Shift in Mobile Technology</h2>
-                <p>In 2025, the smartphone landscape has evolved beyond incremental updates. A confluence of breakthroughs in silicon, artificial intelligence, and material science has given rise to a new class of devices that challenge the established dominance of players like Apple.</p>
-            </div>
-            <div class="content-grid">
-                <div class="content-main">
-                    <h3>The End of Incrementalism</h3>
-                    <p>For years, the industry followed a predictable cycle of minor improvements. However, the demand for true on-device generative AI and immersive augmented reality has shattered this model. Devices like the Samsung Galaxy S25 Ultra and Google's Pixel 10 Pro are not merely "iPhone 17 competitors"; they are built on fundamentally different philosophies. They leverage heterogeneous computing architectures and open software ecosystems to deliver capabilities that are, in some domains, an entire generation ahead.</p>
-                    <p>This report dissects the key technological pillars enabling this shift: the raw power and efficiency of next-generation NPUs (Neural Processing Units), the revolutionary potential of computational optics that render traditional camera hardware limitations obsolete, and advancements in battery and connectivity that power these new experiences.</p>
-                </div>
-                <div class="info-cards">
-                    <div class="info-card">
-                        <h4>The 50 TOPS Barrier</h4>
-                        <p>Next-gen NPUs now exceed 50 Trillion Operations Per Second, enabling real-time, on-device generative AI models that previously required cloud infrastructure.</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Computational Optics</h4>
-                        <p>Liquid lenses and meta-optics, combined with AI-driven image reconstruction, are delivering optical zoom and low-light performance far beyond what physical lens size would suggest.</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>Graphene-Polymer Batteries</h4>
-                        <p>New composite battery technology allows for a full charge in under 10 minutes and offers significantly improved energy density, finally solving a key industry bottleneck.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Mobile Research Platform: Evaluating <span class="accent">Smartphone Technology</span></h1>
+            <p>Explore performance benchmarks, AI processing capabilities, computational photography, and device comparison metrics for next-generation mobile devices.</p>
         </div>
     </section>
-
-    <section class="content-section" id="ai-processing">
-        <div class="container">
-            <div class="section-header">
-                <h2>Next-Gen AI Processing in Smartphones</h2>
-                <p>Examining the Snapdragon 8 Gen 4 versus the Apple A19 Bionic: a tale of two architectures.</p>
-            </div>
-            <div class="content-grid">
-                <div class="content-main">
-                    <h3>AI Neural Engine Architecture</h3>
-                    <p>The Qualcomm Snapdragon 8 Gen 4's "Hexagon" NPU leverages a dedicated multi-core, shared-memory design, optimized for parallel AI workloads. This architecture excels at running multiple neural networks simultaneously, such as processing sensor data while performing real-time language translation. It contrasts sharply with Apple's historically powerful but more monolithic single-core approach in the A19, which, while potent for single tasks, shows limitations in complex, multi-modal AI scenarios. <a href="#">[1]</a></p>
-                    <p>The key differentiator is Qualcomm's embrace of mixed-precision quantization (INT4 and INT8), which dramatically increases throughput for minimal accuracy loss—a trade-off Apple has been hesitant to fully embrace. This allows devices like the S25 Ultra to run 10-billion-parameter language models directly on-device.</p>
-                    <pre><code><span class="comment">// Sample TensorFlow Lite (Python) inference snippet</span>
-<span class="comment">// demonstrating quantized model execution on a smartphone NPU.</span>
-<span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
-
-<span class="comment"># Load the TFLite model with the delegate for the NPU.</span>
-interpreter = tf.lite.Interpreter(
-    model_path=<span class="string">"model_quant_int8.tflite"</span>,
-    experimental_delegates=[tf.lite.load_delegate(<span class="string">'libhexagon_delegate.so'</span>)]
-)
-interpreter.allocate_tensors()
-
-<span class="comment"># Get input and output tensors.</span>
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
-
-<span class="comment"># Run inference.</span>
-interpreter.set_tensor(input_details[<span class="number">0</span>][<span class="string">'index'</span>], input_data)
-interpreter.invoke()
-output_data = interpreter.get_tensor(output_details[<span class="number">0</span>][<span class="string">'index'</span>])
-<span class="function">print</span>(output_data)</code></pre>
-                </div>
-                <div class="info-cards">
-                    <div class="info-card">
-                        <h4>Benchmark Supremacy</h4>
-                        <p>The Snapdragon 8 Gen 4 achieves over 70 TOPS in AI-Benchmark 5, showing a 35% performance uplift over the A19 Bionic in mixed-precision tasks. <a href="#">[2]</a></p>
-                    </div>
-                     <div class="info-card">
-                        <h4>Real-Time AI Video</h4>
-                        <p>The architecture allows for applying multiple generative AI video filters (e.g., style transfer, object replacement) in real-time at 4K resolution, a feat not possible on prior hardware.</p>
-                    </div>
-                        <div class="info-card calculator-card">
-                            <h4>Smartphone Analysis Calculator</h4>
-                            <p>Compare devices using advanced mathematical models and get personalized recommendations based on your usage patterns and preferences.</p>
-                            <div class="calculator-preview">
-                                <div class="preview-stats">
-                                    <span class="stat">CPU: 95</span>
-                                    <span class="stat">Camera: 98</span>
-                                    <span class="stat">Battery: 32h</span>
-                                </div>
-                                <button class="preview-btn" onclick="scrollToCalculator()">Launch Calculator →</button>
-                            </div>
-                        </div>
-                </div>
-            </div>
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>AI Processing</span>
+            <span>Camera Quality</span>
+            <span>Battery Life</span>
+            <span>Performance</span>
+            <span>Value Analysis</span>
+            <span>Benchmarking</span>
+            <span>Device Comparison</span>
+            <span>ML Models</span>
         </div>
-    </section>
-
-    <section class="content-section" id="simulation">
-        <div class="simulation-wrapper">
-            <div class="section-header">
-                <h2>Visualizing On-Device Neural Processing</h2>
-                <p>This interactive simulation demonstrates how a neural network processes data inputs, activating neurons through weighted connections to produce an output.</p>
-            </div>
-            <div class="simulation-container">
-                <canvas id="neural-canvas"></canvas>
-            </div>
-            <div class="simulation-info">
-                <div class="sim-stat">
-                    <h4>Active Neurons</h4>
-                    <p id="active-neurons">0</p>
-                </div>
-                <div class="sim-stat">
-                    <h4>Synaptic Firings</h4>
-                    <p id="synaptic-firings">0</p>
-                </div>
-                <div class="sim-stat">
-                    <h4>Data Throughput</h4>
-                    <p id="data-throughput">0 PKT/s</p>
-                </div>
-            </div>
         </div>
-    </section>
-    
-    <section class="content-section" id="camera-tech">
-        <div class="container">
-            <div class="section-header">
-                <h2>Computational Optics: The End of the Megapixel War</h2>
-                <p>How Google's Pixel 10 Pro uses liquid lenses and AI to redefine mobile photography.</p>
-            </div>
-            <div class="content-grid">
-                <div class="content-main">
-                    <h3>Liquid Lens & AI Reconstruction</h3>
-                    <p>The Google Pixel 10 Pro has abandoned the traditional multi-camera array for a single, large-aperture primary sensor paired with an electrowetting liquid lens. By applying precise voltages, the lens can change its focal length almost instantaneously (<1ms), enabling seamless zoom from macro to telephoto with a single optical element. This eliminates the jarring "jump" between lenses found on other phones. <a href="#">[3]</a></p>
-                    <p>The true innovation, however, is in the software. Google's new Tensor G5 chip uses a generative AI model trained on petabytes of optical data to reconstruct the final image. It computationally corrects for chromatic aberration, predicts and fills in details lost to diffraction, and achieves low-light performance equivalent to a full-frame DSLR sensor by intelligently stacking and de-noising bursts of frames in real-time.</p>
-                    <pre><code><span class="comment">// Simplified Python/OpenCV concept for AI-driven image stacking.</span>
-<span class="keyword">import</span> cv2
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-
-<span class="function">def</span> <span class="function">align_and_stack</span>(image_list):
-    <span class="comment"># Use ECC alignment to register images</span>
-    warp_matrix = np.eye(<span class="number">2</span>, <span class="number">3</span>, dtype=np.float32)
-    criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, <span class="number">5000</span>, <span class="number">1e-10</span>)
-    
-    aligned_images = []
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(image_list)):
-        (cc, warp) = cv2.findTransformECC(image_list[<span class="number">0</span>], image_list[i], warp_matrix, cv2.MOTION_AFFINE, criteria)
-        aligned_images.append(cv2.warpAffine(image_list[i], warp, (sz[<span class="number">1</span>], sz[<span class="number">0</span>])))
-    
-    <span class="comment"># Average the aligned images to reduce noise</span>
-    stacked_image = np.mean(aligned_images, axis=<span class="number">0</span>).astype(np.uint8)
-    
-    <span class="comment"># Apply a neural network model for detail enhancement (conceptual)</span>
-    final_image = detail_enhancer_model.predict(stacked_image)
-    <span class="keyword">return</span> final_image</code></pre>
-                </div>
-                <div class="info-cards">
-                    <div class="info-card">
-                        <h4>Instantaneous Autofocus</h4>
-                        <p>The liquid lens system achieves a focus time of under 1 millisecond across the entire focal range, making missed shots a thing of the past.</p>
-                    </div>
-                     <div class="info-card">
-                        <h4>Semantic Zoom</h4>
-                        <p>The AI can identify the subject (e.g., a person, a building) and apply different reconstruction algorithms to preserve details specific to that subject, creating hyper-realistic telephoto shots.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="content-section" id="conclusion">
-        <div class="container">
-            <div class="section-header">
-                <h2>Conclusion: A New Era of Competition</h2>
-                <p>The technological leaps of 2025 have leveled the playing field and ushered in an era of true innovation. While the iPhone 17 remains a formidable device, its focus on ecosystem refinement is being challenged by competitors making bold architectural and hardware bets. The result is a market rich with choice, where the "best" smartphone is no longer a default answer but a question of specific user needs and priorities.</p>
-            </div>
-            <div class="calculator-container">
-                <div class="calculator-header">
-                    <h3>Scientific Smartphone Analysis Calculator</h3>
-                    <p>Compare devices using advanced mathematical models and user preferences</p>
-                </div>
-                
-                <div class="calculator-grid">
-                    <div class="calculator-panel">
-                        <h4>Device Selection</h4>
-                        <div class="device-selector">
-                            <label>Primary Device:</label>
-                            <select id="device1">
-                                <option value="IPH17_001">iPhone 17 Pro Max</option>
-                                <option value="SGS25_001">Galaxy S25 Ultra</option>
-                                <option value="PIX10_001">Pixel 10 Pro</option>
-                                <option value="ONEP_001">OnePlus 13 Pro</option>
-                            </select>
-                        </div>
-                        <div class="device-selector">
-                            <label>Compare With:</label>
-                            <select id="device2">
-                                <option value="SGS25_001">Galaxy S25 Ultra</option>
-                                <option value="IPH17_001">iPhone 17 Pro Max</option>
-                                <option value="PIX10_001">Pixel 10 Pro</option>
-                                <option value="ONEP_001">OnePlus 13 Pro</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="calculator-panel">
-                        <h4>Usage Profile</h4>
-                        <div class="slider-group">
-                            <label>Gaming: <span id="gaming-value">50</span>%</label>
-                            <input type="range" id="gaming" min="0" max="100" value="50">
-                        </div>
-                        <div class="slider-group">
-                            <label>Photography: <span id="photo-value">50</span>%</label>
-                            <input type="range" id="photography" min="0" max="100" value="50">
-                        </div>
-                        <div class="slider-group">
-                            <label>Productivity: <span id="productivity-value">50</span>%</label>
-                            <input type="range" id="productivity" min="0" max="100" value="50">
-                        </div>
-                        <div class="slider-group">
-                            <label>Battery Priority: <span id="battery-value">50</span>%</label>
-                            <input type="range" id="battery" min="0" max="100" value="50">
-                        </div>
-                    </div>
-                    
-                    <div class="calculator-panel">
-                        <h4>Budget & Preferences</h4>
-                        <div class="input-group">
-                            <label>Max Budget ($):</label>
-                            <input type="number" id="budget" value="1200" min="500" max="2000">
-                        </div>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" id="premium-build"> Premium Build Quality</label>
-                            <label><input type="checkbox" id="ai-features"> AI Features</label>
-                            <label><input type="checkbox" id="wireless-charging"> Wireless Charging</label>
-                            <label><input type="checkbox" id="water-resistance"> Water Resistance</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="calculator-actions">
-                    <button id="calculate-btn" class="calc-btn">Calculate Analysis</button>
-                    <button id="reset-btn" class="calc-btn secondary">Reset</button>
-                </div>
-                
-                <div class="results-container" id="results" style="display: none;">
-                    <h4>Analysis Results</h4>
-                    <div class="results-grid">
-                        <div class="result-card">
-                            <h5>Overall Score</h5>
-                            <div class="score-display">
-                                <span class="score" id="overall-score">0</span>
-                                <span class="score-label">/100</span>
-                            </div>
-                        </div>
-                        <div class="result-card">
-                            <h5>Camera Quality</h5>
-                            <div class="score-display">
-                                <span class="score" id="camera-score">0</span>
-                                <span class="score-label">/100</span>
-                            </div>
-                        </div>
-                        <div class="result-card">
-                            <h5>Battery Life</h5>
-                            <div class="score-display">
-                                <span class="score" id="battery-score">0</span>
-                                <span class="score-label">hours</span>
-                            </div>
-                        </div>
-                        <div class="result-card">
-                            <h5>Value Score</h5>
-                            <div class="score-display">
-                                <span class="score" id="value-score">0</span>
-                                <span class="score-label">/100</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="comparison-chart">
-                        <h5>Performance Comparison</h5>
-                        <div class="chart-container">
-                            <canvas id="comparison-chart" width="400" height="200"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="recommendation">
-                        <h5>Recommendation</h5>
-                        <p id="recommendation-text">Based on your preferences and usage patterns, the analysis will provide personalized recommendations.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="citations">
-                <h3>References</h3>
-                <ul>
-                    <li>[1] Chen, J. et al. (2025). "Heterogeneous Architectures for Multi-Modal AI Workloads." ACM Transactions on Embedded Computing Systems.</li>
-                    <li>[2] AI-Benchmark 5 Official Report (2025). "Mobile NPU Performance Metrics Q2 2025." UL Benchmarks.</li>
-                    <li>[3] Lee, S. & Marks, B. (2024). "Electrowetting Lenses for Computational Imaging Systems." Nature Optics.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Future Technology Division</p>
-        </div>
-    </footer>
-    
-    <!-- Data Processing Scripts - Embedded -->
-    
-    <script>
-        // Interactive Neural Network Simulation
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('neural-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            
-            const stats = {
-                neurons: document.getElementById('active-neurons'),
-                firings: document.getElementById('synaptic-firings'),
-                throughput: document.getElementById('data-throughput')
-            };
-
-            let width, height, neurons = [], pulses = [];
-            let firings = 0;
-
-            function resize() {
-                const container = canvas.parentElement;
-                width = container.clientWidth;
-                height = container.clientHeight;
-                canvas.width = width;
-                canvas.height = height;
-                init();
-            }
-
-            class Neuron {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.radius = Math.random() * 2 + 3;
-                    this.color = 'rgba(0, 255, 255, 0.5)';
-                    this.charge = 0;
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    const alpha = Math.min(1, 0.3 + this.charge);
-                    ctx.fillStyle = `rgba(0, 255, 255, ${alpha})`;
-                    ctx.fill();
-                }
-            }
-            
-            class Pulse {
-                constructor(start, end) {
-                    this.x = start.x;
-                    this.y = start.y;
-                    this.endX = end.x;
-                    this.endY = end.y;
-                    this.progress = 0;
-                    this.speed = 0.01 + Math.random() * 0.02;
-                }
-                update() { this.progress += this.speed; }
-                draw() {
-                    const currentX = this.x + (this.endX - this.x) * this.progress;
-                    const currentY = this.y + (this.endY - this.y) * this.progress;
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(this.x, this.y);
-                    ctx.lineTo(currentX, currentY);
-                    ctx.strokeStyle = 'rgba(255, 0, 255, 0.7)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.arc(currentX, currentY, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = '#ff00ff';
-                    ctx.fill();
-                }
-            }
-
-            function init() {
-                neurons = [];
-                pulses = [];
-                const layers = [3, 5, 5, 4]; // Input, Hidden, Hidden, Output
-                const layerSpacing = width / (layers.length);
-
-                layers.forEach((count, i) => {
-                    const x = layerSpacing * (i + 0.5);
-                    for (let j = 0; j < count; j++) {
-                        const y = height * (j + 1) / (count + 1);
-                        neurons.push(new Neuron(x, y));
-                    }
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-
-                // Add new pulses randomly from input layer
-                if (Math.random() < 0.3) {
-                    const startNeuron = neurons[Math.floor(Math.random() * 3)];
-                    const endNeuron = neurons[3 + Math.floor(Math.random() * 5)];
-                    pulses.push(new Pulse(startNeuron, endNeuron));
-                }
-                
-                neurons.forEach(n => n.charge *= 0.95);
-
-                pulses.forEach((p, i) => {
-                    p.update();
-                    p.draw();
-                    if (p.progress >= 1) {
-                        pulses.splice(i, 1);
-                        firings++;
-                        // Find the neuron this pulse was heading to and charge it
-                        const endNeuron = neurons.find(n => n.x === p.endX && n.y === p.endY);
-                        if(endNeuron) {
-                            endNeuron.charge = 1.5; // Activate it
-                            // Fire a new pulse from this neuron
-                            const currentIndex = neurons.indexOf(endNeuron);
-                            // Simple logic to find next layer
-                            let nextLayerStart = -1;
-                            if(currentIndex < 3) nextLayerStart = 3;
-                            else if (currentIndex < 8) nextLayerStart = 8;
-                            else if (currentIndex < 13) nextLayerStart = 13;
-                            
-                            if(nextLayerStart !== -1 && nextLayerStart < neurons.length) {
-                                const endLayerSize = (nextLayerStart === 3 || nextLayerStart === 8) ? 5 : 4;
-                                const nextNeuron = neurons[nextLayerStart + Math.floor(Math.random() * endLayerSize)];
-                                pulses.push(new Pulse(endNeuron, nextNeuron));
-                            }
-                        }
-                    }
-                });
-                
-                neurons.forEach(n => n.draw());
-                
-                updateStats();
-                requestAnimationFrame(animate);
-            }
-            
-            let lastUpdateTime = 0;
-            function updateStats() {
-                const now = performance.now();
-                if (now - lastUpdateTime > 500) {
-                    stats.neurons.textContent = Math.round(neurons.reduce((acc, n) => acc + n.charge, 0));
-                    stats.firings.textContent = firings;
-                    stats.throughput.textContent = `${(Math.random() * 15 + 35).toFixed(2)} GB/s`;
-                    lastUpdateTime = now;
-                }
-            }
-
-            window.addEventListener('resize', resize);
-            resize();
-            animate();
-        });
-
-                // Scroll to Calculator Function
-                function scrollToCalculator() {
-                    const calculator = document.querySelector('.calculator-container');
-                    if (calculator) {
-                        calculator.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'start' 
-                        });
-                        // Add a subtle highlight effect
-                        calculator.style.boxShadow = '0 0 20px rgba(0, 102, 255, 0.3)';
-                        setTimeout(() => {
-                            calculator.style.boxShadow = '0 8px 32px rgba(0,102,255,0.15)';
-                        }, 2000);
-                    } else {
-                        alert('Calculator not found! Check console for errors.');
-                    }
-                }
-                
-                // Test Calculator Function
-                function testCalculator() {
-                    const calculator = document.querySelector('.calculator-container');
-                    const calculatorCard = document.querySelector('.calculator-card');
-                    
-                    let message = 'Calculator Test Results:\n\n';
-                    message += `✅ Calculator Container: ${calculator ? 'FOUND' : 'NOT FOUND'}\n`;
-                    message += `✅ Calculator Card: ${calculatorCard ? 'FOUND' : 'NOT FOUND'}\n`;
-                    message += `✅ API Available: ${window.SmartphoneCalculatorAPI ? 'YES' : 'NO'}\n`;
-                    
-                    if (calculator) {
-                        message += `✅ Calculator Visible: ${calculator.style.display !== 'none' ? 'YES' : 'NO'}\n`;
-                        message += `✅ Calculator Position: ${calculator.offsetTop}px from top\n`;
-                    }
-                    
-                    alert(message);
-                    
-                    if (calculator) {
-                        calculator.style.border = '3px solid #ff3366';
-                        calculator.style.animation = 'pulse 1s infinite';
-                        setTimeout(() => {
-                            calculator.style.border = '2px solid var(--accent)';
-                            calculator.style.animation = 'none';
-                        }, 3000);
-                    }
-                }
-
-                // Smartphone Calculator API - Embedded
-                class SmartphoneCalculatorAPI {
-                    constructor() {
-                        this.backendUrl = 'https://raw.githubusercontent.com/BorelSigmaInc/PHN17NMBB/master/';
-                        this.cache = new Map();
-                        this.analysisResults = null;
-                    }
-
-                    async fetchBackendData(dataType) {
-                        if (this.cache.has(dataType)) {
-                            return this.cache.get(dataType);
-                        }
-
-                        try {
-                            const response = await fetch(`${this.backendUrl}${dataType}`);
-                            if (!response.ok) throw new Error(`Failed to fetch ${dataType}`);
-                            
-                            const data = await response.json();
-                            this.cache.set(dataType, data);
-                            return data;
-                        } catch (error) {
-                            console.error(`Error fetching ${dataType}:`, error);
-                            return this.getFallbackData(dataType);
-                        }
-                    }
-
-                    getFallbackData(dataType) {
-                        const fallbackData = {
-                            'smartphone_specs_standardized.json': {
-                                devices: {
-                                    'IPH17_001': {
-                                        name: 'iPhone 17 Pro Max',
-                                        processor: 'A19 Bionic',
-                                        ram: '12GB',
-                                        storage: '1TB',
-                                        display: '6.9" Super Retina XDR',
-                                        camera: '48MP + 12MP + 12MP',
-                                        battery: '5000mAh',
-                                        price: 1199
-                                    },
-                                    'SGS25_001': {
-                                        name: 'Galaxy S25 Ultra',
-                                        processor: 'Snapdragon 8 Gen 4',
-                                        ram: '16GB',
-                                        storage: '1TB',
-                                        display: '6.9" Dynamic AMOLED 2X',
-                                        camera: '200MP + 50MP + 12MP + 10MP',
-                                        battery: '5500mAh',
-                                        price: 1299
-                                    },
-                                    'PIX10_001': {
-                                        name: 'Pixel 10 Pro',
-                                        processor: 'Tensor G5',
-                                        ram: '12GB',
-                                        storage: '512GB',
-                                        display: '6.8" LTPO OLED',
-                                        camera: '50MP + 48MP + 12MP',
-                                        battery: '4800mAh',
-                                        price: 999
-                                    }
-                                }
-                            }
-                        };
-                        return fallbackData[dataType] || {};
-                    }
-
-                    async processUserInput(userInput) {
-                        const { device1, device2, usage, preferences, budget } = userInput;
-                        
-                        const specs = await this.fetchBackendData('smartphone_specs_standardized.json');
-                        
-                        const device1Score = this.calculateDeviceScore(device1, usage, preferences, budget, specs);
-                        const device2Score = this.calculateDeviceScore(device2, usage, preferences, budget, specs);
-
-                        const analysis = this.generateAnalysisReport(device1Score, device2Score, userInput);
-                        this.analysisResults = analysis;
-                        return analysis;
-                    }
-
-                    calculateDeviceScore(deviceId, usage, preferences, budget, specs) {
-                        const deviceSpecs = specs.devices[deviceId];
-                        if (!deviceSpecs) return this.getDefaultScore(deviceId);
-
-                        const performanceScore = this.calculatePerformanceScore(deviceSpecs, usage);
-                        const cameraScore = this.calculateCameraScore(deviceSpecs, usage.photography);
-                        const batteryScore = this.calculateBatteryScore(deviceSpecs, usage.battery);
-                        const valueScore = this.calculateValueScore(performanceScore, cameraScore, batteryScore, deviceSpecs.price, budget);
-                        const featureBonus = this.calculateFeatureBonus(deviceSpecs, preferences);
-
-                        const overallScore = Math.min(100, Math.max(0, 
-                            (performanceScore * 0.4 + cameraScore * 0.3 + batteryScore * 0.2 + valueScore * 0.1) + featureBonus
-                        ));
-
-                        return {
-                            deviceId,
-                            name: deviceSpecs.name,
-                            overall: Math.round(overallScore),
-                            performance: Math.round(performanceScore),
-                            camera: Math.round(cameraScore),
-                            battery: Math.round(batteryScore),
-                            value: Math.round(valueScore),
-                            featureBonus: Math.round(featureBonus),
-                            specs: deviceSpecs
-                        };
-                    }
-
-                    getDefaultScore(deviceId) {
-                        const defaultScores = {
-                            'IPH17_001': { name: 'iPhone 17 Pro Max', overall: 94, performance: 95, camera: 96, battery: 28, value: 78 },
-                            'SGS25_001': { name: 'Galaxy S25 Ultra', overall: 92, performance: 92, camera: 98, battery: 32, value: 71 },
-                            'PIX10_001': { name: 'Pixel 10 Pro', overall: 88, performance: 88, camera: 99, battery: 26, value: 88 },
-                            'ONEP_001': { name: 'OnePlus 13 Pro', overall: 85, performance: 90, camera: 89, battery: 30, value: 95 }
-                        };
-                        return defaultScores[deviceId] || { name: 'Unknown Device', overall: 75, performance: 75, camera: 75, battery: 25, value: 75 };
-                    }
-
-                    calculatePerformanceScore(specs, usage) {
-                        const baseScore = 85;
-                        const ramBonus = parseInt(specs.ram) >= 12 ? 10 : 5;
-                        const storageBonus = specs.storage.includes('1TB') ? 5 : 0;
-                        const usageBonus = (usage.gaming + usage.productivity) * 10;
-                        return Math.min(100, baseScore + ramBonus + storageBonus + usageBonus);
-                    }
-
-                    calculateCameraScore(specs, photographyUsage) {
-                        const baseScore = 85;
-                        const mpBonus = specs.camera.includes('200MP') ? 15 : specs.camera.includes('50MP') ? 10 : 5;
-                        const usageBonus = photographyUsage * 15;
-                        return Math.min(100, baseScore + mpBonus + usageBonus);
-                    }
-
-                    calculateBatteryScore(specs, batteryPriority) {
-                        const batteryCapacity = parseInt(specs.battery) || 4000;
-                        const baseScore = (batteryCapacity / 6000) * 100;
-                        const priorityBonus = batteryPriority * 20;
-                        return Math.min(100, baseScore + priorityBonus);
-                    }
-
-                    calculateValueScore(performance, camera, battery, price, budget) {
-                        const totalScore = (performance + camera + battery) / 3;
-                        const priceRatio = Math.max(0, (budget - price) / budget);
-                        return Math.min(100, totalScore * (0.5 + priceRatio * 0.5));
-                    }
-
-                    calculateFeatureBonus(specs, preferences) {
-                        let bonus = 0;
-                        if (preferences.premium_build && parseInt(specs.ram) >= 12) bonus += 5;
-                        if (preferences.ai_features && specs.processor.includes('Tensor')) bonus += 10;
-                        if (preferences.wireless_charging) bonus += 3;
-                        if (preferences.water_resistance) bonus += 2;
-                        return bonus;
-                    }
-
-                    generateAnalysisReport(score1, score2, userInput) {
-                        const winner = score1.overall > score2.overall ? score1 : score2;
-                        const loser = score1.overall > score2.overall ? score2 : score1;
-
-                        return {
-                            timestamp: new Date().toISOString(),
-                            userInput,
-                            winner,
-                            loser,
-                            recommendation: this.generateRecommendation(winner, loser, userInput),
-                            insights: this.generateInsights(score1, score2, userInput)
-                        };
-                    }
-
-                    generateRecommendation(winner, loser, userInput) {
-                        let recommendation = `Based on your preferences, the ${winner.name} is the recommended choice with an overall score of ${winner.overall}/100. `;
-
-                        if (winner.camera > 90) {
-                            recommendation += 'This device excels in photography with advanced computational features. ';
-                        }
-                        if (winner.battery > 30) {
-                            recommendation += 'Excellent battery life ensures all-day usage. ';
-                        }
-                        if (winner.value > 80) {
-                            recommendation += 'Outstanding value for money with premium features. ';
-                        }
-
-                        const gap = winner.overall - loser.overall;
-                        if (gap > 20) {
-                            recommendation += 'This is a significant performance advantage over the alternative.';
-                        } else if (gap > 10) {
-                            recommendation += 'This represents a meaningful improvement in overall experience.';
-                        } else {
-                            recommendation += 'Both devices are competitive, with this one having a slight edge.';
-                        }
-
-                        return recommendation;
-                    }
-
-                    generateInsights(score1, score2, userInput) {
-                        const insights = [];
-
-                        if (userInput.usage.gaming > 0.7) {
-                            insights.push('High gaming usage detected - GPU performance is critical for your use case.');
-                        }
-                        if (userInput.usage.photography > 0.7) {
-                            insights.push('Photography-focused usage - camera quality and AI features are key factors.');
-                        }
-                        if (userInput.usage.productivity > 0.7) {
-                            insights.push('Productivity-focused usage - CPU performance and battery life are important.');
-                        }
-                        if (userInput.budget < 1000) {
-                            insights.push('Budget-conscious selection - value for money is prioritized.');
-                        } else if (userInput.budget > 1500) {
-                            insights.push('Premium budget range - focus on cutting-edge features and performance.');
-                        }
-
-                        return insights;
-                    }
-                }
-
-                // Scientific Calculator Functionality
-                document.addEventListener('DOMContentLoaded', () => {
-                    // Debug: Check if calculator elements exist
-                    const calculator = document.querySelector('.calculator-container');
-                    const calculatorCard = document.querySelector('.calculator-card');
-                    
-                    console.log('Calculator container found:', !!calculator);
-                    console.log('Calculator card found:', !!calculatorCard);
-                    
-                    if (calculator) {
-                        calculator.style.display = 'block';
-                        calculator.style.visibility = 'visible';
-                        console.log('Calculator made visible');
-                    }
-                    
-                    // Initialize API
-                    window.SmartphoneCalculatorAPI = new SmartphoneCalculatorAPI();
-                    
-                    // Device data from PHN17NMBB repository
-                    const deviceData = {
-                        'IPH17_001': {
-                            name: 'iPhone 17 Pro Max',
-                            cpu_score: 95, gpu_score: 92, ai_score: 88, camera_score: 96, battery_score: 28, price: 1199,
-                            features: { premium_build: true, ai_features: true, wireless_charging: true, water_resistance: true }
-                        },
-                        'SGS25_001': {
-                            name: 'Galaxy S25 Ultra',
-                            cpu_score: 92, gpu_score: 95, ai_score: 94, camera_score: 98, battery_score: 32, price: 1299,
-                            features: { premium_build: true, ai_features: true, wireless_charging: true, water_resistance: true }
-                        },
-                        'PIX10_001': {
-                            name: 'Pixel 10 Pro',
-                            cpu_score: 88, gpu_score: 85, ai_score: 96, camera_score: 99, battery_score: 26, price: 999,
-                            features: { premium_build: true, ai_features: true, wireless_charging: true, water_resistance: true }
-                        },
-                        'ONEP_001': {
-                            name: 'OnePlus 13 Pro',
-                            cpu_score: 90, gpu_score: 88, ai_score: 85, camera_score: 89, battery_score: 30, price: 899,
-                            features: { premium_build: true, ai_features: false, wireless_charging: true, water_resistance: true }
-                        }
-                    };
-
-                    // Update slider values
-                    const sliders = ['gaming', 'photography', 'productivity', 'battery'];
-                    sliders.forEach(id => {
-                        const slider = document.getElementById(id);
-                        const valueSpan = document.getElementById(id + '-value');
-                        slider.addEventListener('input', () => {
-                            valueSpan.textContent = slider.value;
-                        });
-                    });
-
-                    // Calculate button functionality
-                    document.getElementById('calculate-btn').addEventListener('click', async () => {
-                        const device1 = document.getElementById('device1').value;
-                        const device2 = document.getElementById('device2').value;
-                        const budget = parseInt(document.getElementById('budget').value);
-                        
-                        const usage = {
-                            gaming: parseInt(document.getElementById('gaming').value) / 100,
-                            photography: parseInt(document.getElementById('photography').value) / 100,
-                            productivity: parseInt(document.getElementById('productivity').value) / 100,
-                            battery: parseInt(document.getElementById('battery').value) / 100
-                        };
-
-                        const preferences = {
-                            premium_build: document.getElementById('premium-build').checked,
-                            ai_features: document.getElementById('ai-features').checked,
-                            wireless_charging: document.getElementById('wireless-charging').checked,
-                            water_resistance: document.getElementById('water-resistance').checked
-                        };
-
-                        const userInput = { device1, device2, usage, preferences, budget };
-
-                        try {
-                            // Use the new API for analysis
-                            const analysis = await window.SmartphoneCalculatorAPI.processUserInput(userInput);
-                            
-                            // Display results
-                            displayResults(analysis.winner, analysis.loser, analysis.winner.name, analysis.loser.name);
-                            
-                            // Update recommendation
-                            document.getElementById('recommendation-text').textContent = analysis.recommendation;
-                            
-                            // Show results container
-                            document.getElementById('results').style.display = 'block';
-                            
-                            // Scroll to results
-                            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-                        } catch (error) {
-                            console.error('Analysis error:', error);
-                            // Fallback to original method
-                            const device1Score = calculateDeviceScore(deviceData[device1], usage, preferences, budget);
-                            const device2Score = calculateDeviceScore(deviceData[device2], usage, preferences, budget);
-                            displayResults(device1Score, device2Score, deviceData[device1].name, deviceData[device2].name);
-                            document.getElementById('results').style.display = 'block';
-                            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-                        }
-                    });
-
-                    // Reset button functionality
-                    document.getElementById('reset-btn').addEventListener('click', () => {
-                        document.getElementById('gaming').value = 50;
-                        document.getElementById('photography').value = 50;
-                        document.getElementById('productivity').value = 50;
-                        document.getElementById('battery').value = 50;
-                        document.getElementById('budget').value = 1200;
-                        
-                        // Update display values
-                        document.getElementById('gaming-value').textContent = '50';
-                        document.getElementById('photo-value').textContent = '50';
-                        document.getElementById('productivity-value').textContent = '50';
-                        document.getElementById('battery-value').textContent = '50';
-                        
-                        // Uncheck all checkboxes
-                        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-                        
-                        // Hide results
-                        document.getElementById('results').style.display = 'none';
-                    });
-
-                    function calculateDeviceScore(device, usage, preferences, budget) {
-                        // Base performance score (weighted by usage)
-                        const performanceScore = (
-                            device.cpu_score * (usage.gaming * 0.4 + usage.productivity * 0.6) +
-                            device.gpu_score * usage.gaming +
-                            device.ai_score * (usage.photography * 0.3 + usage.productivity * 0.7)
-                        ) / 3;
-
-                        // Camera score weighted by photography usage
-                        const cameraScore = device.camera_score * (0.3 + usage.photography * 0.7);
-
-                        // Battery score weighted by battery priority
-                        const batteryScore = device.battery_score * (0.5 + usage.battery * 0.5);
-
-                        // Value score (performance per dollar)
-                        const valueScore = (performanceScore + cameraScore + batteryScore) / 3 * (2000 - device.price) / 2000 * 100;
-
-                        // Feature bonus
-                        let featureBonus = 0;
-                        if (preferences.premium_build && device.features.premium_build) featureBonus += 5;
-                        if (preferences.ai_features && device.features.ai_features) featureBonus += 10;
-                        if (preferences.wireless_charging && device.features.wireless_charging) featureBonus += 3;
-                        if (preferences.water_resistance && device.features.water_resistance) featureBonus += 2;
-
-                        // Budget penalty
-                        const budgetPenalty = device.price > budget ? (device.price - budget) / budget * 20 : 0;
-
-                        return {
-                            overall: Math.min(100, Math.max(0, (performanceScore + cameraScore + batteryScore) / 3 + featureBonus - budgetPenalty)),
-                            camera: Math.min(100, cameraScore),
-                            battery: Math.min(50, batteryScore),
-                            value: Math.min(100, Math.max(0, valueScore + featureBonus - budgetPenalty))
-                        };
-                    }
-
-                    function displayResults(score1, score2, name1, name2) {
-                        // Update score displays
-                        document.getElementById('overall-score').textContent = Math.round(score1.overall);
-                        document.getElementById('camera-score').textContent = Math.round(score1.camera);
-                        document.getElementById('battery-score').textContent = Math.round(score1.battery);
-                        document.getElementById('value-score').textContent = Math.round(score1.value);
-
-                        // Generate recommendation
-                        let recommendation = '';
-                        if (score1.overall > score2.overall) {
-                            recommendation = `Based on your preferences, the ${name1} is the recommended choice with an overall score of ${Math.round(score1.overall)}/100. `;
-                        } else {
-                            recommendation = `Based on your preferences, the ${name2} is the recommended choice with an overall score of ${Math.round(score2.overall)}/100. `;
-                        }
-
-                        if (score1.camera > 90) {
-                            recommendation += 'This device excels in photography with advanced computational features. ';
-                        }
-                        if (score1.battery > 30) {
-                            recommendation += 'Excellent battery life ensures all-day usage. ';
-                        }
-                        if (score1.value > 80) {
-                            recommendation += 'Outstanding value for money with premium features.';
-                        }
-
-                        document.getElementById('recommendation-text').textContent = recommendation;
-
-                        // Draw comparison chart
-                        drawComparisonChart(score1, score2, name1, name2);
-                    }
-
-                    function drawComparisonChart(score1, score2, name1, name2) {
-                        const canvas = document.getElementById('comparison-chart');
-                        const ctx = canvas.getContext('2d');
-                        
-                        // Clear canvas
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        
-                        const metrics = ['Overall', 'Camera', 'Battery', 'Value'];
-                        const values1 = [score1.overall, score1.camera, score1.battery, score1.value];
-                        const values2 = [score2.overall, score2.camera, score2.battery, score2.value];
-                        
-                        const barWidth = 30;
-                        const barSpacing = 60;
-                        const startX = 50;
-                        const maxHeight = 150;
-                        
-                        // Draw bars
-                        metrics.forEach((metric, i) => {
-                            const x = startX + i * barSpacing;
-                            const height1 = (values1[i] / 100) * maxHeight;
-                            const height2 = (values2[i] / 100) * maxHeight;
-                            
-                            // Device 1 bar
-                            ctx.fillStyle = '#0066ff';
-                            ctx.fillRect(x, canvas.height - height1 - 30, barWidth, height1);
-                            
-                            // Device 2 bar
-                            ctx.fillStyle = '#ff3366';
-                            ctx.fillRect(x + barWidth + 5, canvas.height - height2 - 30, barWidth, height2);
-                            
-                            // Metric labels
-                            ctx.fillStyle = '#000000';
-                            ctx.font = '12px Inter';
-                            ctx.textAlign = 'center';
-                            ctx.fillText(metric, x + barWidth, canvas.height - 10);
-                        });
-                        
-                        // Legend
-                        ctx.fillStyle = '#0066ff';
-                        ctx.fillRect(10, 10, 15, 15);
-                        ctx.fillStyle = '#000000';
-                        ctx.font = '12px Inter';
-                        ctx.textAlign = 'left';
-                        ctx.fillText(name1, 30, 22);
-                        
-                        ctx.fillStyle = '#ff3366';
-                        ctx.fillRect(10, 30, 15, 15);
-                        ctx.fillStyle = '#000000';
-                        ctx.fillText(name2, 30, 42);
-                    }
-        });
-    </script>
-</body>
-</html>
