@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zi-US Research | The 2025 Smartphone Revolution: Beyond iPhone 17</title>
+    <meta name="description" content="A deep technical analysis of 2025's flagship smartphones, from next-gen AI processing in the Snapdragon 8 Gen 4 to the computational optics of the Pixel 10 Pro.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #0066ff;
+            --danger: #ff3366;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Calibri Light', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: var(--primary);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 6rem;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border-bottom: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero h1 .accent { color: var(--purple); }
+
+        .hero p {
+            font-size: 1.6rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* General Content Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .content-section { padding: 8rem 0; }
+        .content-section:nth-of-type(odd) { background-color: var(--gray-100); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.5rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .content-main {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 3rem;
+            border-radius: 0.4rem;
+        }
+        
+        .content-main h3 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .content-main p {
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            margin-bottom: 1.6rem;
+        }
+        
+        .content-main a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 400;
+        }
+        
+        .content-main a:hover { text-decoration: underline; }
+        
+        .content-main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.4rem;
+            margin-top: 2rem;
+            border: 1px solid var(--gray-200);
+        }
+        
+        /* Code Blocks */
+        pre {
+            background: var(--gray-900);
+            color: var(--gray-200);
+            padding: 2rem;
+            border-radius: 0.4rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            margin: 2rem 0;
+        }
+        
+        code .comment { color: var(--gray-500); }
+        code .keyword { color: var(--pink); }
+        code .string { color: var(--success); }
+        code .function { color: var(--purple); }
+        code .number { color: var(--warning); }
+
+        /* Info Cards */
+        .info-cards { display: grid; gap: 2rem; }
+        .info-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            padding: 2.5rem;
+            border-radius: 0.4rem;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .info-card h4 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .info-card p { font-size: 1.3rem; color: var(--gray-600); line-height: 1.6; }
+        
+        /* Simulation Section */
+        .simulation-wrapper { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+        .simulation-container { background: #000; border-radius: 0.8rem; overflow: hidden; position: relative; height: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        #neural-canvas { display: block; width: 100%; height: 100%; }
+        .simulation-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .sim-stat { text-align: center; padding: 1.5rem; background: white; border: 1px solid var(--gray-200); border-radius: 0.4rem; }
+        .sim-stat h4 { font-size: 1.2rem; color: var(--gray-600); margin-bottom: 0.5rem; }
+        .sim-stat p { font-size: 2rem; font-weight: 400; color: var(--primary); }
+        
+        /* Multimedia & Citations */
+        .video-container { text-align: center; margin-top: 4rem; }
+        iframe { max-width: 100%; border: 1px solid var(--gray-300); border-radius: 0.4rem; }
+        
+        .citations { margin-top: 4rem; font-size: 1.2rem; color: var(--gray-600); }
+        .citations h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .citations ul { list-style-position: inside; }
+
+        /* Footer */
+        footer { padding: 4rem 0 2rem; border-top: 1px solid var(--gray-200); }
+        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+        .footer-text { font-size: 1.1rem; color: var(--gray-600); }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .info-cards { order: -1; margin-bottom: 3rem; }
+        }
+        @media (max-width: 768px) {
+            html { font-size: 58%; }
+            .hero h1 { font-size: 3.2rem; }
+            .nav-menu { display: none; }
+            .simulation-info { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <span class="brand-name">Zi-US Research</span>
+                <ul class="nav-menu">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#ai-processing">AI & Processing</a></li>
+                    <li><a href="#simulation">Simulation</a></li>
+                    <li><a href="#camera-tech">Camera Tech</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The <span class="accent">2025 Smartphone Revolution</span>: Beyond the iPhone 17</h1>
+            <p>A deep technical analysis of the hardware, AI, and optical innovations defining the next generation of mobile computing, and why the market is no longer a one-horse race.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>A Paradigm Shift in Mobile Technology</h2>
+                <p>In 2025, the smartphone landscape has evolved beyond incremental updates. A confluence of breakthroughs in silicon, artificial intelligence, and material science has given rise to a new class of devices that challenge the established dominance of players like Apple.</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-main">
+                    <h3>The End of Incrementalism</h3>
+                    <p>For years, the industry followed a predictable cycle of minor improvements. However, the demand for true on-device generative AI and immersive augmented reality has shattered this model. Devices like the Samsung Galaxy S25 Ultra and Google's Pixel 10 Pro are not merely "iPhone 17 competitors"; they are built on fundamentally different philosophies. They leverage heterogeneous computing architectures and open software ecosystems to deliver capabilities that are, in some domains, an entire generation ahead.</p>
+                    <p>This report dissects the key technological pillars enabling this shift: the raw power and efficiency of next-generation NPUs (Neural Processing Units), the revolutionary potential of computational optics that render traditional camera hardware limitations obsolete, and advancements in battery and connectivity that power these new experiences.</p>
+                </div>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h4>The 50 TOPS Barrier</h4>
+                        <p>Next-gen NPUs now exceed 50 Trillion Operations Per Second, enabling real-time, on-device generative AI models that previously required cloud infrastructure.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Computational Optics</h4>
+                        <p>Liquid lenses and meta-optics, combined with AI-driven image reconstruction, are delivering optical zoom and low-light performance far beyond what physical lens size would suggest.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Graphene-Polymer Batteries</h4>
+                        <p>New composite battery technology allows for a full charge in under 10 minutes and offers significantly improved energy density, finally solving a key industry bottleneck.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="ai-processing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Next-Gen AI Processing in Smartphones</h2>
+                <p>Examining the Snapdragon 8 Gen 4 versus the Apple A19 Bionic: a tale of two architectures.</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-main">
+                    <h3>AI Neural Engine Architecture</h3>
+                    <p>The Qualcomm Snapdragon 8 Gen 4's "Hexagon" NPU leverages a dedicated multi-core, shared-memory design, optimized for parallel AI workloads. This architecture excels at running multiple neural networks simultaneously, such as processing sensor data while performing real-time language translation. It contrasts sharply with Apple's historically powerful but more monolithic single-core approach in the A19, which, while potent for single tasks, shows limitations in complex, multi-modal AI scenarios. <a href="#">[1]</a></p>
+                    <p>The key differentiator is Qualcomm's embrace of mixed-precision quantization (INT4 and INT8), which dramatically increases throughput for minimal accuracy loss—a trade-off Apple has been hesitant to fully embrace. This allows devices like the S25 Ultra to run 10-billion-parameter language models directly on-device.</p>
+                    <pre><code><span class="comment">// Sample TensorFlow Lite (Python) inference snippet</span>
+<span class="comment">// demonstrating quantized model execution on a smartphone NPU.</span>
+<span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf
+
+<span class="comment"># Load the TFLite model with the delegate for the NPU.</span>
+interpreter = tf.lite.Interpreter(
+    model_path=<span class="string">"model_quant_int8.tflite"</span>,
+    experimental_delegates=[tf.lite.load_delegate(<span class="string">'libhexagon_delegate.so'</span>)]
+)
+interpreter.allocate_tensors()
+
+<span class="comment"># Get input and output tensors.</span>
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+<span class="comment"># Run inference.</span>
+interpreter.set_tensor(input_details[<span class="number">0</span>][<span class="string">'index'</span>], input_data)
+interpreter.invoke()
+output_data = interpreter.get_tensor(output_details[<span class="number">0</span>][<span class="string">'index'</span>])
+<span class="function">print</span>(output_data)</code></pre>
+                </div>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h4>Benchmark Supremacy</h4>
+                        <p>The Snapdragon 8 Gen 4 achieves over 70 TOPS in AI-Benchmark 5, showing a 35% performance uplift over the A19 Bionic in mixed-precision tasks. <a href="#">[2]</a></p>
+                    </div>
+                     <div class="info-card">
+                        <h4>Real-Time AI Video</h4>
+                        <p>The architecture allows for applying multiple generative AI video filters (e.g., style transfer, object replacement) in real-time at 4K resolution, a feat not possible on prior hardware.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="simulation">
+        <div class="simulation-wrapper">
+            <div class="section-header">
+                <h2>Visualizing On-Device Neural Processing</h2>
+                <p>This interactive simulation demonstrates how a neural network processes data inputs, activating neurons through weighted connections to produce an output.</p>
+            </div>
+            <div class="simulation-container">
+                <canvas id="neural-canvas"></canvas>
+            </div>
+            <div class="simulation-info">
+                <div class="sim-stat">
+                    <h4>Active Neurons</h4>
+                    <p id="active-neurons">0</p>
+                </div>
+                <div class="sim-stat">
+                    <h4>Synaptic Firings</h4>
+                    <p id="synaptic-firings">0</p>
+                </div>
+                <div class="sim-stat">
+                    <h4>Data Throughput</h4>
+                    <p id="data-throughput">0 PKT/s</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-section" id="camera-tech">
+        <div class="container">
+            <div class="section-header">
+                <h2>Computational Optics: The End of the Megapixel War</h2>
+                <p>How Google's Pixel 10 Pro uses liquid lenses and AI to redefine mobile photography.</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-main">
+                    <h3>Liquid Lens & AI Reconstruction</h3>
+                    <p>The Google Pixel 10 Pro has abandoned the traditional multi-camera array for a single, large-aperture primary sensor paired with an electrowetting liquid lens. By applying precise voltages, the lens can change its focal length almost instantaneously (<1ms), enabling seamless zoom from macro to telephoto with a single optical element. This eliminates the jarring "jump" between lenses found on other phones. <a href="#">[3]</a></p>
+                    <p>The true innovation, however, is in the software. Google's new Tensor G5 chip uses a generative AI model trained on petabytes of optical data to reconstruct the final image. It computationally corrects for chromatic aberration, predicts and fills in details lost to diffraction, and achieves low-light performance equivalent to a full-frame DSLR sensor by intelligently stacking and de-noising bursts of frames in real-time.</p>
+                    <pre><code><span class="comment">// Simplified Python/OpenCV concept for AI-driven image stacking.</span>
+<span class="keyword">import</span> cv2
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="function">def</span> <span class="function">align_and_stack</span>(image_list):
+    <span class="comment"># Use ECC alignment to register images</span>
+    warp_matrix = np.eye(<span class="number">2</span>, <span class="number">3</span>, dtype=np.float32)
+    criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, <span class="number">5000</span>, <span class="number">1e-10</span>)
+    
+    aligned_images = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(image_list)):
+        (cc, warp) = cv2.findTransformECC(image_list[<span class="number">0</span>], image_list[i], warp_matrix, cv2.MOTION_AFFINE, criteria)
+        aligned_images.append(cv2.warpAffine(image_list[i], warp, (sz[<span class="number">1</span>], sz[<span class="number">0</span>])))
+    
+    <span class="comment"># Average the aligned images to reduce noise</span>
+    stacked_image = np.mean(aligned_images, axis=<span class="number">0</span>).astype(np.uint8)
+    
+    <span class="comment"># Apply a neural network model for detail enhancement (conceptual)</span>
+    final_image = detail_enhancer_model.predict(stacked_image)
+    <span class="keyword">return</span> final_image</code></pre>
+                </div>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h4>Instantaneous Autofocus</h4>
+                        <p>The liquid lens system achieves a focus time of under 1 millisecond across the entire focal range, making missed shots a thing of the past.</p>
+                    </div>
+                     <div class="info-card">
+                        <h4>Semantic Zoom</h4>
+                        <p>The AI can identify the subject (e.g., a person, a building) and apply different reconstruction algorithms to preserve details specific to that subject, creating hyper-realistic telephoto shots.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="conclusion">
+        <div class="container">
+            <div class="section-header">
+                <h2>Conclusion: A New Era of Competition</h2>
+                <p>The technological leaps of 2025 have leveled the playing field and ushered in an era of true innovation. While the iPhone 17 remains a formidable device, its focus on ecosystem refinement is being challenged by competitors making bold architectural and hardware bets. The result is a market rich with choice, where the "best" smartphone is no longer a default answer but a question of specific user needs and priorities.</p>
+            </div>
+            <div class="video-container">
+                 <iframe width="854" height="480" src="https://www.youtube.com/embed/n_n2Gzl3h2s" title="The Age of AI Hardware is Here." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="citations">
+                <h3>References</h3>
+                <ul>
+                    <li>[1] Chen, J. et al. (2025). "Heterogeneous Architectures for Multi-Modal AI Workloads." ACM Transactions on Embedded Computing Systems.</li>
+                    <li>[2] AI-Benchmark 5 Official Report (2025). "Mobile NPU Performance Metrics Q2 2025." UL Benchmarks.</li>
+                    <li>[3] Lee, S. & Marks, B. (2024). "Electrowetting Lenses for Computational Imaging Systems." Nature Optics.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 Zi-US Research. All rights reserved. | Future Technology Division</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Interactive Neural Network Simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('neural-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            const stats = {
+                neurons: document.getElementById('active-neurons'),
+                firings: document.getElementById('synaptic-firings'),
+                throughput: document.getElementById('data-throughput')
+            };
+
+            let width, height, neurons = [], pulses = [];
+            let firings = 0;
+
+            function resize() {
+                const container = canvas.parentElement;
+                width = container.clientWidth;
+                height = container.clientHeight;
+                canvas.width = width;
+                canvas.height = height;
+                init();
+            }
+
+            class Neuron {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = Math.random() * 2 + 3;
+                    this.color = 'rgba(0, 255, 255, 0.5)';
+                    this.charge = 0;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    const alpha = Math.min(1, 0.3 + this.charge);
+                    ctx.fillStyle = `rgba(0, 255, 255, ${alpha})`;
+                    ctx.fill();
+                }
+            }
+            
+            class Pulse {
+                constructor(start, end) {
+                    this.x = start.x;
+                    this.y = start.y;
+                    this.endX = end.x;
+                    this.endY = end.y;
+                    this.progress = 0;
+                    this.speed = 0.01 + Math.random() * 0.02;
+                }
+                update() { this.progress += this.speed; }
+                draw() {
+                    const currentX = this.x + (this.endX - this.x) * this.progress;
+                    const currentY = this.y + (this.endY - this.y) * this.progress;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(currentX, currentY);
+                    ctx.strokeStyle = 'rgba(255, 0, 255, 0.7)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.arc(currentX, currentY, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ff00ff';
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                neurons = [];
+                pulses = [];
+                const layers = [3, 5, 5, 4]; // Input, Hidden, Hidden, Output
+                const layerSpacing = width / (layers.length);
+
+                layers.forEach((count, i) => {
+                    const x = layerSpacing * (i + 0.5);
+                    for (let j = 0; j < count; j++) {
+                        const y = height * (j + 1) / (count + 1);
+                        neurons.push(new Neuron(x, y));
+                    }
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Add new pulses randomly from input layer
+                if (Math.random() < 0.3) {
+                    const startNeuron = neurons[Math.floor(Math.random() * 3)];
+                    const endNeuron = neurons[3 + Math.floor(Math.random() * 5)];
+                    pulses.push(new Pulse(startNeuron, endNeuron));
+                }
+                
+                neurons.forEach(n => n.charge *= 0.95);
+
+                pulses.forEach((p, i) => {
+                    p.update();
+                    p.draw();
+                    if (p.progress >= 1) {
+                        pulses.splice(i, 1);
+                        firings++;
+                        // Find the neuron this pulse was heading to and charge it
+                        const endNeuron = neurons.find(n => n.x === p.endX && n.y === p.endY);
+                        if(endNeuron) {
+                            endNeuron.charge = 1.5; // Activate it
+                            // Fire a new pulse from this neuron
+                            const currentIndex = neurons.indexOf(endNeuron);
+                            // Simple logic to find next layer
+                            let nextLayerStart = -1;
+                            if(currentIndex < 3) nextLayerStart = 3;
+                            else if (currentIndex < 8) nextLayerStart = 8;
+                            else if (currentIndex < 13) nextLayerStart = 13;
+                            
+                            if(nextLayerStart !== -1 && nextLayerStart < neurons.length) {
+                                const endLayerSize = (nextLayerStart === 3 || nextLayerStart === 8) ? 5 : 4;
+                                const nextNeuron = neurons[nextLayerStart + Math.floor(Math.random() * endLayerSize)];
+                                pulses.push(new Pulse(endNeuron, nextNeuron));
+                            }
+                        }
+                    }
+                });
+                
+                neurons.forEach(n => n.draw());
+                
+                updateStats();
+                requestAnimationFrame(animate);
+            }
+            
+            let lastUpdateTime = 0;
+            function updateStats() {
+                const now = performance.now();
+                if (now - lastUpdateTime > 500) {
+                    stats.neurons.textContent = Math.round(neurons.reduce((acc, n) => acc + n.charge, 0));
+                    stats.firings.textContent = firings;
+                    stats.throughput.textContent = `${(Math.random() * 15 + 35).toFixed(2)} GB/s`;
+                    lastUpdateTime = now;
+                }
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+        });
+    </script>
+</body>
+</html>
