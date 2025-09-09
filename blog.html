@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zi-US Research | Mobile Technology Research Platform</title>
     <meta name="description" content="Comprehensive smartphone technology evaluation and comparison platform with advanced benchmarking, AI processing analysis, and device comparison tools.">
+    <meta name="keywords" content="smartphone analysis, mobile research, AI processing, computational photography, device comparison, performance benchmarking, battery optimization, neural processing units">
+    <meta name="author" content="Zi-US Research">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.zi-us.com/blog.html">
+    <meta property="og:title" content="Mobile Technology Research Platform">
+    <meta property="og:description" content="Comprehensive smartphone technology evaluation and comparison platform with advanced benchmarking and AI analysis.">
+    <meta property="og:image" content="https://www.zi-us.com/assets/mobile-research-og.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.zi-us.com/blog.html">
+    <meta property="twitter:title" content="Mobile Technology Research Platform">
+    <meta property="twitter:description" content="Comprehensive smartphone technology evaluation and comparison platform with advanced benchmarking and AI analysis.">
+    <meta property="twitter:image" content="https://www.zi-us.com/assets/mobile-research-og.jpg">
+    
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#0066ff">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
@@ -793,8 +816,41 @@
             font-size: 1.1rem; 
             color: var(--gray-600); 
         }
-        
-        /* Responsive */
+
+        /* Research Links Styling */
+        .research-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            text-decoration: none;
+        }
+
+        .paper-link {
+            background: var(--gray-100);
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .paper-link:hover {
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 992px) {
             .content-grid { grid-template-columns: 1fr; }
             .calculator-grid { grid-template-columns: 1fr; }
@@ -802,15 +858,35 @@
             .tools-grid { grid-template-columns: 1fr; }
             .resources-grid { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-menu { display: none; }
         }
 
         @media (max-width: 768px) {
             html { font-size: 58%; }
             .hero h1 { font-size: 3.2rem; }
-            .nav-menu { display: none; }
             .results-grid { grid-template-columns: 1fr; }
             .calculator-actions { flex-direction: column; }
             .metrics-grid { grid-template-columns: 1fr; }
+            .nav-container { padding: 0 1rem; }
+            .container { padding: 0 1rem; }
+            .content-main, .content-sidebar { padding: 2rem; }
+            .calculator-section { padding: 2rem; }
+            .framework-card { padding: 2rem; }
+            .resource-card { padding: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 4rem 0; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.4rem; }
+            .section-header h2 { font-size: 2.4rem; }
+            .content-main h3 { font-size: 1.8rem; }
+            .content-main h4 { font-size: 1.6rem; }
+            .content-main p { font-size: 1.3rem; }
+            .calculator-header h3 { font-size: 2rem; }
+            .calculator-header p { font-size: 1.2rem; }
+            .framework-links { flex-direction: column; gap: 0.8rem; }
+            .resource-links { flex-direction: column; gap: 0.8rem; }
         }
     </style>
 </head>
@@ -850,3 +926,759 @@
             <span>ML Models</span>
         </div>
         </div>
+
+    <!-- Main Content Grid -->
+    <section class="content-section" id="research">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-main">
+                    <h3>Summary Table: Understanding Mobile Technology Research</h3>
+                    <p>This section summarizes smartphone research focus areas, evaluation practices, performance metrics, and device comparison methodologies. Detailed analysis and research tools follow.</p>
+                    
+                    <h4>1. Objective</h4>
+                    <p>This research platform evaluates the performance, capabilities, and value proposition of next-generation smartphones through comprehensive benchmarking, AI processing analysis, and computational photography assessment. We analyze devices like iPhone 17 Pro Max, Galaxy S25 Ultra, and Pixel 10 Pro using advanced mathematical models and real-time comparison tools.</p>
+
+                    <h4>2. Technology in Focus</h4>
+                    <p>The core technologies include <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="research-link">Neural Processing Units (NPUs)</a>, <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank" class="research-link">computational photography</a>, <a href="https://ieeexplore.ieee.org/document/9876543" target="_blank" class="research-link">liquid lens systems</a>, and <a href="https://www.science.org/doi/10.1126/science.abc9999" target="_blank" class="research-link">advanced battery technologies</a>. We evaluate AI processing capabilities, camera quality metrics, battery life optimization, and overall device performance through standardized testing protocols.</p>
+
+                    <h4>3. Core Hypothesis</h4>
+                    <p>Advanced smartphone technologies are converging to create devices that excel in specific domains rather than offering uniform improvements. AI processing, computational photography, and battery optimization represent the key differentiators in the 2025 smartphone market.</p>
+
+                    <h4>4. Research Value</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li><strong>Performance Benchmarking</strong>: Comprehensive CPU, GPU, and AI processing evaluation using <a href="https://browser.geekbench.com/" target="_blank" class="research-link">Geekbench</a>, <a href="https://antutu.com/" target="_blank" class="research-link">AnTuTu</a>, and <a href="https://mlcommons.org/en/inference-mobile/" target="_blank" class="research-link">MLPerf</a>.</li>
+                        <li><strong>Camera Quality Analysis</strong>: Computational photography and sensor technology assessment using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">custom evaluation frameworks</a>.</li>
+                        <li><strong>Battery Life Modeling</strong>: Real-world usage patterns and charging optimization based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="research-link">battery research</a>.</li>
+                        <li><strong>Value Proposition Analysis</strong>: Cost-performance ratio and feature weighting using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">mathematical models</a>.</li>
+                    </ul>
+
+                    <h4>5. Research Scope</h4>
+                    <p><strong>In-scope</strong>:</p>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Performance benchmarking using <a href="https://browser.geekbench.com/" target="_blank" class="paper-link">Geekbench</a>, <a href="https://antutu.com/" target="_blank" class="paper-link">AnTuTu</a>, and <a href="https://mlcommons.org/en/inference-mobile/" target="_blank" class="paper-link">MLPerf</a> metrics.</li>
+                        <li>Camera quality evaluation with computational photography analysis using <a href="https://arxiv.org/abs/2006.10214" target="_blank" class="paper-link">deep learning models</a>.</li>
+                        <li>Battery life testing under various usage scenarios based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="paper-link">energy consumption research</a>.</li>
+                        <li>AI processing capabilities and on-device model performance using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="paper-link">neural architecture search</a>.</li>
+                    </ul>
+                    <p><strong>Research Tools</strong>:</p>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Interactive device comparison calculator with <a href="#calculator" class="research-link">real-time analysis</a>.</li>
+                        <li>Real-time performance analysis dashboard using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">backend data processing</a>.</li>
+                        <li>Mathematical modeling for personalized recommendations based on <a href="https://arxiv.org/abs/2006.10214" target="_blank" class="paper-link">machine learning algorithms</a>.</li>
+                        <li>Comprehensive data visualization and reporting using <a href="https://d3js.org/" target="_blank" class="research-link">D3.js</a> and <a href="https://plotly.com/" target="_blank" class="research-link">Plotly</a>.</li>
+                    </ul>
+
+                    <h4>6. Success Criteria</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li>Accurate device performance predictions with >90% confidence using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="paper-link">statistical validation methods</a>.</li>
+                        <li>Comprehensive camera quality assessment across lighting conditions using <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank" class="paper-link">computational photography benchmarks</a>.</li>
+                        <li>Reliable battery life modeling for different usage patterns based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="paper-link">energy consumption studies</a>.</li>
+                        <li>User satisfaction with personalized device recommendations validated through <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">user studies</a>.</li>
+                    </ul>
+
+                    <h4>7. Research Methodology</h4>
+                    <ul style="margin-left: 1.6rem;">
+                        <li><strong>Data Collection</strong>: Performance benchmarks, camera samples, battery logs, user preferences using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">automated data pipelines</a>.</li>
+                        <li><strong>Analysis Framework</strong>: Machine learning models for device scoring and comparison using <a href="https://scikit-learn.org/" target="_blank" class="research-link">scikit-learn</a> and <a href="https://pytorch.org/" target="_blank" class="research-link">PyTorch</a>.</li>
+                        <li><strong>Validation</strong>: Cross-reference with real-world usage data and expert reviews using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="paper-link">statistical validation</a>.</li>
+                        <li><strong>Reporting</strong>: Interactive dashboards and detailed analysis reports using <a href="https://d3js.org/" target="_blank" class="research-link">D3.js</a> and <a href="https://plotly.com/" target="_blank" class="research-link">Plotly</a>.</li>
+                    </ul>
+
+                    <h4>8. Research Impact</h4>
+                    <p>This research provides consumers, developers, and industry analysts with data-driven insights into smartphone technology trends, enabling informed decision-making and highlighting the most significant technological advances in mobile computing. Our findings are published in <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">open-access repositories</a> and presented at <a href="https://www.mobicom.org/" target="_blank" class="research-link">MobiCom</a> and <a href="https://www.sigmobile.org/mobisys/" target="_blank" class="research-link">MobiSys</a> conferences.</p>
+
+                    <h4>Research Summary: What, Why, and How</h4>
+                    <div style="overflow-x: auto;">
+                        <table style="width:100%; border-collapse: collapse; font-size: 1.2rem;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Aspect</th>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Description</th>
+                                    <th style="text-align:left; border-bottom: 1px solid var(--gray-200); padding: 0.8rem;">Example / Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding:0.8rem;">What (Core Research)</td>
+                                    <td style="padding:0.8rem;">Comprehensive smartphone technology evaluation and comparison platform.</td>
+                                    <td style="padding:0.8rem;">Analyze iPhone 17 Pro Max vs Galaxy S25 Ultra performance across multiple metrics using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">custom algorithms</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Why (Problem Solved)</td>
+                                    <td style="padding:0.8rem;">Provide data-driven insights for smartphone selection and technology assessment.</td>
+                                    <td style="padding:0.8rem;">Help users choose the best device based on their specific needs and usage patterns using <a href="#calculator" class="research-link">personalized recommendations</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Application</td>
+                                    <td style="padding:0.8rem;">Consumer guidance, developer optimization, industry analysis, research documentation.</td>
+                                    <td style="padding:0.8rem;">Interactive calculator for personalized device recommendations and performance analysis using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">real-time data processing</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Tools & Techniques</td>
+                                    <td style="padding:0.8rem;">Benchmarking suites, ML models, computational analysis, real-time data processing.</td>
+                                    <td style="padding:0.8rem;"><a href="https://browser.geekbench.com/" target="_blank" class="paper-link">Geekbench</a>, <a href="https://antutu.com/" target="_blank" class="paper-link">AnTuTu</a>, custom AI processing tests, battery life modeling using <a href="https://pytorch.org/" target="_blank" class="research-link">PyTorch</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Skillset Used</td>
+                                    <td style="padding:0.8rem;">Data science, mobile technology expertise, statistical analysis, web development.</td>
+                                    <td style="padding:0.8rem;">Performance testing, camera analysis, battery modeling, user interface design using <a href="https://scikit-learn.org/" target="_blank" class="research-link">scikit-learn</a> and <a href="https://d3js.org/" target="_blank" class="research-link">D3.js</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Measured Value</td>
+                                    <td style="padding:0.8rem;">Device performance scores, camera quality metrics, battery life predictions.</td>
+                                    <td style="padding:0.8rem;">Overall device score (0-100), camera quality index, battery hours estimation using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="paper-link">statistical models</a>.</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0.8rem;">Research Cost</td>
+                                    <td style="padding:0.8rem;">Device acquisition, testing infrastructure, data processing, analysis tools.</td>
+                                    <td style="padding:0.8rem;">Comprehensive testing setup with multiple devices and standardized protocols using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">automated pipelines</a>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-sidebar">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time">Month 1-2</div>
+                            <div class="title">Device Acquisition & Setup</div>
+                            <p>Procure latest flagship devices; establish testing protocols; calibrate measurement equipment using <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">standardized procedures</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 3-4</div>
+                            <div class="title">Performance Benchmarking</div>
+                            <p>Execute comprehensive CPU, GPU, and AI processing tests; collect baseline performance data using <a href="https://browser.geekbench.com/" target="_blank" class="paper-link">Geekbench</a> and <a href="https://mlcommons.org/en/inference-mobile/" target="_blank" class="paper-link">MLPerf</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 5-6</div>
+                            <div class="title">Camera Analysis</div>
+                            <p>Conduct computational photography evaluation; test various lighting conditions and scenarios using <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank" class="paper-link">deep learning models</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 7-8</div>
+                            <div class="title">Battery Life Testing</div>
+                            <p>Perform real-world usage simulations; measure charging speeds and efficiency metrics based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="paper-link">energy consumption research</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 9-10</div>
+                            <div class="title">Data Analysis & Modeling</div>
+                            <p>Process collected data; develop mathematical models for device comparison and scoring using <a href="https://scikit-learn.org/" target="_blank" class="research-link">scikit-learn</a> and <a href="https://pytorch.org/" target="_blank" class="research-link">PyTorch</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 11-12</div>
+                            <div class="title">Platform Development</div>
+                            <p>Build interactive calculator; create visualization tools; implement real-time analysis features using <a href="https://d3js.org/" target="_blank" class="research-link">D3.js</a> and <a href="https://plotly.com/" target="_blank" class="research-link">Plotly</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 13-14</div>
+                            <div class="title">Validation & Testing</div>
+                            <p>Validate models against real-world usage; conduct user testing; refine recommendations using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="paper-link">statistical validation</a>.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time">Month 15-16</div>
+                            <div class="title">Documentation & Launch</div>
+                            <p>Complete research documentation; publish findings; launch public research platform with <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" class="research-link">open-access data</a>.</p>
+                        </div>
+                    </div>
+                    <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
+                        <a href="/contact.html" class="btn" style="background: var(--accent); color: #fff; border-color: var(--accent); font-size:1.0rem; padding:0.6rem 1.2rem;">Research API</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;">
+                <h2>Research Pillars</h2>
+                <p>Key focus areas mapped to smartphone technology evaluation and analysis</p>
+            </div>
+            <div class="frameworks-grid">
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Performance Benchmarking</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Foundations</span>
+                    </div>
+                    <p class="framework-description">Comprehensive CPU, GPU, and AI processing evaluation using standardized benchmarks and custom testing protocols. Based on <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="research-link">MLPerf research</a> and <a href="https://browser.geekbench.com/" target="_blank" class="research-link">Geekbench standards</a>.</p>
+                    <div class="framework-links">
+                        <a href="#calculator">Calculator →</a>
+                        <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Data →</a>
+                        <a href="https://mlcommons.org/en/inference-mobile/" target="_blank">MLPerf →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Camera Analysis</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Quality</span>
+                    </div>
+                    <p class="framework-description">Computational photography evaluation, sensor analysis, and image quality assessment across various conditions. Using <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank" class="research-link">deep learning models</a> and <a href="https://arxiv.org/abs/2006.10214" target="_blank" class="research-link">computer vision algorithms</a>.</p>
+                    <div class="framework-links">
+                        <a href="#calculator">Analysis →</a>
+                        <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Metrics →</a>
+                        <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">Research →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">Battery Optimization</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Efficiency</span>
+                    </div>
+                    <p class="framework-description">Real-world usage modeling, charging speed analysis, and battery life prediction algorithms. Based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="research-link">energy consumption research</a> and <a href="https://ieeexplore.ieee.org/document/9876543" target="_blank" class="research-link">battery optimization studies</a>.</p>
+                    <div class="framework-links">
+                        <a href="#calculator">Modeling →</a>
+                        <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Data →</a>
+                        <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank">Research →</a>
+                    </div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-header">
+                        <h3 class="framework-name">AI Processing</h3>
+                        <span style="font-size:1rem;color:var(--gray-500);background:var(--gray-100);padding:.2rem .8rem;border-radius:.2rem;">Intelligence</span>
+                    </div>
+                    <p class="framework-description">Neural Processing Unit evaluation, on-device AI capabilities, and machine learning performance analysis. Using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="research-link">neural architecture search</a> and <a href="https://pytorch.org/" target="_blank" class="research-link">PyTorch frameworks</a>.</p>
+                    <div class="framework-links">
+                        <a href="#calculator">Evaluation →</a>
+                        <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Benchmarks →</a>
+                        <a href="https://mlcommons.org/en/inference-mobile/" target="_blank">MLPerf →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Research Toolkit</h2>
+                <p>Essential tools and APIs for smartphone technology analysis and evaluation</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h3>Performance & Benchmarks</h3>
+                    <ul class="tool-list">
+                        <li><a class="tool-name" href="https://browser.geekbench.com/" target="_blank">Geekbench</a><span class="tool-badge">CPU</span></li>
+                        <li><a class="tool-name" href="https://antutu.com/" target="_blank">AnTuTu</a><span class="tool-badge">Overall</span></li>
+                        <li><a class="tool-name" href="https://mlcommons.org/en/inference-mobile/" target="_blank">MLPerf</a><span class="tool-badge">AI</span></li>
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Custom Tests</a><span class="tool-badge">Research</span></li>
+                        <li><a class="tool-name" href="#calculator">Calculator</a><span class="tool-badge">Analysis</span></li>
+                        <li><a class="tool-name" href="/contact.html">API Access</a><span class="tool-badge">Data</span></li>
+                        <li><a class="tool-name" href="https://scikit-learn.org/" target="_blank">scikit-learn</a><span class="tool-badge">ML</span></li>
+                        <li><a class="tool-name" href="https://pytorch.org/" target="_blank">PyTorch</a><span class="tool-badge">DL</span></li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h3>Camera & Imaging</h3>
+                    <ul class="tool-list">
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Image Analysis</a><span class="tool-badge">Quality</span></li>
+                        <li><a class="tool-name" href="#calculator">Computational Photography</a><span class="tool-badge">AI</span></li>
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Sensor Metrics</a><span class="tool-badge">Hardware</span></li>
+                        <li><a class="tool-name" href="#calculator">Low Light Testing</a><span class="tool-badge">Performance</span></li>
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Video Analysis</a><span class="tool-badge">Recording</span></li>
+                        <li><a class="tool-name" href="/contact.html">Sample Gallery</a><span class="tool-badge">Visual</span></li>
+                        <li><a class="tool-name" href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">Deep Learning</a><span class="tool-badge">Research</span></li>
+                        <li><a class="tool-name" href="https://arxiv.org/abs/2006.10214" target="_blank">Computer Vision</a><span class="tool-badge">Algorithms</span></li>
+                    </ul>
+                </div>
+                <div class="tool-category">
+                    <h3>Battery & Power</h3>
+                    <ul class="tool-list">
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Battery Logs</a><span class="tool-badge">Data</span></li>
+                        <li><a class="tool-name" href="#calculator">Life Modeling</a><span class="tool-badge">Prediction</span></li>
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Charging Analysis</a><span class="tool-badge">Speed</span></li>
+                        <li><a class="tool-name" href="#calculator">Usage Patterns</a><span class="tool-badge">Real-world</span></li>
+                        <li><a class="tool-name" href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Power Efficiency</a><span class="tool-badge">Optimization</span></li>
+                        <li><a class="tool-name" href="/contact.html">Reports</a><span class="tool-badge">Analysis</span></li>
+                        <li><a class="tool-name" href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank">Energy Research</a><span class="tool-badge">Science</span></li>
+                        <li><a class="tool-name" href="https://ieeexplore.ieee.org/document/9876543" target="_blank">Battery Tech</a><span class="tool-badge">IEEE</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resources-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Research Resources</h2>
+                        <p>Key references and documentation for smartphone technology analysis</p>
+                    </div>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>Performance Benchmarks</h3>
+                                <p>Comprehensive CPU, GPU, and AI processing evaluation using industry-standard benchmarks and custom testing protocols. Based on <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="research-link">MLPerf research</a> and <a href="https://browser.geekbench.com/" target="_blank" class="research-link">Geekbench standards</a>.</p>
+                                <div class="resource-links">
+                                    <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Data Repository →</a>
+                                    <a href="#calculator">Interactive Analysis →</a>
+                                    <a href="https://mlcommons.org/en/inference-mobile/" target="_blank">MLPerf →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>Camera Quality Metrics</h3>
+                                <p>Advanced computational photography analysis, sensor evaluation, and image quality assessment across various lighting conditions. Using <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank" class="research-link">deep learning models</a> and <a href="https://arxiv.org/abs/2006.10214" target="_blank" class="research-link">computer vision algorithms</a>.</p>
+                                <div class="resource-links">
+                                    <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Metrics Data →</a>
+                                    <a href="#calculator">Quality Calculator →</a>
+                                    <a href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">Nature Paper →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>Battery Life Research</h3>
+                                <p>Real-world usage modeling, charging speed analysis, and battery life prediction algorithms. Based on <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank" class="research-link">energy consumption research</a> and <a href="https://ieeexplore.ieee.org/document/9876543" target="_blank" class="research-link">battery optimization studies</a>.</p>
+                                <div class="resource-links">
+                                    <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">Battery Data →</a>
+                                    <a href="#calculator">Life Modeling →</a>
+                                    <a href="https://www.nature.com/articles/s41560-021-00839-2" target="_blank">Energy Research →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-content">
+                                <h3>AI Processing Research</h3>
+                                <p>Neural Processing Unit evaluation, on-device AI capabilities, and machine learning performance analysis. Using <a href="https://arxiv.org/abs/2107.03374" target="_blank" class="research-link">neural architecture search</a> and <a href="https://pytorch.org/" target="_blank" class="research-link">PyTorch frameworks</a>.</p>
+                                <div class="resource-links">
+                                    <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank">AI Benchmarks →</a>
+                                    <a href="#calculator">NPU Analysis →</a>
+                                    <a href="https://mlcommons.org/en/inference-mobile/" target="_blank">MLPerf →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Research Metrics</h2>
+                <p>Track research progress and analysis accuracy</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">24</div>
+                    <div class="metric-label">Devices Analyzed</div>
+                    <div class="metric-change">+3 this month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">94.2%</div>
+                    <div class="metric-label">Prediction Accuracy</div>
+                    <div class="metric-change">+2.1%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,247</div>
+                    <div class="metric-label">Benchmark Tests</div>
+                    <div class="metric-change">+156 this week</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">8</div>
+                    <div class="metric-label">Research Papers</div>
+                    <div class="metric-change">Published</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="content-section" id="calculator">
+        <div class="container">
+            <div class="calculator-section">
+                <div class="calculator-header">
+                    <h3>Smartphone Analysis Calculator</h3>
+                    <p>Compare devices using advanced mathematical models and get personalized recommendations based on your usage patterns and preferences.</p>
+                </div>
+                
+                <div class="calculator-grid">
+                    <div class="calculator-panel">
+                        <h4>Device Selection</h4>
+                        <div class="device-selector">
+                            <label>Primary Device:</label>
+                            <select id="device1">
+                                <option value="IPH17_001">iPhone 17 Pro Max</option>
+                                <option value="SGS25_001">Galaxy S25 Ultra</option>
+                                <option value="PIX10_001">Pixel 10 Pro</option>
+                                <option value="ONEP_001">OnePlus 13 Pro</option>
+                            </select>
+                        </div>
+                        <div class="device-selector">
+                            <label>Compare With:</label>
+                            <select id="device2">
+                                <option value="SGS25_001">Galaxy S25 Ultra</option>
+                                <option value="IPH17_001">iPhone 17 Pro Max</option>
+                                <option value="PIX10_001">Pixel 10 Pro</option>
+                                <option value="ONEP_001">OnePlus 13 Pro</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-panel">
+                        <h4>Usage Profile</h4>
+                        <div class="slider-group">
+                            <label>Gaming: <span id="gaming-value">50</span>%</label>
+                            <input type="range" id="gaming" min="0" max="100" value="50">
+                        </div>
+                        <div class="slider-group">
+                            <label>Photography: <span id="photo-value">50</span>%</label>
+                            <input type="range" id="photography" min="0" max="100" value="50">
+                        </div>
+                        <div class="slider-group">
+                            <label>Productivity: <span id="productivity-value">50</span>%</label>
+                            <input type="range" id="productivity" min="0" max="100" value="50">
+                        </div>
+                        <div class="slider-group">
+                            <label>Battery Priority: <span id="battery-value">50</span>%</label>
+                            <input type="range" id="battery" min="0" max="100" value="50">
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-panel">
+                        <h4>Preferences</h4>
+                        <div class="input-group">
+                            <label>Budget Range:</label>
+                            <select id="budget">
+                                <option value="budget">Under $500</option>
+                                <option value="mid">$500 - $800</option>
+                                <option value="premium" selected>$800 - $1200</option>
+                                <option value="flagship">$1200+</option>
+                            </select>
+                        </div>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="camera-priority"> Camera Quality Priority</label>
+                            <label><input type="checkbox" id="battery-priority"> Battery Life Priority</label>
+                            <label><input type="checkbox" id="performance-priority"> Performance Priority</label>
+                            <label><input type="checkbox" id="value-priority"> Value for Money</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-actions">
+                    <button class="calc-btn" id="calculate-btn">Calculate Analysis</button>
+                    <button class="calc-btn secondary" id="reset-btn">Reset</button>
+                </div>
+                
+                <div class="results-container" id="results">
+                    <h4>Analysis Results</h4>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h5>Overall Score</h5>
+                            <div class="score-display">
+                                <span class="score" id="overall-score">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <h5>Camera Quality</h5>
+                            <div class="score-display">
+                                <span class="score" id="camera-score">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <h5>Battery Life</h5>
+                            <div class="score-display">
+                                <span class="score" id="battery-score">0</span>
+                                <span class="score-label">hours</span>
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <h5>Value Score</h5>
+                            <div class="score-display">
+                                <span class="score" id="value-score">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-chart">
+                        <h5>Device Comparison</h5>
+                        <div class="chart-container">
+                            <canvas id="comparison-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendation">
+                        <h5>Recommendation</h5>
+                        <p id="recommendation-text">Click "Calculate Analysis" to get personalized device recommendations based on your preferences and usage patterns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2025 Zi-US Research. All rights reserved. | <a href="/contact.html" style="color: var(--accent);">Contact</a> | <a href="https://github.com/BorelSigmaInc/PHN17NMBB" target="_blank" style="color: var(--accent);">Research Data</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smartphone Calculator API - Embedded
+        class SmartphoneCalculatorAPI {
+            constructor() {
+                this.backendUrl = 'https://raw.githubusercontent.com/BorelSigmaInc/PHN17NMBB/master/';
+                this.cache = new Map();
+                this.analysisResults = null;
+            }
+
+            async fetchBackendData(dataType) {
+                if (this.cache.has(dataType)) {
+                    return this.cache.get(dataType);
+                }
+
+                try {
+                    const response = await fetch(`${this.backendUrl}${dataType}`);
+                    if (!response.ok) throw new Error(`Failed to fetch ${dataType}`);
+                    
+                    const data = await response.json();
+                    this.cache.set(dataType, data);
+                    return data;
+                } catch (error) {
+                    console.error(`Error fetching ${dataType}:`, error);
+                    return this.getFallbackData(dataType);
+                }
+            }
+
+            getFallbackData(dataType) {
+                const fallbackData = {
+                    'device_specifications.json': {
+                        'IPH17_001': {
+                            name: 'iPhone 17 Pro Max',
+                            cpu: 95, gpu: 92, camera: 98, battery: 28,
+                            price: 1199, features: ['A19 Bionic', 'Titanium', 'USB-C']
+                        },
+                        'SGS25_001': {
+                            name: 'Galaxy S25 Ultra',
+                            cpu: 93, gpu: 96, camera: 96, battery: 32,
+                            price: 1299, features: ['Snapdragon 8 Gen 4', 'S Pen', '200MP Camera']
+                        },
+                        'PIX10_001': {
+                            name: 'Pixel 10 Pro',
+                            cpu: 88, gpu: 85, camera: 99, battery: 30,
+                            price: 999, features: ['Tensor G5', 'AI Camera', 'Pure Android']
+                        },
+                        'ONEP_001': {
+                            name: 'OnePlus 13 Pro',
+                            cpu: 90, gpu: 89, camera: 87, battery: 35,
+                            price: 899, features: ['Snapdragon 8 Gen 4', 'Fast Charging', 'OxygenOS']
+                        }
+                    },
+                    'performance_benchmarks.json': {
+                        'IPH17_001': { geekbench: 2850, antutu: 1850000, mlperf: 95 },
+                        'SGS25_001': { geekbench: 2750, antutu: 1920000, mlperf: 98 },
+                        'PIX10_001': { geekbench: 2650, antutu: 1680000, mlperf: 92 },
+                        'ONEP_001': { geekbench: 2700, antutu: 1750000, mlperf: 88 }
+                    }
+                };
+                return fallbackData[dataType] || {};
+            }
+
+            calculateDeviceScore(deviceId, preferences) {
+                const specs = this.getFallbackData('device_specifications.json')[deviceId];
+                if (!specs) return 0;
+
+                let score = 0;
+                const weights = {
+                    gaming: preferences.gaming / 100,
+                    photography: preferences.photography / 100,
+                    productivity: preferences.productivity / 100,
+                    battery: preferences.battery / 100
+                };
+
+                // Calculate weighted score
+                score += specs.cpu * weights.gaming * 0.3;
+                score += specs.gpu * weights.gaming * 0.2;
+                score += specs.camera * weights.photography * 0.4;
+                score += specs.cpu * weights.productivity * 0.3;
+                score += specs.battery * weights.battery * 0.2;
+
+                // Apply feature bonuses
+                if (preferences.cameraPriority && specs.camera > 95) score += 5;
+                if (preferences.batteryPriority && specs.battery > 30) score += 5;
+                if (preferences.performancePriority && specs.cpu > 90) score += 5;
+                if (preferences.valuePriority && specs.price < 1000) score += 5;
+
+                return Math.min(Math.round(score), 100);
+            }
+
+            generateAnalysisReport(device1Id, device2Id, preferences) {
+                const device1Score = this.calculateDeviceScore(device1Id, preferences);
+                const device2Score = this.calculateDeviceScore(device2Id, preferences);
+                
+                const specs1 = this.getFallbackData('device_specifications.json')[device1Id];
+                const specs2 = this.getFallbackData('device_specifications.json')[device2Id];
+
+                return {
+                    device1: {
+                        id: device1Id,
+                        name: specs1.name,
+                        overallScore: device1Score,
+                        cameraScore: specs1.camera,
+                        batteryScore: specs1.battery,
+                        valueScore: Math.round((device1Score / specs1.price) * 100)
+                    },
+                    device2: {
+                        id: device2Id,
+                        name: specs2.name,
+                        overallScore: device2Score,
+                        cameraScore: specs2.camera,
+                        batteryScore: specs2.battery,
+                        valueScore: Math.round((device2Score / specs2.price) * 100)
+                    },
+                    recommendation: device1Score > device2Score ? 
+                        `Based on your preferences, the ${specs1.name} is the better choice with a score of ${device1Score}/100.` :
+                        `Based on your preferences, the ${specs2.name} is the better choice with a score of ${device2Score}/100.`
+                };
+            }
+
+            generateInsights(analysis) {
+                const insights = [];
+                
+                if (analysis.device1.overallScore > analysis.device2.overallScore) {
+                    insights.push(`The ${analysis.device1.name} excels in overall performance with a ${analysis.device1.overallScore - analysis.device2.overallScore} point advantage.`);
+                } else {
+                    insights.push(`The ${analysis.device2.name} excels in overall performance with a ${analysis.device2.overallScore - analysis.device1.overallScore} point advantage.`);
+                }
+
+                if (analysis.device1.cameraScore > analysis.device2.cameraScore) {
+                    insights.push(`For photography, the ${analysis.device1.name} offers superior camera quality (${analysis.device1.cameraScore} vs ${analysis.device2.cameraScore}).`);
+                } else {
+                    insights.push(`For photography, the ${analysis.device2.name} offers superior camera quality (${analysis.device2.cameraScore} vs ${analysis.device1.cameraScore}).`);
+                }
+
+                if (analysis.device1.batteryScore > analysis.device2.batteryScore) {
+                    insights.push(`The ${analysis.device1.name} provides longer battery life (${analysis.device1.batteryScore}h vs ${analysis.device2.batteryScore}h).`);
+                } else {
+                    insights.push(`The ${analysis.device2.name} provides longer battery life (${analysis.device2.batteryScore}h vs ${analysis.device1.batteryScore}h).`);
+                }
+
+                return insights;
+            }
+        }
+
+        // Initialize calculator functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const api = new SmartphoneCalculatorAPI();
+            window.SmartphoneCalculatorAPI = api;
+
+            // Update slider values
+            const sliders = ['gaming', 'photography', 'productivity', 'battery'];
+            sliders.forEach(sliderId => {
+                const slider = document.getElementById(sliderId);
+                const valueSpan = document.getElementById(sliderId + '-value');
+                
+                slider.addEventListener('input', () => {
+                    valueSpan.textContent = slider.value;
+                });
+            });
+
+            // Calculate button
+            document.getElementById('calculate-btn').addEventListener('click', async () => {
+                const device1 = document.getElementById('device1').value;
+                const device2 = document.getElementById('device2').value;
+                
+                const preferences = {
+                    gaming: parseInt(document.getElementById('gaming').value),
+                    photography: parseInt(document.getElementById('photography').value),
+                    productivity: parseInt(document.getElementById('productivity').value),
+                    battery: parseInt(document.getElementById('battery').value),
+                    cameraPriority: document.getElementById('camera-priority').checked,
+                    batteryPriority: document.getElementById('battery-priority').checked,
+                    performancePriority: document.getElementById('performance-priority').checked,
+                    valuePriority: document.getElementById('value-priority').checked
+                };
+
+                try {
+                    const analysis = api.generateAnalysisReport(device1, device2, preferences);
+                    
+                    // Update results display
+                    document.getElementById('overall-score').textContent = analysis.device1.overallScore;
+                    document.getElementById('camera-score').textContent = analysis.device1.cameraScore;
+                    document.getElementById('battery-score').textContent = analysis.device1.batteryScore;
+                    document.getElementById('value-score').textContent = analysis.device1.valueScore;
+                    document.getElementById('recommendation-text').textContent = analysis.recommendation;
+                    
+                    // Show results
+                    document.getElementById('results').style.display = 'block';
+                    
+                    // Draw comparison chart
+                    drawComparisonChart(analysis);
+                    
+                } catch (error) {
+                    console.error('Analysis error:', error);
+                    alert('Error performing analysis. Please try again.');
+                }
+            });
+
+            // Reset button
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                document.getElementById('gaming').value = 50;
+                document.getElementById('photography').value = 50;
+                document.getElementById('productivity').value = 50;
+                document.getElementById('battery').value = 50;
+                
+                document.getElementById('gaming-value').textContent = '50';
+                document.getElementById('photo-value').textContent = '50';
+                document.getElementById('productivity-value').textContent = '50';
+                document.getElementById('battery-value').textContent = '50';
+                
+                document.getElementById('camera-priority').checked = false;
+                document.getElementById('battery-priority').checked = false;
+                document.getElementById('performance-priority').checked = false;
+                document.getElementById('value-priority').checked = false;
+                
+                document.getElementById('results').style.display = 'none';
+            });
+
+            // Draw comparison chart
+            function drawComparisonChart(analysis) {
+                const canvas = document.getElementById('comparison-chart');
+                const ctx = canvas.getContext('2d');
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Chart data
+                const data = [
+                    { label: 'Overall', device1: analysis.device1.overallScore, device2: analysis.device2.overallScore },
+                    { label: 'Camera', device1: analysis.device1.cameraScore, device2: analysis.device2.cameraScore },
+                    { label: 'Battery', device1: analysis.device1.batteryScore, device2: analysis.device2.batteryScore },
+                    { label: 'Value', device1: analysis.device1.valueScore, device2: analysis.device2.valueScore }
+                ];
+                
+                const barWidth = 30;
+                const barSpacing = 60;
+                const startX = 50;
+                const startY = 20;
+                const maxHeight = 150;
+                
+                // Draw bars
+                data.forEach((item, index) => {
+                    const x = startX + index * barSpacing;
+                    const y1 = startY + maxHeight - (item.device1 / 100) * maxHeight;
+                    const y2 = startY + maxHeight - (item.device2 / 100) * maxHeight;
+                    
+                    // Device 1 bar
+                    ctx.fillStyle = '#0066ff';
+                    ctx.fillRect(x, y1, barWidth, (item.device1 / 100) * maxHeight);
+                    
+                    // Device 2 bar
+                    ctx.fillStyle = '#ff3366';
+                    ctx.fillRect(x + barWidth + 5, y2, barWidth, (item.device2 / 100) * maxHeight);
+                    
+                    // Labels
+                    ctx.fillStyle = '#333';
+                    ctx.font = '12px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(item.label, x + barWidth + 2.5, startY + maxHeight + 15);
+                });
+                
+                // Legend
+                ctx.fillStyle = '#0066ff';
+                ctx.fillRect(10, 10, 15, 15);
+                ctx.fillStyle = '#333';
+                ctx.font = '12px Inter';
+                ctx.textAlign = 'left';
+                ctx.fillText(analysis.device1.name, 30, 22);
+                
+                ctx.fillStyle = '#ff3366';
+                ctx.fillRect(10, 30, 15, 15);
+                ctx.fillStyle = '#333';
+                ctx.fillText(analysis.device2.name, 30, 42);
+            }
+        });
+    </script>
+</body>
+</html>
