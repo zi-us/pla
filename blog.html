@@ -29,6 +29,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="theme-color" content="#0066ff">
     
+    <!-- Dynamic Charts Library -->
+    <script src="https://raw.github.com/mlarocca/Dynamic-Charts/master/dynamic_chart.min.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap');
         
@@ -1397,6 +1400,71 @@
         </div>
     </section>
 
+    <!-- Device Comparison Dynamic Line Charts Section -->
+    <section class="content-section" id="device-comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Device Comparison: Dynamic Performance Analysis</h2>
+                <p>Real-time performance tracking and comparison across multiple devices using advanced dynamic line simulations</p>
+            </div>
+            
+            <div class="calculator-section" style="margin-top: 2rem;">
+                <div class="calculator-header">
+                    <h3>Live Device Performance Comparison</h3>
+                    <p>Interactive dynamic line charts showing real-time performance metrics, battery life trends, and AI processing capabilities across flagship devices.</p>
+                </div>
+                
+                <!-- Dynamic Line Chart Container -->
+                <div id="device-comparison-chart" style="width: 100%; height: 500px; margin: 2rem 0; background: transparent; border: 1px solid var(--gray-200); border-radius: 0.4rem; padding: 1rem;"></div>
+                
+                <!-- Chart Controls -->
+                <div style="display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap;">
+                    <button class="calc-btn" id="start-simulation">Start Live Simulation</button>
+                    <button class="calc-btn secondary" id="pause-simulation">Pause</button>
+                    <button class="calc-btn secondary" id="reset-chart">Reset Chart</button>
+                    <button class="calc-btn secondary" id="sync-calculator">Sync with Calculator</button>
+                    <select id="chart-speed" style="padding: 0.8rem; border: 1px solid var(--gray-300); border-radius: 0.4rem; background: white;">
+                        <option value="1000">Slow (1s)</option>
+                        <option value="500" selected>Normal (0.5s)</option>
+                        <option value="200">Fast (0.2s)</option>
+                    </select>
+                </div>
+                
+                <!-- Performance Metrics Display - Aligned with Calculator -->
+                <div class="results-grid" style="margin-top: 2rem;">
+                    <div class="result-card">
+                        <h5>Overall Score Leader</h5>
+                        <div class="score-display">
+                            <span class="score" id="current-leader">iPhone 17 Pro Max</span>
+                            <span class="score-label">Best Overall</span>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <h5>Performance Leader</h5>
+                        <div class="score-display">
+                            <span class="score" id="ai-leader">Galaxy S25 Ultra</span>
+                            <span class="score-label">CPU+GPU Score</span>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <h5>Battery Life Leader</h5>
+                        <div class="score-display">
+                            <span class="score" id="battery-leader">OnePlus 13 Pro</span>
+                            <span class="score-label">Hours</span>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <h5>Camera Quality Leader</h5>
+                        <div class="score-display">
+                            <span class="score" id="camera-leader">Pixel 10 Pro</span>
+                            <span class="score-label">Quality Index</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1596,6 +1664,11 @@
                     // Draw comparison chart
                     drawComparisonChart(analysis);
                     
+                    // Sync dynamic charts with calculator results
+                    if (window.deviceCharts) {
+                        window.deviceCharts.syncWithCalculator(device1, device2);
+                    }
+                    
                 } catch (error) {
                     console.error('Analysis error:', error);
                     alert('Error performing analysis. Please try again.');
@@ -1678,6 +1751,353 @@
                 ctx.fillStyle = '#333';
                 ctx.fillText(analysis.device2.name, 30, 42);
             }
+        });
+
+        // Dynamic Line Charts Implementation - Aligned with Calculator
+        class DeviceComparisonCharts {
+            constructor() {
+                this.chart = null;
+                this.isRunning = false;
+                this.updateInterval = null;
+                this.speed = 500;
+                this.timeCounter = 0;
+                
+                // Use the same device data as the calculator
+                this.deviceSpecs = {
+                    'IPH17_001': {
+                        name: 'iPhone 17 Pro Max',
+                        cpu: 95, gpu: 92, camera: 98, battery: 28,
+                        price: 1199, features: ['A19 Bionic', 'Titanium', 'USB-C']
+                    },
+                    'SGS25_001': {
+                        name: 'Galaxy S25 Ultra',
+                        cpu: 93, gpu: 96, camera: 96, battery: 32,
+                        price: 1299, features: ['Snapdragon 8 Gen 4', 'S Pen', '200MP Camera']
+                    },
+                    'PIX10_001': {
+                        name: 'Pixel 10 Pro',
+                        cpu: 88, gpu: 85, camera: 99, battery: 30,
+                        price: 999, features: ['Tensor G5', 'AI Camera', 'Pure Android']
+                    },
+                    'ONEP_001': {
+                        name: 'OnePlus 13 Pro',
+                        cpu: 90, gpu: 89, camera: 87, battery: 35,
+                        price: 899, features: ['Snapdragon 8 Gen 4', 'Fast Charging', 'OxygenOS']
+                    }
+                };
+                
+                this.deviceData = {};
+                this.initializeDeviceData();
+            }
+            
+            initializeDeviceData() {
+                // Initialize data structure for each device using calculator specs
+                Object.keys(this.deviceSpecs).forEach(deviceId => {
+                    const device = this.deviceSpecs[deviceId];
+                    this.deviceData[device.name] = {
+                        overall: [],
+                        camera: [],
+                        battery: [],
+                        performance: [],
+                        value: []
+                    };
+                });
+            }
+
+            initializeChart() {
+                // Initialize the Dynamic Chart
+                this.chart = new DynamicChart({
+                    container: '#device-comparison-chart',
+                    width: 800,
+                    height: 450,
+                    margin: {top: 20, right: 30, bottom: 40, left: 50}
+                });
+
+                // Set chart properties
+                this.chart.setTitle('Real-Time Device Performance Comparison');
+                this.chart.setVerticalAxe(true);
+                this.chart.setHorizontalAxe(true);
+                this.chart.setOuterBackgroundColor('transparent');
+                this.chart.setInnerBackgroundColor('transparent');
+
+                // Initialize data with some historical points
+                this.initializeData();
+                this.renderChart();
+            }
+
+            initializeData() {
+                // Create initial data points using calculator device specs
+                Object.keys(this.deviceData).forEach(deviceName => {
+                    const deviceId = this.getDeviceIdByName(deviceName);
+                    const specs = this.deviceSpecs[deviceId];
+                    
+                    for (let i = 0; i < 20; i++) {
+                        const time = new Date(Date.now() - (20 - i) * 60000); // 1 minute intervals
+                        
+                        // Use calculator's scoring method for overall score
+                        const overallScore = this.calculateOverallScore(specs);
+                        const valueScore = Math.round((overallScore / specs.price) * 100);
+                        
+                        this.deviceData[deviceName].overall.push({
+                            x: time,
+                            y: overallScore + (Math.random() - 0.5) * 4
+                        });
+                        this.deviceData[deviceName].camera.push({
+                            x: time,
+                            y: specs.camera + (Math.random() - 0.5) * 2
+                        });
+                        this.deviceData[deviceName].battery.push({
+                            x: time,
+                            y: specs.battery + (Math.random() - 0.5) * 2
+                        });
+                        this.deviceData[deviceName].performance.push({
+                            x: time,
+                            y: (specs.cpu + specs.gpu) / 2 + (Math.random() - 0.5) * 3
+                        });
+                        this.deviceData[deviceName].value.push({
+                            x: time,
+                            y: valueScore + (Math.random() - 0.5) * 3
+                        });
+                    }
+                });
+            }
+            
+            getDeviceIdByName(deviceName) {
+                for (const [id, device] of Object.entries(this.deviceSpecs)) {
+                    if (device.name === deviceName) return id;
+                }
+                return null;
+            }
+            
+            calculateOverallScore(specs) {
+                // Use the same scoring method as the calculator
+                let score = 0;
+                score += specs.cpu * 0.3;
+                score += specs.gpu * 0.2;
+                score += specs.camera * 0.3;
+                score += specs.battery * 0.2;
+                return Math.min(Math.round(score), 100);
+            }
+
+            renderChart() {
+                if (!this.chart) return;
+
+                // Clear existing series
+                this.chart.clearSeries();
+
+                // Add overall score lines for each device (matching calculator metrics)
+                const colors = ['#0066ff', '#ff3366', '#10b981', '#f59e0b'];
+                const deviceNames = Object.keys(this.deviceData);
+                
+                deviceNames.forEach((deviceName, index) => {
+                    this.chart.addLineSeries({
+                        data: this.deviceData[deviceName].overall,
+                        name: `${deviceName} - Overall Score`,
+                        color: colors[index],
+                        strokeWidth: 2
+                    });
+                });
+
+                this.chart.render();
+            }
+
+            startSimulation() {
+                if (this.isRunning) return;
+                
+                this.isRunning = true;
+                this.updateInterval = setInterval(() => {
+                    this.updateData();
+                    this.renderChart();
+                    this.updateLeaderboard();
+                }, this.speed);
+            }
+
+            pauseSimulation() {
+                this.isRunning = false;
+                if (this.updateInterval) {
+                    clearInterval(this.updateInterval);
+                    this.updateInterval = null;
+                }
+            }
+
+            resetChart() {
+                this.pauseSimulation();
+                this.timeCounter = 0;
+                this.initializeDeviceData();
+                this.initializeData();
+                this.renderChart();
+            }
+
+            updateData() {
+                const currentTime = new Date();
+                
+                Object.keys(this.deviceData).forEach(deviceName => {
+                    const deviceId = this.getDeviceIdByName(deviceName);
+                    const specs = this.deviceSpecs[deviceId];
+                    
+                    // Calculate scores using calculator method
+                    const overallScore = this.calculateOverallScore(specs);
+                    const valueScore = Math.round((overallScore / specs.price) * 100);
+                    
+                    // Add new data points with realistic variations
+                    this.deviceData[deviceName].overall.push({
+                        x: currentTime,
+                        y: Math.max(0, Math.min(100, overallScore + (Math.random() - 0.5) * 4))
+                    });
+                    this.deviceData[deviceName].camera.push({
+                        x: currentTime,
+                        y: Math.max(0, Math.min(100, specs.camera + (Math.random() - 0.5) * 2))
+                    });
+                    this.deviceData[deviceName].battery.push({
+                        x: currentTime,
+                        y: Math.max(0, Math.min(50, specs.battery + (Math.random() - 0.5) * 2))
+                    });
+                    this.deviceData[deviceName].performance.push({
+                        x: currentTime,
+                        y: Math.max(0, Math.min(100, (specs.cpu + specs.gpu) / 2 + (Math.random() - 0.5) * 3))
+                    });
+                    this.deviceData[deviceName].value.push({
+                        x: currentTime,
+                        y: Math.max(0, Math.min(100, valueScore + (Math.random() - 0.5) * 3))
+                    });
+
+                    // Keep only last 50 data points for performance
+                    ['overall', 'camera', 'battery', 'performance', 'value'].forEach(metric => {
+                        if (this.deviceData[deviceName][metric].length > 50) {
+                            this.deviceData[deviceName][metric].shift();
+                        }
+                    });
+                });
+
+                this.timeCounter++;
+            }
+
+            updateLeaderboard() {
+                // Calculate current leaders using calculator metrics
+                const currentLeaders = {
+                    overall: { name: '', score: 0 },
+                    performance: { name: '', score: 0 },
+                    battery: { name: '', score: 0 },
+                    camera: { name: '', score: 0 }
+                };
+
+                Object.keys(this.deviceData).forEach(deviceName => {
+                    const latestOverall = this.deviceData[deviceName].overall.slice(-1)[0]?.y || 0;
+                    const latestPerformance = this.deviceData[deviceName].performance.slice(-1)[0]?.y || 0;
+                    const latestBattery = this.deviceData[deviceName].battery.slice(-1)[0]?.y || 0;
+                    const latestCamera = this.deviceData[deviceName].camera.slice(-1)[0]?.y || 0;
+
+                    if (latestOverall > currentLeaders.overall.score) {
+                        currentLeaders.overall = { name: deviceName, score: latestOverall };
+                    }
+                    if (latestPerformance > currentLeaders.performance.score) {
+                        currentLeaders.performance = { name: deviceName, score: latestPerformance };
+                    }
+                    if (latestBattery > currentLeaders.battery.score) {
+                        currentLeaders.battery = { name: deviceName, score: latestBattery };
+                    }
+                    if (latestCamera > currentLeaders.camera.score) {
+                        currentLeaders.camera = { name: deviceName, score: latestCamera };
+                    }
+                });
+
+                // Update UI with calculator-aligned metrics
+                document.getElementById('current-leader').textContent = currentLeaders.overall.name;
+                document.getElementById('ai-leader').textContent = currentLeaders.performance.name;
+                document.getElementById('battery-leader').textContent = currentLeaders.battery.name;
+                document.getElementById('camera-leader').textContent = currentLeaders.camera.name;
+            }
+
+            setSpeed(newSpeed) {
+                this.speed = parseInt(newSpeed);
+                if (this.isRunning) {
+                    this.pauseSimulation();
+                    this.startSimulation();
+                }
+            }
+            
+            // Sync with calculator device selections
+            syncWithCalculator(device1Id, device2Id) {
+                const device1 = this.deviceSpecs[device1Id];
+                const device2 = this.deviceSpecs[device2Id];
+                
+                if (!device1 || !device2) return;
+                
+                // Update chart to show only selected devices
+                this.selectedDevices = [device1.name, device2.name];
+                this.renderSelectedDevices();
+            }
+            
+            renderSelectedDevices() {
+                if (!this.chart) return;
+                
+                this.chart.clearSeries();
+                
+                const colors = ['#0066ff', '#ff3366'];
+                const deviceNames = this.selectedDevices || Object.keys(this.deviceData);
+                
+                deviceNames.forEach((deviceName, index) => {
+                    if (this.deviceData[deviceName]) {
+                        this.chart.addLineSeries({
+                            data: this.deviceData[deviceName].overall,
+                            name: `${deviceName} - Overall Score`,
+                            color: colors[index % colors.length],
+                            strokeWidth: 3
+                        });
+                    }
+                });
+                
+                this.chart.render();
+            }
+        }
+
+        // Initialize dynamic charts when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const deviceCharts = new DeviceComparisonCharts();
+            
+            // Initialize the chart
+            setTimeout(() => {
+                deviceCharts.initializeChart();
+            }, 1000);
+
+            // Event listeners for chart controls
+            document.getElementById('start-simulation').addEventListener('click', () => {
+                deviceCharts.startSimulation();
+            });
+
+            document.getElementById('pause-simulation').addEventListener('click', () => {
+                deviceCharts.pauseSimulation();
+            });
+
+            document.getElementById('reset-chart').addEventListener('click', () => {
+                deviceCharts.resetChart();
+            });
+
+            document.getElementById('chart-speed').addEventListener('change', (e) => {
+                deviceCharts.setSpeed(e.target.value);
+            });
+            
+            document.getElementById('sync-calculator').addEventListener('click', () => {
+                const device1 = document.getElementById('device1').value;
+                const device2 = document.getElementById('device2').value;
+                deviceCharts.syncWithCalculator(device1, device2);
+            });
+            
+            // Sync chart with calculator device selections
+            const device1Select = document.getElementById('device1');
+            const device2Select = document.getElementById('device2');
+            
+            function syncChartWithCalculator() {
+                const device1 = device1Select.value;
+                const device2 = device2Select.value;
+                deviceCharts.syncWithCalculator(device1, device2);
+            }
+            
+            device1Select.addEventListener('change', syncChartWithCalculator);
+            device2Select.addEventListener('change', syncChartWithCalculator);
+            
+            // Make deviceCharts globally accessible for calculator integration
+            window.deviceCharts = deviceCharts;
         });
     </script>
 </body>
